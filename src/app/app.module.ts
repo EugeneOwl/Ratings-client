@@ -7,19 +7,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserListComponent } from './component/user-list/user-list.component';
 import { RoutingModule } from './module/routing/routing.module';
 import { MainComponent } from './component/main/main.component';
+import { RoleListComponent } from './component/role-list/role-list.component';
+import { RoleService } from './service/role.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    MainComponent
+    MainComponent,
+    RoleListComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RoutingModule
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    RoleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
