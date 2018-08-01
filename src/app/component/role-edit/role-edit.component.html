@@ -1,0 +1,11 @@
+<form #roleForm="ngForm" (ngSubmit)="save(roleForm.value)">
+  <h2>
+    <h2>{{role.value ? 'Edit' : 'Add'}} Role</h2>
+  </h2>
+  <input type="hidden" name="href" [(ngModel)]="role.href">
+  <input placeholder="Role Value" [(ngModel)]="role.value" required name="value" #name>
+
+  <button type="submit" >Save</button>
+  <button (click)="remove(role.href)" *ngIf="role.href" type="button">Delete</button>
+  <a routerLink="/client/list">Cancel</a>
+</form>

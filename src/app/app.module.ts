@@ -9,17 +9,21 @@ import { RoutingModule } from './module/routing/routing.module';
 import { MainComponent } from './component/main/main.component';
 import { RoleListComponent } from './component/role-list/role-list.component';
 import { RoleService } from './service/role.service';
+import { RoleEditComponent } from './component/role-edit/role-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     MainComponent,
-    RoleListComponent
+    RoleListComponent,
+    RoleEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RoutingModule
   ],
   providers: [
