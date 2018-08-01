@@ -3,21 +3,21 @@
 <h1>User list</h1>
 
 <table>
-  <tr>
-    <th>Id</th>
-    <th>Username</th>
-    <th>Roles</th>
-  </tr>
-  <tr *ngFor="let user of users">
-    <td>
-      {{user.id}}
-    </td>
-    <td>
-      {{user.username}}
-    </td>
-    <td *ngFor="let role of user.roles">
-      {{role.value}}
-    </td>
-  </tr>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Roles</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>
+            {{user.id}}
+        </td>
+        <td>
+            {{user.username}}
+        </td>
+        <td *ngFor="let role of user.roles">
+            {{role.value}}
+        </td>
+    </tr>
 </table>
 
