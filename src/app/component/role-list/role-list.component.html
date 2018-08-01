@@ -1,22 +1,22 @@
 <h1>Role list</h1>
 
 <table>
-    <tr>
-        <th>Id</th>
-        <th>Value</th>
-    </tr>
-    <tr *ngFor="let role of roles">
-        <td>
-            {{role.id}}
-        </td>
-        <td>
-            <a [routerLink]="['role/edit', role.id]">
-                {{role.value}}
-            </a>
-        </td>
-    </tr>
+  <tr>
+    <th>Id</th>
+    <th>Value</th>
+  </tr>
+  <tr *ngFor="let role of roles">
+    <td>
+      {{role.id}}
+    </td>
+    <td>
+      <a [routerLink]="['role/edit', role.id]">
+        {{role.value}}
+      </a>
+    </td>
+  </tr>
 </table>
 
 <button [routerLink]="['role/add']">Add role</button>
 
-
+<app-user-list></app-user-list>
