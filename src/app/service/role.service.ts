@@ -4,31 +4,37 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class RoleService {
-  public API = '//127.0.0.1:8080/server/roles';
+	public API = '//127.0.0.1:8080/server/roles';
 
-  constructor(private http: HttpClient) {
-  }
+	constructor(private http: HttpClient) {
+	}
 
-  getAll(): Observable<any> {
-    return this.http.get(this.API);
-  }
+	getAll(): Observable<any> {
 
-  get(id: string) {
-    return this.http.get(this.API + '/' + id);
-  }
+		return this.http.get(this.API);
+	}
 
-  save(role: any): Observable<any> {
-    let result: Observable<object>;
-    if (role['href']) {
-      result = this.http.put(role.href, role);
-    } else {
-      console.log('SAVING ROLE!');
-      result = this.http.post(this.API, role);
-    }
-    return result;
-  }
+	get(id: string) {
 
-  remove(href: string) {
-    return this.http.delete(href);
-  }
+		return this.http.get(this.API + '/' + id);
+	}
+
+	save(role: any): Observable<any> {
+		let result: Observable<object>;
+		if (!role.id) {
+			console.log('adding ' + role.id);
+			result = this.http.put(this.API, role);
+		} else {
+			console.log('editing ' + role.id);
+			result = this.http.post(this.API, role);
+		}
+
+		return result;
+	}
+
+	remove(id: string) {
+
+		console.log('going to delete ' + id);
+		return this.http.delete(this.API + '/' + id);
+	}
 }

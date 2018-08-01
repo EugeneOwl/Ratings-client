@@ -8,7 +8,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/client/main', pathMatch: 'full'},
   {path: 'client/main', component: MainComponent},
   {path: 'client/list', component: UserListComponent},
-  {path: 'client/list/role/add', component: RoleEditComponent}
+  {path: 'client/list/role/add', component: RoleEditComponent},
+  {path: 'client/list/role/edit/:id', component: RoleEditComponent}
 ];
 
 @NgModule({

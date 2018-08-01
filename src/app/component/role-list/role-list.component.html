@@ -10,7 +10,9 @@
       {{role.id}}
     </td>
     <td>
-      {{role.value}}
+      <a [routerLink]="['role/edit', role.id]">
+        {{role.value}}
+      </a>
     </td>
   </tr>
 </table>

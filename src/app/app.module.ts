@@ -13,23 +13,24 @@ import { RoleEditComponent } from './component/role-edit/role-edit.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserListComponent,
-    MainComponent,
-    RoleListComponent,
-    RoleEditComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    RoutingModule
-  ],
-  providers: [
-    UserService,
-    RoleService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		UserListComponent,
+		MainComponent,
+		RoleListComponent,
+		RoleEditComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		FormsModule,
+		RoutingModule
+	],
+	providers: [
+		UserService,
+		RoleService
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
