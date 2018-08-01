@@ -1,11 +1,20 @@
-<form #roleForm="ngForm" (submit)="save(roleForm.value)">
-    <h2>
-        <h2>{{role.id ? 'Edit' : 'Add'}} Role</h2>
-    </h2>
-    <input readonly name="id" [(ngModel)]="role.id">
-    <input placeholder="Role Value" [(ngModel)]="role.value" required name="value" #name>
+<h1> ... Role</h1>(edit or add)
 
-    <button mat-button type="submit" [disabled]="!roleForm.form.valid">Save</button>
-    <button (click)="remove(role.id)" *ngIf="role.id" type="button">Delete</button>
-    <a routerLink="/client/list">Cancel</a>
-</form>
+<div>
+  <div>
+    Id: <input [formControl]="id" readonly>
+  </div>
+
+  <div>
+    Value: <input [formControl]="value">
+    <label *ngIf="value.invalid"> Role value is required. </label>
+  </div>
+
+  <div>
+    <button [disabled]="!value.value" (click)="save()"> Save </button>
+  </div>
+
+  <div>
+    <button [disabled]="!id.value" (click)="remove(id.value)"> Delete </button>
+  </div>
+</div>

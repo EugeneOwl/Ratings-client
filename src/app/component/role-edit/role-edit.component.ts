@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription }                 from 'rxjs';
 import { ActivatedRoute, Router }       from '@angular/router';
-import { NgForm }                       from '@angular/forms';
+import { FormControl }                  from '@angular/forms';
+import { Validators }                   from '@angular/forms';
 import { RoleService }                  from '../../service/role.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { RoleService }                  from '../../service/role.service';
     styleUrls: ['./role-edit.component.css']
 })
 export class RoleEditComponent implements OnInit, OnDestroy {
-    role: any = {};
+    id = new FormControl();
+    value = new FormControl('',[Validators.required]);
 
     sub: Subscription;
 
@@ -25,7 +27,8 @@ export class RoleEditComponent implements OnInit, OnDestroy {
             if (id) {
                 this.roleService.get(id).subscribe((role: any) => {
                     if (role) {
-                        this.role = role;
+                        this.id.setValue(role.id);
+                        this.value.setValue(role.value);
                     } else {
                         console.log(`Role with id '${id}' not found, returning to list`);
                         this.gotoList();
@@ -39,14 +42,16 @@ export class RoleEditComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    gotoList() {
-        this.router.navigate(['client/list']);
-    }
-
-    save(form: NgForm) {
-        this.roleService.save(form).subscribe(result => {
+    save() {
+        this.roleService.save(
+            {id: this.id.value, value: this.value.value}
+        ).subscribe(result => {
             this.gotoList();
         }, error => console.error(error));
+    }
+
+    gotoList() {
+        this.router.navigate(['client/list']);
     }
 
     remove(id) {

@@ -20,16 +20,11 @@ export class RoleService {
 	}
 
 	save(role: any): Observable<any> {
-		let result: Observable<object>;
 		if (!role.id) {
-			console.log('adding ' + role.id);
-			result = this.http.put(this.API, role);
-		} else {
-			console.log('editing ' + role.id);
-			result = this.http.post(this.API, role);
+			return this.http.put(this.API, role);
 		}
 
-		return result;
+		return this.http.post(this.API, role);
 	}
 
 	remove(id: string) {
