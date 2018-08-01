@@ -1,6 +1,6 @@
 <form #roleForm="ngForm" (submit)="save(roleForm.value)">
     <h2>
-        <h2>{{role.value ? 'Edit' : 'Add'}} Role</h2>
+        <h2>{{role.id ? 'Edit' : 'Add'}} Role</h2>
     </h2>
     <input readonly name="id" [(ngModel)]="role.id">
     <input placeholder="Role Value" [(ngModel)]="role.value" required name="value" #name>

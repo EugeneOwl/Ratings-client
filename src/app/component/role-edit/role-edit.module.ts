@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { CommonModule }      from '@angular/common';
-import { MatButtonModule }   from '@angular/material';
-import { RoleEditComponent } from './role-edit.component';
-import { FormsModule }       from '@angular/forms';
+import { CommonModule }        from '@angular/common';
+import { MatButtonModule }     from '@angular/material';
+import { RoleEditComponent }   from './role-edit.component';
+import { FormsModule }         from '@angular/forms';
+import { RouterModule }        from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -12,7 +14,9 @@ import { FormsModule }       from '@angular/forms';
     imports: [
         CommonModule,
         MatButtonModule,
-        FormsModule
+        FormsModule,
+        RouterModule,
+        ReactiveFormsModule
     ],
     exports: [RoleEditComponent],
     providers: []

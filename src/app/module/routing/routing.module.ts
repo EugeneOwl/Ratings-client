@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent }        from '../../component/main/main.component';
 import { RoleEditComponent }    from '../../component/role-edit/role-edit.component';
 import { RoleListComponent }    from '../../component/role-list/role-list.component';
+import { HttpClientModule }     from '@angular/common/http';
 
 const routes: Routes=[
     {path: '', redirectTo: '/client/main', pathMatch: 'full'},
@@ -13,7 +14,10 @@ const routes: Routes=[
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [
+        HttpClientModule,
+        RouterModule.forRoot(routes)
+    ],
     exports: [RouterModule]
 })
 export class RoutingModule {
