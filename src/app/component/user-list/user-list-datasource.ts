@@ -54,8 +54,6 @@ export class UserListDataSource extends DataSource<User> {
                     return compare(a.username, b.username, isAsc);
                 case 'id':
                     return compare(+ a.id, + b.id, isAsc);
-                case 'roles':
-                    return compare(a.roles[0].value, b.roles[0].value, isAsc);
                 default:
                     return 0;
             }

@@ -26,5 +26,7 @@ export class UserListComponent implements OnInit {
         });
     }
 
-
+    updateRawRoles(rawRoles: string) {
+        alert(rawRoles);
+    }
 }

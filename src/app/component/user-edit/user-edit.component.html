@@ -1,0 +1,21 @@
+<div ngClass="wrapper">
+  <h1> Edit User</h1>
+
+  <div>
+    <div>
+      Id: <input [formControl]="id" readonly>
+    </div>
+
+    <div>
+      Role ids: <input [formControl]="rawRoles">
+    </div>
+
+    <div>
+      <button mat-raised-button mat-button (click)="updateRawRoles()"> Update Roles </button>
+    </div>
+
+    <div>
+      <a mat-raised-button mat-button (click)="gotoList()"> Cancel </a>
+    </div>
+  </div>
+</div>

@@ -26,7 +26,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(params => {
             const id = params['id'];
             if (id) {
-                this.roleService.get(id).subscribe((role: any) => {
+                this.roleService.get(id).subscribe((role: Role) => {
                     if (role) {
                         this.id.setValue(role.id);
                         this.value.setValue(role.value);

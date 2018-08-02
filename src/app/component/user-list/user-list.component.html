@@ -11,7 +11,9 @@
 
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-        <td mat-cell *matCellDef="let row">{{row.username}}</td>
+        <td mat-cell *matCellDef="let row">
+          <a [routerLink]="['user/edit/' + row.id]">{{row.username}}</a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="roles">
