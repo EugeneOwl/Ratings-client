@@ -4,6 +4,7 @@ import { ActivatedRoute, Router }       from '@angular/router';
 import { FormControl }                  from '@angular/forms';
 import { Validators }                   from '@angular/forms';
 import { RoleService }                  from '../../service/role.service';
+import { Role }                         from '../../model/Role';
 
 @Component({
     selector: 'app-role-edit',
@@ -44,7 +45,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
 
     save() {
         this.roleService.save(
-            {id: this.id.value, value: this.value.value}
+            new Role( this.id.value, this.value.value)
         ).subscribe(result => {
             this.gotoList();
         }, error => console.error(error));

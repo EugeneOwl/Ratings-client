@@ -1,20 +1,41 @@
-<h1> ... Role</h1>(edit or add)
+<!--<div ngClass="wrapper">-->
+  <!--<h1> {{id.value ? 'Edit' : 'Add'}} Role</h1>-->
+
+  <!--<div>-->
+    <!--<div>-->
+      <!--Id: <input [formControl]="id" readonly>-->
+    <!--</div>-->
+
+    <!--<mat-form-field>-->
+      <!--Value: <input matInput placeholder="value" [formControl]="value">-->
+    <!--</mat-form-field>-->
+    <!--<label *ngIf="value.invalid"> Role value is required. </label>-->
+    <!--<div>-->
+      <!--<button mat-raised-button mat-button [disabled]="!value.value" (click)="save()"> Save</button>-->
+    <!--</div>-->
+
+    <!--<div>-->
+      <!--<button mat-raised-button mat-button [disabled]="!id.value" (click)="remove(id.value)"> Delete</button>-->
+    <!--</div>-->
+
+    <!--<div>-->
+      <!--<a mat-raised-button mat-button (click)="gotoList()"> Cancel </a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <div>
-  <div>
-    Id: <input [formControl]="id" readonly>
-  </div>
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
 
-  <div>
-    Value: <input [formControl]="value">
-    <label *ngIf="value.invalid"> Role value is required. </label>
-  </div>
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
 
-  <div>
-    <button [disabled]="!value.value" (click)="save()"> Save </button>
-  </div>
-
-  <div>
-    <button [disabled]="!id.value" (click)="remove(id.value)"> Delete </button>
-  </div>
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

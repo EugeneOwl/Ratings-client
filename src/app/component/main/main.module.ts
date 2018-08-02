@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { CommonModule }  from '@angular/common';
-import { MainComponent } from './main.component';
-import { RouterModule }  from '@angular/router';
+import { CommonModule }    from '@angular/common';
+import { MainComponent }   from './main.component';
+import { RouterModule }    from '@angular/router';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -10,7 +11,8 @@ import { RouterModule }  from '@angular/router';
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        MatButtonModule
     ],
     exports: [MainComponent],
     providers: []
