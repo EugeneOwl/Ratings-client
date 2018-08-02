@@ -14,7 +14,7 @@ export class UserListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
 
     dataSource: UserListDataSource;
-    displayedColumns = ['id', 'username'];
+    displayedColumns = ['id', 'username', 'roles'];
 
     constructor(private userService: UserService) {
     }

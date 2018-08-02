@@ -2,12 +2,12 @@ import { DataSource }                            from '@angular/cdk/collections'
 import { MatPaginator, MatSort }                 from '@angular/material';
 import { map }                                   from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Role }                                  from '../../model/User';
+import { User }                                  from '../../model/User';
 
-export class UserListDataSource extends DataSource<Role> {
-    private data: Array<Role>;
+export class UserListDataSource extends DataSource<User> {
+    private data: Array<User>;
 
-    setData(users: Array<Role>) {
+    setData(users: Array<User>) {
         this.data = users;
     }
 
@@ -15,7 +15,7 @@ export class UserListDataSource extends DataSource<Role> {
         super();
     }
 
-    connect(): Observable<Role[]> {
+    connect(): Observable<User[]> {
         //
         // if (this.data == undefined) { Во-превых - тупость
         //     this.data = [];           Во-вторых - даже не получается. Потоки разные или что
@@ -37,12 +37,12 @@ export class UserListDataSource extends DataSource<Role> {
     disconnect() {
     }
 
-    private getPagedData(data: Role[]) {
+    private getPagedData(data: User[]) {
         const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
         return data.splice(startIndex, this.paginator.pageSize);
     }
 
-    private getSortedData(data: Role[]) {
+    private getSortedData(data: User[]) {
         if (! this.sort.active || this.sort.direction === '') {
             return data;
         }
@@ -54,6 +54,8 @@ export class UserListDataSource extends DataSource<Role> {
                     return compare(a.username, b.username, isAsc);
                 case 'id':
                     return compare(+ a.id, + b.id, isAsc);
+                case 'roles':
+                    return compare(a.roles[0].value, b.roles[0].value, isAsc);
                 default:
                     return 0;
             }
