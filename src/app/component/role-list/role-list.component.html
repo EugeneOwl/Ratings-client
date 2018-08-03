@@ -1,38 +1,29 @@
-<div ngClass="wrapper">
+<h1 class="mat-headline">Role list</h1>
 
-  <app-go-home-button></app-go-home-button>
+<div class="mat-elevation-z8">
 
-  <h1 ngClass="mat-headline">Role list</h1>
+  <a mat-raised-button mat-button class="add-role-button button" [routerLink]="['role/add']">Add role</a>
 
-  <div class="mat-elevation-z8">
+  <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
-    <a mat-raised-button mat-button ngClass="add-role-button button" [routerLink]="['role/add']">Add role</a>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row" class="mat-body-1">{{row.id}}</td>
+    </ng-container>
 
-    <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Role value</th>
+      <td mat-cell *matCellDef="let row" class="mat-body-1">
+        <a [routerLink]="['role/edit/' + row.id]" mat-button class="table-button">{{row.value}}</a>
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">{{row.id}}</td>
-      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
-      <ng-container matColumnDef="value">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Role value</th>
-        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">
-          <a [routerLink]="['role/edit/' + row.id]" mat-button ngClass="table-button">{{row.value}}</a>
-        </td>
-
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-    <mat-paginator #paginator
-                   [pageSize]="5"
-                   [pageSizeOptions]="[5, 10, 15]">
-    </mat-paginator>
-  </div>
-
-
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 15]">
+  </mat-paginator>
 </div>
-<app-user-list></app-user-list>

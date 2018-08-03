@@ -1,6 +1,4 @@
-import { NgModule } from '@angular/core';
-
-import { CommonModule }          from '@angular/common';
+import { NgModule }              from '@angular/core';
 import { GoHomeButtonComponent } from './go-home-button.component';
 import { RouterModule }          from '@angular/router';
 import { MatIconModule }         from '@angular/material';
@@ -11,8 +9,8 @@ import { MatButtonModule }       from '@angular/material';
         GoHomeButtonComponent
     ],
     imports: [
-        CommonModule,
         RouterModule,
+
         MatButtonModule,
         MatIconModule
     ],

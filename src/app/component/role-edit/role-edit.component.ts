@@ -52,7 +52,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
     }
 
     gotoList() {
-        this.router.navigate(['client/list']);
+        this.router.navigate(['client/admin']);
     }
 
     remove(id) {

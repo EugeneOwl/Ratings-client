@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators }        from '@angular/forms';
+import { OnDestroy }         from '@angular/core';
 import { FormControl }       from '@angular/forms';
 import { Router }            from '@angular/router';
 import { ActivatedRoute }    from '@angular/router';
 import { UserService }       from '../../service/user.service';
 import { Subscription }      from 'rxjs';
 import { User }              from '../../model/User';
-import { Role }              from '../../model/Role';
-import { OnDestroy }         from '@angular/core';
 
 @Component({
     selector: 'app-user-edit',
@@ -57,7 +55,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
     }
 
     gotoList() {
-        this.router.navigate(['client/list']);
+        this.router.navigate(['client/admin']);
     }
 
 }

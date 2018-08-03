@@ -1,5 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppComponent }       from './app.component';
 import { UserService }        from './service/user.service';
@@ -11,20 +10,21 @@ import { RoleListModule }     from './component/role-list/role-list.module';
 import { MainModule }         from './component/main/main.module';
 import { GoHomeButtonModule } from './component/go-home-button/go-home-button.module';
 import { UserEditModule }     from './component/user-edit/user-edit.module';
+import { AdminPageModule }    from './component/admin-page/admin-page.module';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
-        BrowserModule,
         RoutingModule,
         RoleEditModule,
         UserListModule,
         RoleListModule,
         MainModule,
         GoHomeButtonModule,
-        UserEditModule
+        UserEditModule,
+        AdminPageModule
     ],
     providers: [
         UserService,
