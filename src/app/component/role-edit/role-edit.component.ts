@@ -12,7 +12,7 @@ import { Role }                         from '../../model/Role';
     styleUrls: ['./role-edit.component.css']
 })
 export class RoleEditComponent implements OnInit, OnDestroy {
-    id = new FormControl();
+    id: number;
     value = new FormControl('',[Validators.required]);
 
     sub: Subscription;
@@ -28,7 +28,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
             if (id) {
                 this.roleService.get(id).subscribe((role: Role) => {
                     if (role) {
-                        this.id.setValue(role.id);
+                        this.id = role.id;
                         this.value.setValue(role.value);
                     } else {
                         console.log(`Role with id '${id}' not found, returning to list`);
@@ -45,7 +45,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
 
     save() {
         this.roleService.save(
-            new Role( this.id.value, this.value.value)
+            new Role( this.id ? this.id : 0, this.value.value)
         ).subscribe(result => {
             this.gotoList();
         }, error => console.error(error));

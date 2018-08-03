@@ -3,6 +3,7 @@ import { UserEditComponent }   from './user-edit.component';
 import { MatButtonModule }     from '@angular/material';
 import { RouterModule }        from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule }      from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         RouterModule,
 
-        MatButtonModule
+        MatButtonModule,
+        MatInputModule
     ],
     exports: [UserEditComponent],
     providers: []

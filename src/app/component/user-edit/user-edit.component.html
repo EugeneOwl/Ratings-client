@@ -1,21 +1,22 @@
 <div class="wrapper">
-  <h1> Edit User</h1>
+  <div class="simple-form">
+    <h1 class="mat-headline form-header"> Edit User {{user.username}}</h1>
 
-  <div>
-    <div>
-      Id: <input [formControl]="id" readonly>
-    </div>
+    <div class="form-content">
 
-    <div>
-      Role ids: <input [formControl]="rawRoles">
-    </div>
+      <p class="mat-body-1">
+        Id: {{id}}
+      </p>
 
-    <div>
-      <button mat-raised-button mat-button (click)="updateRawRoles()"> Update Roles </button>
-    </div>
+      <mat-form-field>
+        <input matInput placeholder="role ids" [formControl]="rawRoles" >
+      </mat-form-field>
 
-    <div>
-      <a mat-raised-button mat-button (click)="gotoList()"> Cancel </a>
+      <div class="form-panel">
+        <button mat-raised-button mat-button (click)="updateRawRoles()"> Update Roles</button>
+
+        <a mat-raised-button mat-button (click)="gotoList()" class="cancel-form-button"> Cancel </a>
+      </div>
     </div>
   </div>
 </div>

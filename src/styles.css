@@ -21,6 +21,8 @@
     font-size: 120%;
 }
 
+/* Tables */
+
 table {
     width: 60%;
     margin: auto;
@@ -39,4 +41,33 @@ mat-paginator {
     width: 100%;
     text-align: left !important;
     font-size: 100%;
+}
+
+/* Forms */
+
+.simple-form {
+    padding-top: 10%;
+    width: 50%;
+    margin: auto;
+}
+
+.form-content {
+    padding: 10%;
+}
+
+.form-header {
+    padding-left: 30% !important;
+    font-size: 250%;
+}
+
+.cancel-form-button {
+    margin-left: 35% !important;
+}
+
+.form-panel {
+    padding-top: 10%;
+}
+
+.field-invalid {
+    color: #FF403E;
 }

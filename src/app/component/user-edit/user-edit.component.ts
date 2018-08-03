@@ -13,7 +13,7 @@ import { User }              from '../../model/User';
     styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit, OnDestroy {
-    id = new FormControl();
+    id: number;
     rawRoles = new FormControl();
 
     user: User;
@@ -32,7 +32,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
                 this.userService.get(id).subscribe((user: User) => {
                     if (user) {
                         this.user = user;
-                        this.id.setValue(user.id);
+                        this.id = user.id;
                         this.rawRoles.setValue(user.rawRoles);
                     } else {
                         console.log(`User with id '${id}' not found, returning to list`);

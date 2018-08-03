@@ -1,25 +1,26 @@
 <div class="wrapper">
-  <h1> {{id.value ? 'Edit' : 'Add'}} Role</h1>
+  <div class="simple-form">
+    <h1 class="mat-headline form-header"> {{id ? 'Edit' : 'Add'}} Role</h1>
 
-  <div>
-    <div>
-      Id: <input [formControl]="id" readonly>
-    </div>
+    <div class="form-content">
+      <p class="mat-body-1" *ngIf="id">
+        Id: {{id}}
+      </p>
 
-    <div>
-      Value: <input [formControl]="value">
-    </div>
-    <label *ngIf="value.invalid"> Role value is required. </label>
-    <div>
-      <button mat-raised-button mat-button [disabled]="!value.value" (click)="save()"> Save</button>
-    </div>
+      <mat-form-field>
+        <input matInput placeholder="value" [formControl]="value">
+      </mat-form-field>
+      <label class="field-invalid" *ngIf="value.invalid"> Role value is required. </label>
 
-    <div>
-      <button mat-raised-button mat-button [disabled]="!id.value" (click)="remove(id.value)"> Delete</button>
-    </div>
+      <div class="form-panel">
+        <button mat-raised-button mat-button [disabled]="!value.value" (click)="save()"> Save</button>
 
-    <div>
-      <a mat-raised-button mat-button (click)="gotoList()"> Cancel </a>
+        <span *ngIf="id">
+          <button mat-raised-button mat-button (click)="remove(id)"> Delete</button>
+        </span>
+
+        <a mat-raised-button mat-button (click)="gotoList()" class="cancel-form-button"> Cancel </a>
+      </div>
     </div>
   </div>
 </div>
