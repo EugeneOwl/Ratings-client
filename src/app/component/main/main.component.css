@@ -1,3 +1,8 @@
-.goToListButton {
+.mainPageHeader {
+    padding-top: 2%;
+}
+
+.go-to-list-button {
+    margin-top: 2%;
     margin-left: 50%;
 }

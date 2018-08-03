@@ -2,22 +2,23 @@
 
   <app-go-home-button></app-go-home-button>
 
-  <h1>Role list</h1>
-
-  <a mat-raised-button mat-button ngClass="addRoleButton" [routerLink]="['role/add']">Add role</a>
+  <h1 ngClass="mat-headline">Role list</h1>
 
   <div class="mat-elevation-z8">
+
+    <a mat-raised-button mat-button ngClass="add-role-button button" [routerLink]="['role/add']">Add role</a>
+
     <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">{{row.id}}</td>
       </ng-container>
 
       <ng-container matColumnDef="value">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Role value</th>
-        <td mat-cell *matCellDef="let row">
-          <a [routerLink]="['role/edit/' + row.id]">{{row.value}}</a>
+        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">
+          <a [routerLink]="['role/edit/' + row.id]" mat-button ngClass="table-button">{{row.value}}</a>
         </td>
 
       </ng-container>

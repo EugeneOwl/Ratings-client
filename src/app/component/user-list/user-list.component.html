@@ -1,24 +1,24 @@
 <div ngClass="wrapper">
-  <h1>User list</h1>
+  <h1 ngClass="mat-headline">User list</h1>
 
   <div class="mat-elevation-z8">
     <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">{{row.id}}</td>
       </ng-container>
 
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-        <td mat-cell *matCellDef="let row">
-          <a [routerLink]="['user/edit/' + row.id]">{{row.username}}</a>
+        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">
+          <a [routerLink]="['user/edit/' + row.id]" mat-button ngClass="table-button">{{row.username}}</a>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="roles">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Roles</th>
-        <td mat-cell *matCellDef="let row">
+        <td mat-cell *matCellDef="let row" ngClass="mat-body-1">
           <span *ngFor="let role of row.roles">
             {{role.value}};
           </span>

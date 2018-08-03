@@ -1,12 +1,24 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .wrapper {
     padding: 0;
     width: 80%;
     margin: auto;
-    font-size: 120%;
 }
 
-h1 {
-    text-align: center;
+.mat-headline {
+    padding-left: 60%;
+    font-size: 250%;
+}
+
+.mat-body-1 {
+    font-size: 105%;
+}
+
+.button {
+    width: 10%;
+    font-size: 120%;
 }
 
 table {
@@ -15,6 +27,16 @@ table {
 }
 
 mat-paginator {
-    margin-top: 3%;
-    margin-right: 17%;
+    padding-top: 3%;
+    padding-right: 17%;
+}
+
+.mat-elevation-z8 {
+    margin-bottom: 10%;
+}
+
+.table-button {
+    width: 100%;
+    text-align: left !important;
+    font-size: 100%;
 }

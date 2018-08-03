@@ -25,8 +25,4 @@ export class UserListComponent implements OnInit {
             this.dataSource.setData(users);
         });
     }
-
-    updateRawRoles(rawRoles: string) {
-        alert(rawRoles);
-    }
 }
