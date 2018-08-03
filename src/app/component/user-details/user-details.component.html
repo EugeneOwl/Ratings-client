@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="simple-form">
+    <h1 class="mat-headline form-header">User details</h1>
+
+    <div class="form-content">
+      <p class="mat-body-1">
+        Id: {{user.id}}
+      </p>
+
+      <p class="mat-body-1">
+        Username: {{user.username}}
+      </p>
+
+      <p class="mat-body-1">
+        Roles:
+        <span class="mat-body-1" *ngFor="let role of user.roles">
+           {{role.value}};
+        </span>
+      </p>
+
+      <div class="form-panel">
+        <a mat-raised-button mat-button (click)="gotoBack()" class="cancel-form-button"> Back </a>
+      </div>
+    </div>
+  </div>
+</div>

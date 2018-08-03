@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy }         from '@angular/core';
-import { FormControl }       from '@angular/forms';
+import { User }              from '../../model/User';
+import { Subscription }      from 'rxjs';
 import { Router }            from '@angular/router';
 import { ActivatedRoute }    from '@angular/router';
 import { UserService }       from '../../service/user.service';
-import { Subscription }      from 'rxjs';
-import { User }              from '../../model/User';
 
 @Component({
-    selector: 'app-user-edit',
-    templateUrl: './user-edit.component.html',
-    styleUrls: ['./user-edit.component.css']
+    selector: 'app-user-details',
+    templateUrl: './user-details.component.html',
+    styleUrls: ['./user-details.component.css']
 })
-export class UserEditComponent implements OnInit, OnDestroy {
-    rawRoles = new FormControl();
-
+export class UserDetailsComponent implements OnInit, OnDestroy {
     user: User;
-
     sub: Subscription;
 
     constructor(private route: ActivatedRoute,
@@ -31,10 +27,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
                 this.userService.get(id).subscribe((user: User) => {
                     if (user) {
                         this.user = user;
-                        this.rawRoles.setValue(user.rawRoles);
                     } else {
-                        console.log(`User with id '${id}' not found, returning to list`);
-                        this.gotoList();
+                        console.log(`Role with id '${id}' not found, returning to list`);
+                        this.gotoBack();
                     }
                 });
             }
@@ -45,15 +40,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    updateRawRoles() {
-        this.user.rawRoles = this.rawRoles.value;
-        this.userService.save(this.user).subscribe(result => {
-            this.gotoList();
-        }, error => console.error(error));
+    gotoBack() {
+        this.router.navigate(['client/user']);
     }
-
-    gotoList() {
-        this.router.navigate(['client/admin']);
-    }
-
 }

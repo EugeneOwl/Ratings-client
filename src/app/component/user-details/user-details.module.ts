@@ -1,5 +1,5 @@
 import { NgModule }            from '@angular/core';
-import { UserEditComponent }   from './user-edit.component';
+import { UserDetailsComponent }   from './user-details.component';
 import { MatButtonModule }     from '@angular/material';
 import { MatInputModule }      from '@angular/material';
 import { RouterModule }        from '@angular/router';
@@ -8,7 +8,7 @@ import { CommonModule }        from '@angular/common';
 
 @NgModule({
     declarations: [
-        UserEditComponent
+        UserDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -18,8 +18,8 @@ import { CommonModule }        from '@angular/common';
         MatButtonModule,
         MatInputModule
     ],
-    exports: [UserEditComponent],
+    exports: [UserDetailsComponent],
     providers: []
 })
-export class UserEditModule {
+export class UserDetailsModule {
 }

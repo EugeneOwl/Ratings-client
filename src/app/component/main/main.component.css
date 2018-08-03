@@ -2,7 +2,12 @@
     padding-top: 2%;
 }
 
-.go-to-list-button {
-    margin-top: 2%;
+.go-to-page-button {
+    margin-top: 4%;
+    width: 30%;
+    margin-left: 5%;
+}
+
+.go-to-page-panel {
     margin-left: 50%;
 }

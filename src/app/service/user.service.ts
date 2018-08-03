@@ -20,8 +20,6 @@ export class UserService {
     }
 
     save(user: User): Observable<any> {
-        console.log('going to save:');
-        console.log(user);
         return this.http.post(this.API, user);
     }
 }

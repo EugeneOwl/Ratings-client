@@ -2,6 +2,7 @@ import { UserService }                  from '../../service/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort }        from '@angular/material';
 import { UserListDataSource }           from './user-list-datasource';
+import { Input }                        from '@angular/core';
 
 
 @Component({
@@ -14,7 +15,12 @@ export class UserListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
 
     dataSource: UserListDataSource;
-    displayedColumns = ['id', 'username', 'roles'];
+
+    @Input()
+    displayedColumns: string;
+
+    @Input()
+    usernameButtonLink: string;
 
     constructor(private userService: UserService) {
     }

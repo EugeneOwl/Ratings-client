@@ -11,6 +11,8 @@ import { MainModule }         from './component/main/main.module';
 import { GoHomeButtonModule } from './component/go-home-button/go-home-button.module';
 import { UserEditModule }     from './component/user-edit/user-edit.module';
 import { AdminPageModule }    from './component/admin-page/admin-page.module';
+import { UserPageModule }     from './component/user-page/user-page.module';
+import { UserDetailsModule }  from './component/user-details/user-details.module';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { AdminPageModule }    from './component/admin-page/admin-page.module';
         MainModule,
         GoHomeButtonModule,
         UserEditModule,
-        AdminPageModule
+        AdminPageModule,
+        UserPageModule,
+        UserDetailsModule
     ],
     providers: [
         UserService,

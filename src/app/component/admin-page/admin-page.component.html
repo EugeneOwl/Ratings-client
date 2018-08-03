@@ -4,5 +4,6 @@
 
   <app-role-list></app-role-list>
 
-  <app-user-list></app-user-list>
+  <app-user-list [displayedColumns]="['id', 'username', 'roles']"
+                 [usernameButtonLink]="'/client/admin/user/edit/'"></app-user-list>
 </div>
