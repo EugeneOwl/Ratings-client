@@ -4,6 +4,8 @@ import { RoleService }        from '../../service/role.service';
 import { MatSort }            from '@angular/material';
 import { MatPaginator }       from '@angular/material';
 import { RoleListDataSource } from './role-list-datasource';
+import { MatDialog }          from '@angular/material';
+import { RoleEditComponent }  from '../role-edit/role-edit.component';
 
 @Component({
     selector: 'app-role-list',
@@ -17,7 +19,10 @@ export class RoleListComponent implements OnInit {
     dataSource: RoleListDataSource;
     displayedColumns = ['id', 'value'];
 
-    constructor(private roleService: RoleService) {
+    constructor(
+        private roleService: RoleService,
+        private dialog: MatDialog
+    ) {
     }
 
     ngOnInit() {
@@ -30,4 +35,11 @@ export class RoleListComponent implements OnInit {
         });
     }
 
+    goToEditRoleDialog(id: number): void {
+        this.dialog.open(RoleEditComponent, {
+                width: '800px',
+                data: {id: id}
+            },
+        );
+    }
 }

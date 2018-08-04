@@ -2,7 +2,7 @@
 
 <div class="mat-elevation-z8">
 
-  <a mat-raised-button mat-button class="add-role-button button" [routerLink]="['role/add']">Add role</a>
+  <a mat-raised-button mat-button class="add-role-button button" (click)="goToEditRoleDialog()">Add role</a>
 
   <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
@@ -14,7 +14,7 @@
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Role value</th>
       <td mat-cell *matCellDef="let row" class="mat-body-1">
-        <a [routerLink]="['role/edit/' + row.id]" mat-button class="table-button">{{row.value}}</a>
+        <a (click)="goToEditRoleDialog(row.id)" mat-button class="table-button">{{row.value}}</a>
       </td>
     </ng-container>
 

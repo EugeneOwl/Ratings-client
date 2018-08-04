@@ -5,59 +5,55 @@ import { FormControl }                  from '@angular/forms';
 import { Validators }                   from '@angular/forms';
 import { RoleService }                  from '../../service/role.service';
 import { Role }                         from '../../model/Role';
+import { MatDialogRef }                 from '@angular/material';
+import { Inject }                       from '@angular/core';
+import { MAT_DIALOG_DATA }              from '@angular/material';
 
 @Component({
     selector: 'app-role-edit',
     templateUrl: './role-edit.component.html',
     styleUrls: ['./role-edit.component.css']
 })
-export class RoleEditComponent implements OnInit, OnDestroy {
+export class RoleEditComponent implements OnInit {
     id: number;
-    value = new FormControl('',[Validators.required]);
-
-    sub: Subscription;
+    value = new FormControl('', [Validators.required]);
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private roleService: RoleService) {
+                private roleService: RoleService,
+                public dialogRef: MatDialogRef<RoleEditComponent>,
+                @Inject(MAT_DIALOG_DATA) public parentData) {
     }
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            const id = params['id'];
-            if (id) {
-                this.roleService.get(id).subscribe((role: Role) => {
-                    if (role) {
-                        this.id = role.id;
-                        this.value.setValue(role.value);
-                    } else {
-                        console.log(`Role with id '${id}' not found, returning to list`);
-                        this.gotoList();
-                    }
-                });
-            }
-        });
+        if (this.parentData.id) {
+            this.roleService.get(this.parentData.id).subscribe((role: Role) => {
+                if (role) {
+                    this.id = role.id;
+                    this.value.setValue(role.value);
+                } else {
+                    console.log(`Role with id '${this.parentData.id}' not found, returning to list`);
+                    this.goBack();
+                }
+            });
+        }
     }
 
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
-
-    save() {
+    save(): void {
         this.roleService.save(
-            new Role( this.id ? this.id : 0, this.value.value)
+            new Role(this.id ? this.id : 0, this.value.value)
         ).subscribe(result => {
-            this.gotoList();
+            this.goBack();
         }, error => console.error(error));
     }
 
-    gotoList() {
-        this.router.navigate(['client/admin']);
+    goBack(): void {
+        this.dialogRef.close();
     }
 
-    remove(id) {
+    remove(id): void {
         this.roleService.remove(id).subscribe(result => {
-            this.gotoList();
+            this.goBack();
         }, error => console.error(error));
     }
 }

@@ -5,42 +5,40 @@ import { Subscription }      from 'rxjs';
 import { Router }            from '@angular/router';
 import { ActivatedRoute }    from '@angular/router';
 import { UserService }       from '../../service/user.service';
+import { MatDialogRef }      from '@angular/material';
+import { RoleEditComponent } from '../role-edit/role-edit.component';
+import { MAT_DIALOG_DATA }   from '@angular/material';
+import { Inject }            from '@angular/core';
 
 @Component({
     selector: 'app-user-details',
     templateUrl: './user-details.component.html',
     styleUrls: ['./user-details.component.css']
 })
-export class UserDetailsComponent implements OnInit, OnDestroy {
+export class UserDetailsComponent implements OnInit {
     user: User;
-    sub: Subscription;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
-                private userService: UserService) {
+                private userService: UserService,
+                public dialogRef: MatDialogRef<UserDetailsComponent>,
+                @Inject(MAT_DIALOG_DATA) public parentData) {
     }
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            const id = params['id'];
-            if (id) {
-                this.userService.get(id).subscribe((user: User) => {
-                    if (user) {
-                        this.user = user;
-                    } else {
-                        console.log(`User with id '${id}' not found, returning to list`);
-                        this.gotoBack();
-                    }
-                });
-            }
-        });
-    }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
+        if (this.parentData.id) {
+            this.userService.get(this.parentData.id).subscribe((user: User) => {
+                if (user) {
+                    this.user = user;
+                } else {
+                    console.log(`User with id '${this.parentData.id}' not found, returning to list`);
+                    this.gotoBack();
+                }
+            });
+        }
     }
 
     gotoBack() {
-        this.router.navigate(['client/user']);
+        this.dialogRef.close();
     }
 }

@@ -7,39 +7,40 @@ import { Subscription }      from 'rxjs';
 import { User }              from '../../model/User';
 import { RoleService }       from '../../service/role.service';
 import { Role }              from '../../model/Role';
+import { RoleEditComponent } from '../role-edit/role-edit.component';
+import { MatDialogRef }      from '@angular/material';
+import { MAT_DIALOG_DATA }   from '@angular/material';
+import { Inject }            from '@angular/core';
 
 @Component({
     selector: 'app-user-edit',
     templateUrl: './user-edit.component.html',
     styleUrls: ['./user-edit.component.css']
 })
-export class UserEditComponent implements OnInit, OnDestroy {
+export class UserEditComponent implements OnInit {
     user: User;
     roleCheckboxes;
-
-    sub: Subscription;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private userService: UserService,
-                private roleService: RoleService) {
+                private roleService: RoleService,
+                public dialogRef: MatDialogRef<UserEditComponent>,
+                @Inject(MAT_DIALOG_DATA) public parentData) {
     }
 
     ngOnInit() {
-        this.sub = this.route.params.subscribe(params => {
-            const id = params['id'];
-            if (id) {
-                this.userService.get(id).subscribe((user: User) => {
-                    if (user) {
-                        this.user = user;
-                        this.initializeRoleCheckboxes();
-                    } else {
-                        console.log(`User with id '${id}' not found, returning to list`);
-                        this.gotoList();
-                    }
-                });
-            }
-        });
+        if (this.parentData.id) {
+            this.userService.get(this.parentData.id).subscribe((user: User) => {
+                if (user) {
+                    this.user = user;
+                    this.initializeRoleCheckboxes();
+                } else {
+                    console.log(`User with id '${this.parentData.id}' not found, returning to list`);
+                    this.goBack();
+                }
+            });
+        }
     }
 
     shouldRoleBeCheckedByDefault(roleValue: string): boolean {
@@ -53,28 +54,24 @@ export class UserEditComponent implements OnInit, OnDestroy {
         return false;
     }
 
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
-    }
-
 
     updateRawRoles(): void {
         this.user.roles = this.getCheckedRoles();
         this.userService.save(this.user).subscribe(result => {
-            this.gotoList();
+            this.goBack();
         }, error => console.error(error));
     }
 
-    gotoList(): void {
-        this.router.navigate(['client/admin']);
+    goBack(): void {
+        this.dialogRef.close();
     }
 
     private getCheckedRoles(): Array<Role> {
         return this.roleCheckboxes.filter(roleCheckbox => roleCheckbox.checked)
-            .map(roleCheckbox => new Role(roleCheckbox.id, roleCheckbox.value));
+        .map(roleCheckbox => new Role(roleCheckbox.id, roleCheckbox.value));
     }
 
-    private initializeRoleCheckboxes() {
+    private initializeRoleCheckboxes(): void {
         this.roleService.getAll().subscribe((roles: Array<Role>) => {
             this.roleCheckboxes = roles;
             for (let role of this.roleCheckboxes) {
