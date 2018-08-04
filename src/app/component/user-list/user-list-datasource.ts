@@ -5,22 +5,12 @@ import { merge, Observable, of as observableOf } from 'rxjs';
 import { User }                                  from '../../model/User';
 
 export class UserListDataSource extends DataSource<User> {
-    private data: Array<User>;
 
-    setData(users: Array<User>) {
-        this.data = users;
-    }
-
-    constructor(private paginator: MatPaginator, private sort: MatSort) {
+    constructor(private paginator: MatPaginator, private sort: MatSort, private data: Array<User>) {
         super();
     }
 
     connect(): Observable<User[]> {
-        //
-        // if (this.data == undefined) { Во-превых - тупость
-        //     this.data = [];           Во-вторых - даже не получается. Потоки разные или что
-        // }
-
         const dataMutations = [
             observableOf(this.data),
             this.paginator.page,

@@ -21,9 +21,12 @@ export class RoleListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dataSource = new RoleListDataSource(this.paginator, this.sort);
-        this.roleService.getAll().subscribe(users => {
-            this.dataSource.setData(users);
+        this.roleService.getAll().subscribe(roles => {
+            this.dataSource = new RoleListDataSource(
+                this.paginator,
+                this.sort,
+                roles
+            );
         });
     }
 

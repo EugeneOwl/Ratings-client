@@ -5,13 +5,11 @@ import { merge, Observable, of as observableOf } from 'rxjs';
 import { Role }                                  from '../../model/Role';
 
 export class RoleListDataSource extends DataSource<Role> {
-    private data: Array<Role>;
-
     setData(roles: Array<Role>) {
         this.data = roles;
     }
 
-    constructor(private paginator: MatPaginator, private sort: MatSort) {
+    constructor(private paginator: MatPaginator, private sort: MatSort, private data: Array<Role>) {
         super();
     }
 

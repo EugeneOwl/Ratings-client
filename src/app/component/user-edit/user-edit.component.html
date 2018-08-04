@@ -1,10 +1,10 @@
 <div class="wrapper">
   <div class="simple-form">
-    <h1 class="mat-headline form-header"> Edit User {{user.username}}</h1>
+    <h1 class="mat-headline form-header" *ngIf="user"> Edit User {{user.username}}</h1>
 
     <div class="form-content">
 
-      <p class="mat-body-1">
+      <p class="mat-body-1" *ngIf="user">
         Id: {{user.id}}
       </p>
 

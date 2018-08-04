@@ -26,9 +26,12 @@ export class UserListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dataSource = new UserListDataSource(this.paginator, this.sort);
         this.userService.getAll().subscribe(users => {
-            this.dataSource.setData(users);
+            this.dataSource = new UserListDataSource(
+                this.paginator,
+                this.sort,
+                users
+            );
         });
     }
 }

@@ -28,8 +28,6 @@ export class RoleService {
 	}
 
 	remove(id: string) {
-
-		console.log('going to delete ' + id);
 		return this.http.delete(this.API + '/' + id);
 	}
 }

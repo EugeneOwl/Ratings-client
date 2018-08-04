@@ -28,7 +28,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
                     if (user) {
                         this.user = user;
                     } else {
-                        console.log(`Role with id '${id}' not found, returning to list`);
+                        console.log(`User with id '${id}' not found, returning to list`);
                         this.gotoBack();
                     }
                 });
