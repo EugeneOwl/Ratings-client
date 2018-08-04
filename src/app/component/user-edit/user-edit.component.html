@@ -1,22 +1,35 @@
 <div class="wrapper">
   <div class="simple-form">
-    <h1 class="mat-headline form-header" *ngIf="user"> Edit User {{user.username}}</h1>
+    <mat-card>
+      <h1 class="mat-headline form-header" *ngIf="user"> Edit User {{user.username}}</h1>
 
-    <div class="form-content">
+      <div class="form-content">
 
-      <p class="mat-body-1" *ngIf="user">
-        Id: {{user.id}}
-      </p>
+        <p class="mat-body-1" *ngIf="user">
+          Id: {{user.id}}
+        </p>
 
-      <mat-form-field>
-        <input matInput placeholder="role ids" [formControl]="rawRoles" >
-      </mat-form-field>
 
-      <div class="form-panel">
-        <button mat-raised-button mat-button (click)="updateRawRoles()"> Update Roles</button>
+        <form #userRolesForm="ngForm">
+          <p *ngFor="let roleCheckbox of roleCheckboxes">
+            <mat-checkbox
+                    name="{{roleCheckbox.value}}"
+                    [(ngModel)]="roleCheckbox.checked"
+            >
+              {{roleCheckbox.value}}
+            </mat-checkbox>
+          </p>
 
-        <a mat-raised-button mat-button (click)="gotoList()" class="cancel-form-button"> Cancel </a>
+
+          <div class="form-panel">
+            <button mat-raised-button mat-button (click)="updateRawRoles(userRolesForm.value)">
+              Update Roles
+            </button>
+
+            <a mat-raised-button mat-button (click)="gotoList()" class="cancel-form-button"> Cancel </a>
+          </div>
+        </form>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>

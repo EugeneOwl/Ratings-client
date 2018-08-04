@@ -1,10 +1,11 @@
-import { NgModule }            from '@angular/core';
-import { UserDetailsComponent }   from './user-details.component';
-import { MatButtonModule }     from '@angular/material';
-import { MatInputModule }      from '@angular/material';
-import { RouterModule }        from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule }        from '@angular/common';
+import { NgModule }             from '@angular/core';
+import { UserDetailsComponent } from './user-details.component';
+import { MatButtonModule }      from '@angular/material';
+import { MatInputModule }       from '@angular/material';
+import { RouterModule }         from '@angular/router';
+import { ReactiveFormsModule }  from '@angular/forms';
+import { CommonModule }         from '@angular/common';
+import { MatCardModule }        from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { CommonModule }        from '@angular/common';
         RouterModule,
 
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        MatCardModule
     ],
     exports: [UserDetailsComponent],
     providers: []

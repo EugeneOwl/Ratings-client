@@ -5,6 +5,9 @@ import { MatInputModule }      from '@angular/material';
 import { RouterModule }        from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule }        from '@angular/common';
+import { MatCheckboxModule }   from '@angular/material';
+import { MatCardModule }       from '@angular/material';
+import { FormsModule }         from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -12,11 +15,14 @@ import { CommonModule }        from '@angular/common';
     ],
     imports: [
         CommonModule,
+        FormsModule,
         ReactiveFormsModule,
         RouterModule,
 
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        MatCheckboxModule,
+        MatCardModule
     ],
     exports: [UserEditComponent],
     providers: []
