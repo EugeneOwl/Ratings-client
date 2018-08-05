@@ -1,6 +1,7 @@
 import { Component }    from '@angular/core';
 import { Output }       from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { ElementRef }   from '@angular/core';
 
 @Component({
     selector: 'app-admin-toolbar',
@@ -8,10 +9,11 @@ import { EventEmitter } from '@angular/core';
     styleUrls: ['./admin-toolbar.component.css']
 })
 export class AdminToolbarComponent {
+
     @Output()
     chosenList = new EventEmitter<string>();
 
-    constructor() {
+    constructor(public element: ElementRef) {
     }
 
     chooseList(listName: string) {

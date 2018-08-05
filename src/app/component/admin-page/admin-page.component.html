@@ -2,9 +2,9 @@
 
 <div class="wrapper">
 
-  <app-role-list *ngIf="chosenListName == 'user-list'"></app-role-list>
+  <app-role-list *ngIf="chosenListName == 'role-list'"></app-role-list>
 
-  <app-user-list *ngIf="chosenListName == 'role-list'"
+  <app-user-list *ngIf="chosenListName == 'user-list'"
                  [displayedColumns]="['id', 'username', 'roles']"
                  [usernameButtonLink]="'/client/admin/user/edit/'"
                  [childDialogComponentClassName]="childDialogComponentClassName"></app-user-list>

@@ -73,3 +73,8 @@ mat-paginator {
 .field-invalid {
     color: #FF403E;
 }
+
+.form-input-panel {
+    width: 60%;
+    margin: auto;
+}

@@ -4,30 +4,28 @@
 
     <div class="form-content">
 
-      <p class="mat-body-1" *ngIf="user">
-        <span class="column-names"> Username: </span> {{user.username}}
-      </p>
-
-
-      <form #userRolesForm="ngForm">
-        <p *ngFor="let roleCheckbox of roleCheckboxes">
-          <mat-checkbox
-                  name="{{roleCheckbox.value}}"
-                  [(ngModel)]="roleCheckbox.checked"
-          >
-            {{roleCheckbox.value}}
-          </mat-checkbox>
+      <div class="form-input-panel">
+        <p class="mat-body-1" *ngIf="user">
+          <span class="column-names"> Username: </span> {{user.username}}
         </p>
 
+        <form #userRolesForm="ngForm">
+          <p *ngFor="let roleCheckbox of roleCheckboxes">
+            <mat-checkbox name="{{roleCheckbox.value}}"
+                          [(ngModel)]="roleCheckbox.checked">
+              {{roleCheckbox.value}}
+            </mat-checkbox>
+          </p>
 
-        <div class="form-panel">
-          <button mat-raised-button mat-button (click)="updateRawRoles(userRolesForm.value)">
-            Update Roles
-          </button>
+        </form>
+      </div>
+      <div class="form-panel">
+        <button mat-raised-button mat-button (click)="updateRawRoles(userRolesForm.value)">
+          Update Roles
+        </button>
 
-          <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
-        </div>
-      </form>
+        <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
+      </div>
     </div>
   </div>
 </div>
