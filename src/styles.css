@@ -21,6 +21,11 @@
     font-size: 120%;
 }
 
+.column-names {
+    font-weight: bold;
+    font-style: italic;
+}
+
 /* Tables */
 
 table {
@@ -47,25 +52,17 @@ mat-paginator {
 
 .simple-form {
     padding-top: 10%;
-    width: 50%;
     margin: auto;
 }
 
-.form-content {
-    padding: 10%;
-}
-
 .form-header {
-    padding-left: 30% !important;
+    padding-left: 25% !important;
+    padding-bottom: 10%;
     font-size: 250%;
 }
 
 .cancel-form-button {
-    margin-left: 45% !important;
-}
-
-.form-panel {
-    padding-top: 10%;
+    float: right;
 }
 
 .field-invalid {

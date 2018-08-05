@@ -1,28 +1,28 @@
 <div class="wrapper">
   <div class="simple-form">
-    <mat-card>
-      <h1 class="mat-headline form-header">User details</h1>
+    <h1 class="mat-headline form-header">User details</h1>
 
-      <div class="form-content">
-        <p class="mat-body-1" *ngIf="user">
-          Id: {{user.id}}
-        </p>
+    <div class="form-content">
+      <p class="mat-body-1" *ngIf="user">
+        <span class="column-names"> Id: </span>
+        {{user.id}}
+      </p>
 
-        <p class="mat-body-1" *ngIf="user">
-          Username: {{user.username}}
-        </p>
+      <p class="mat-body-1" *ngIf="user">
+        <span class="column-names"> Username: </span>
+        {{user.username}}
+      </p>
 
-        <p class="mat-body-1" *ngIf="user">
-          Roles:
-          <span class="mat-body-1" *ngFor="let role of user.roles">
+      <p class="mat-body-1" *ngIf="user">
+        <span class="column-names"> Roles: </span>
+        <span class="mat-body-1" *ngFor="let role of user.roles">
            {{role.value}};
         </span>
-        </p>
+      </p>
 
-        <div class="form-panel">
-          <a mat-raised-button mat-button (click)="gotoBack()" class="cancel-form-button"> Back </a>
-        </div>
+      <div class="form-panel">
+        <a mat-raised-button mat-button (click)="gotoBack()" class="cancel-form-button"> Back </a>
       </div>
-    </mat-card>
+    </div>
   </div>
 </div>

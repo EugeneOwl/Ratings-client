@@ -1,28 +1,26 @@
 <div class="wrapper">
   <div class="simple-form">
-    <mat-card>
-      <h1 class="mat-headline form-header"> {{id ? 'Edit' : 'Add'}} Role</h1>
+    <h1 class="mat-headline form-header"> {{id ? 'Edit' : 'Add'}} Role</h1>
 
-      <div class="form-content">
-        <p class="mat-body-1" *ngIf="id">
-          Id: {{id}}
-        </p>
+    <div class="form-content">
+      <p class="mat-body-1" *ngIf="id">
+        <span class="column-names"> Id: </span> {{id}}
+      </p>
 
-        <mat-form-field>
-          <input matInput placeholder="value" [formControl]="value">
-        </mat-form-field>
-        <label class="field-invalid" *ngIf="value.invalid"> Role value is required. </label>
+      <mat-form-field>
+        <input matInput placeholder="value" [formControl]="value">
+      </mat-form-field>
+      <label class="field-invalid" *ngIf="value.invalid"> Role value is required. </label>
 
-        <div class="form-panel">
-          <button mat-raised-button mat-button [disabled]="!value.value" (click)="save()"> Save</button>
+      <div class="form-panel">
+        <button mat-raised-button mat-button [disabled]="!value.value" (click)="save()"> Save</button>
 
-          <span *ngIf="id">
+        <span *ngIf="id">
           <button mat-raised-button mat-button (click)="remove(id)"> Delete</button>
         </span>
 
-          <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
-        </div>
+        <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
       </div>
-    </mat-card>
+    </div>
   </div>
 </div>

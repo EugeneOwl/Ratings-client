@@ -37,7 +37,7 @@ export class RoleListComponent implements OnInit {
 
     goToEditRoleDialog(id: number): void {
         this.dialog.open(RoleEditComponent, {
-                width: '800px',
+                width: '500px',
                 data: {id: id}
             },
         );

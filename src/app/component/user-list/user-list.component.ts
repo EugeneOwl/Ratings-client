@@ -46,7 +46,7 @@ export class UserListComponent implements OnInit {
 
     goToPersonalUserDialog(id: number): void {
         this.dialog.open(this.childDialogComponentClassName, {
-                width: '800px',
+                width: '450px',
                 data: {id: id}
             },
         );
