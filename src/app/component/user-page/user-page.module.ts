@@ -1,14 +1,14 @@
-import { NgModule }           from '@angular/core';
-import { UserPageComponent }  from './user-page.component';
-import { GoHomeButtonModule } from '../go-home-button/go-home-button.module';
-import { UserListModule }     from '../user-list/user-list.module';
+import { NgModule }          from '@angular/core';
+import { UserPageComponent } from './user-page.component';
+import { UserListModule }    from '../user-list/user-list.module';
+import { UserToolbarModule } from '../user-toolbar/user-toolbar.module';
 
 @NgModule({
     declarations: [
         UserPageComponent
     ],
     imports: [
-        GoHomeButtonModule,
+        UserToolbarModule,
         UserListModule
     ],
     exports: [UserPageComponent],

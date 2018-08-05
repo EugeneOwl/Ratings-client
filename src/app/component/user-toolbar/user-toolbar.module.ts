@@ -1,5 +1,5 @@
 import { NgModule }              from '@angular/core';
-import { AdminToolbarComponent } from './admin-toolbar.component';
+import { UserToolbarComponent }  from './user-toolbar.component';
 import { MatSidenavModule }      from '@angular/material';
 import { MatToolbarModule }      from '@angular/material';
 import { MatButtonModule }       from '@angular/material';
@@ -10,7 +10,7 @@ import { GoHomeButtonModule }    from '../go-home-button/go-home-button.module';
 
 @NgModule({
     declarations: [
-        AdminToolbarComponent
+        UserToolbarComponent
     ],
     imports: [
         CommonModule,
@@ -23,8 +23,8 @@ import { GoHomeButtonModule }    from '../go-home-button/go-home-button.module';
         MatButtonModule,
         MatSidenavModule
     ],
-    exports: [AdminToolbarComponent],
+    exports: [UserToolbarComponent],
     providers: []
 })
-export class AdminToolbarModule {
+export class UserToolbarModule {
 }

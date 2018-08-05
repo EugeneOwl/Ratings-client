@@ -1,6 +1,6 @@
-<div class="wrapper">
-  <app-go-home-button></app-go-home-button>
+<app-user-toolbar></app-user-toolbar>
 
+<div class="wrapper">
   <app-user-list [displayedColumns]="['id', 'username']"
                  [usernameButtonLink]="'/client/user/user/details/'"
                  [childDialogComponentClassName]="childDialogComponentClassName"></app-user-list>
