@@ -36,10 +36,13 @@ export class RoleListComponent implements OnInit {
     }
 
     goToEditRoleDialog(id: number): void {
-        this.dialog.open(RoleEditComponent, {
+        const dialogRef = this.dialog.open(RoleEditComponent, {
                 width: '500px',
                 data: {id: id}
             },
         );
+        dialogRef.afterClosed().subscribe(result => {
+            this.ngOnInit();
+        });
     }
 }

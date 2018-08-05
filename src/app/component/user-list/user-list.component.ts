@@ -45,10 +45,13 @@ export class UserListComponent implements OnInit {
     }
 
     goToPersonalUserDialog(id: number): void {
-        this.dialog.open(this.childDialogComponentClassName, {
+        const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
                 width: '450px',
                 data: {id: id}
             },
         );
+        dialogRef.afterClosed().subscribe(result => {
+            this.ngOnInit();
+        });
     }
 }
