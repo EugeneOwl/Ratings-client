@@ -11,7 +11,7 @@
 
         <form #userRolesForm="ngForm">
           <p *ngFor="let roleCheckbox of roleCheckboxes">
-            <mat-checkbox name="{{roleCheckbox.value}}"
+            <mat-checkbox name="{{roleCheckbox.value}}" color="primary"
                           [(ngModel)]="roleCheckbox.checked">
               {{roleCheckbox.value}}
             </mat-checkbox>
@@ -20,7 +20,7 @@
         </form>
       </div>
       <div class="form-panel">
-        <button mat-raised-button mat-button (click)="updateRawRoles(userRolesForm.value)">
+        <button mat-raised-button mat-button color="primary" (click)="updateRawRoles(userRolesForm.value)">
           Update Roles
         </button>
 
