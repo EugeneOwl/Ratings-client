@@ -1,13 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription }                 from 'rxjs';
-import { ActivatedRoute, Router }       from '@angular/router';
-import { FormControl }                  from '@angular/forms';
-import { Validators }                   from '@angular/forms';
-import { RoleService }                  from '../../service/role.service';
-import { Role }                         from '../../model/Role';
-import { MatDialogRef }                 from '@angular/material';
-import { Inject }                       from '@angular/core';
-import { MAT_DIALOG_DATA }              from '@angular/material';
+import { Component, OnInit }      from '@angular/core';
+import { Inject }                 from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl }            from '@angular/forms';
+import { Validators }             from '@angular/forms';
+import { RoleService }            from '../../service/role.service';
+import { Role }                   from '../../model/Role';
+import { MatDialogRef }           from '@angular/material';
+import { MAT_DIALOG_DATA }        from '@angular/material';
 
 @Component({
     selector: 'app-role-edit',

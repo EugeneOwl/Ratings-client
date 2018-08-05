@@ -1,0 +1,22 @@
+.to-right-pusher {
+    flex: 1 1 auto;
+}
+
+.main-page-header {
+    padding-left: 15%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+mat-sidenav-container {
+    margin-bottom: 2%;
+}
+
+mat-button-toggle {
+    font-weight: bold;
+    color: black;
+}
+
+mat-button-toggle-group {
+    margin-right: 10%;
+}

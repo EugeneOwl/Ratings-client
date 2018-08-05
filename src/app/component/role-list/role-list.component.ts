@@ -3,8 +3,8 @@ import { ViewChild }          from '@angular/core';
 import { RoleService }        from '../../service/role.service';
 import { MatSort }            from '@angular/material';
 import { MatPaginator }       from '@angular/material';
-import { RoleListDataSource } from './role-list-datasource';
 import { MatDialog }          from '@angular/material';
+import { RoleListDataSource } from './role-list-datasource';
 import { RoleEditComponent }  from '../role-edit/role-edit.component';
 
 @Component({

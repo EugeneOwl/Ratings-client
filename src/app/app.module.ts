@@ -13,6 +13,7 @@ import { UserEditModule }     from './component/user-edit/user-edit.module';
 import { AdminPageModule }    from './component/admin-page/admin-page.module';
 import { UserPageModule }     from './component/user-page/user-page.module';
 import { UserDetailsModule }  from './component/user-details/user-details.module';
+import { AdminToolbarModule } from './component/admin-toolbar/admin-toolbar.module';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { UserDetailsModule }  from './component/user-details/user-details.module
         UserEditModule,
         AdminPageModule,
         UserPageModule,
-        UserDetailsModule
+        UserDetailsModule,
+        AdminToolbarModule
     ],
     providers: [
         UserService,

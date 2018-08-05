@@ -1,10 +1,11 @@
+<app-admin-toolbar (chosenList)="onChoseList($event)"></app-admin-toolbar>
+
 <div class="wrapper">
 
-  <app-go-home-button></app-go-home-button>
+  <app-role-list *ngIf="chosenListName == 'user-list'"></app-role-list>
 
-  <app-role-list></app-role-list>
-
-  <app-user-list [displayedColumns]="['id', 'username', 'roles']"
+  <app-user-list *ngIf="chosenListName == 'role-list'"
+                 [displayedColumns]="['id', 'username', 'roles']"
                  [usernameButtonLink]="'/client/admin/user/edit/'"
                  [childDialogComponentClassName]="childDialogComponentClassName"></app-user-list>
 </div>

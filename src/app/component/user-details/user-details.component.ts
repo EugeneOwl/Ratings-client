@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { OnDestroy }         from '@angular/core';
+import { Inject }            from '@angular/core';
 import { User }              from '../../model/User';
-import { Subscription }      from 'rxjs';
 import { Router }            from '@angular/router';
 import { ActivatedRoute }    from '@angular/router';
 import { UserService }       from '../../service/user.service';
 import { MatDialogRef }      from '@angular/material';
-import { RoleEditComponent } from '../role-edit/role-edit.component';
 import { MAT_DIALOG_DATA }   from '@angular/material';
-import { Inject }            from '@angular/core';
 
 @Component({
     selector: 'app-user-details',

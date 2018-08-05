@@ -8,6 +8,7 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 })
 export class AdminPageComponent implements OnInit {
     childDialogComponentClassName = UserEditComponent;
+    chosenListName = 'role-list';
 
     constructor() {
     }
@@ -15,4 +16,7 @@ export class AdminPageComponent implements OnInit {
     ngOnInit() {
     }
 
+    onChoseList(chosenListName) {
+        this.chosenListName = chosenListName;
+    }
 }

@@ -4,8 +4,6 @@ import { Input }                        from '@angular/core';
 import { MatPaginator, MatSort }        from '@angular/material';
 import { MatDialog }                    from '@angular/material';
 import { UserListDataSource }           from './user-list-datasource';
-import { UserEditComponent }            from '../user-edit/user-edit.component';
-import { UserDetailsComponent }         from '../user-details/user-details.component';
 
 
 @Component({
