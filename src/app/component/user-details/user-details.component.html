@@ -3,25 +3,42 @@
     <h1 class="mat-headline form-header">User details</h1>
 
     <div class="form-content">
-      <p class="mat-body-1">
-        <span class="column-names"> Id: </span>
-        {{user.id}}
-      </p>
+      <div class="form-input-panel">
+        <p class="mat-body-1">
+          <span class="column-names"> Id: </span>
+          {{user.id}}
+        </p>
 
-      <p class="mat-body-1">
-        <span class="column-names"> Username: </span>
-        {{user.username}}
-      </p>
+        <p class="mat-body-1">
+          <span class="column-names"> Username: </span>
+          {{user.username}}
+        </p>
 
-      <p class="mat-body-1">
-        <span class="column-names"> Roles: </span>
-        <span class="mat-body-1" *ngFor="let role of user.roles">
+        <p class="mat-body-1">
+          <span class="column-names"> Roles: </span>
+          <span *ngFor="let role of user.roles">
            {{role.label}};
-        </span>
-      </p>
+          </span>
+        </p>
 
+        <div class="to-bottom-pusher"></div>
+        <h4 class="mat-body-1"> Leave rating: </h4>
+        <mat-form-field>
+          <input matInput placeholder="rating label" [formControl]="label">
+        </mat-form-field>
+        <div>
+          <label class="field-invalid" *ngIf="label.invalid"> Rating label is required. </label>
+        </div>
+        <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
+      </div>
+
+      <div class="to-bottom-pusher-mini"></div>
       <div class="form-panel">
-        <a mat-raised-button mat-button color="accent" (click)="gotoBack()" class="cancel-form-button">
+        <button mat-raised-button mat-button color="accent" [disabled]="!label.value" (click)="save(label.value)">
+          Save
+        </button>
+
+        <a mat-raised-button mat-button (click)="gotoBack()" class="cancel-form-button">
           Back
         </a>
       </div>

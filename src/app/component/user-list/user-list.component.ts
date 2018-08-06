@@ -48,8 +48,8 @@ export class UserListComponent implements OnInit {
 
     goToPersonalUserDialog(id: number): void {
         const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
-            width: '450px',
-            data: {id: id}
+            width: '550px',
+            data: {id: id, currentUserId: 1} // TODO: dehardcode current user
         });
         this.updateComponentPieceAccordingDialog(dialogRef);
     }

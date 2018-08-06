@@ -97,3 +97,11 @@ mat-sidenav-container {
 .to-right-pusher {
     flex: 1 1 auto;
 }
+
+.to-bottom-pusher {
+    height: 7em;
+}
+
+.to-bottom-pusher-mini {
+    height: 3em;
+}

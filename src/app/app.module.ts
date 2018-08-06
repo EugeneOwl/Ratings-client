@@ -16,6 +16,7 @@ import { UserDetailsModule }                   from './component/user-details/us
 import { LayoutModule }                        from '@angular/cdk/layout';
 import { UserProfileSettingsModule }           from './component/user-profile-settings/user-profile-settings.module';
 import { GoToUserProfileSettingsButtonModule } from './component/go-to-user-profile-setting-button/go-to-user-profile-settings-button.module';
+import { NotificationModule }                  from './component/notification/notification.module';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { GoToUserProfileSettingsButtonModule } from './component/go-to-user-prof
 
         MainModule,
         GoHomeButtonModule,
-        GoToUserProfileSettingsButtonModule
+        GoToUserProfileSettingsButtonModule,
+        NotificationModule
     ],
     providers: [
         UserService,
