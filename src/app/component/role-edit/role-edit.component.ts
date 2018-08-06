@@ -21,32 +21,31 @@ export class RoleEditComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private roleService: RoleService,
-                private el: ElementRef,
                 public dialogRef: MatDialogRef<RoleEditComponent>,
                 @Inject(MAT_DIALOG_DATA) public parentData) {
     }
 
     ngOnInit() {
         if (this.parentData.id) {
-            this.roleService.get(this.parentData.id).subscribe((role: Role) => {
-                if (role) {
-                    this.id = role.id;
-                    this.label.setValue(role.label);
-                } else {
+            this.roleService.get(this.parentData.id).subscribe(
+                (success: Role) => {
+                    this.id = success.id;
+                    this.label.setValue(success.label);
+                },
+                error => {
+                    console.log(error.erroe.message);
                     console.log(`Role with id '${this.parentData.id}' not found, returning to list`);
                     this.goBack();
                 }
-            });
+            );
         }
-
-        this.el.nativeElement.getElementsByClassName('form-header')[0].style.color = 'blue';
     }
 
     save(): void {
         this.roleService.save({
-                id: this.id ? this.id : 0,
-                label: this.label.value
-            }).subscribe(result => {
+            id: this.id ? this.id : 0,
+            label: this.label.value
+        }).subscribe(result => {
             this.goBack();
         }, error => console.error(error));
     }

@@ -17,14 +17,15 @@
           {{user.username}}
         </p>
 
-        <mat-form-field>
+        +<mat-form-field hintLabel="e.g. +375221113344">
           <input matInput placeholder="mobile number" [formControl]="mobileNumber">
         </mat-form-field>
+        <mat-icon>phone</mat-icon>
+
         <div>
-          <label class="field-invalid" *ngIf="mobileNumber.invalid"> Mobile number is required. </label>
+          <label class="field-invalid" *ngIf="mobileNumber.invalid"> Mobile number does not match. </label>
         </div>
         <div class="field-invalid-placeholder" *ngIf="!mobileNumber.invalid"></div>
-
       </div>
 
       <div class="form-panel">

@@ -42,7 +42,8 @@ export class UserEditComponent implements OnInit {
                     console.log(error.error.message);
                     console.log(`User with id '${this.parentData.id}' not found, returning to list`);
                     this.goBack();
-                });
+                }
+            );
         }
     }
 

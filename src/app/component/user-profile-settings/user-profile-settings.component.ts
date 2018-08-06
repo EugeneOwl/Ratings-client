@@ -20,7 +20,9 @@ export class UserProfileSettingsComponent implements OnInit {
         mobileNumber: '',
         roles: []
     };
-    mobileNumber = new FormControl('', [Validators.required]);
+    mobileNumber = new FormControl('',
+        [Validators.pattern('^((375)([0-9]{9}))$'),
+            Validators.required]);
 
     constructor(private userService: UserService,
                 public dialogRef: MatDialogRef<UserEditComponent>,
@@ -32,7 +34,7 @@ export class UserProfileSettingsComponent implements OnInit {
             this.userService.get(this.parentData.id).subscribe((user: User) => {
                 if (user) {
                     this.user = user;
-                    this.mobileNumber.setValue('+375297654321'); // TODO: implement user mobile
+                    this.mobileNumber.setValue(user.mobileNumber);
                 } else {
                     console.log(`User with id '${this.parentData.id}' not found, returning to list`);
                     this.goBack();

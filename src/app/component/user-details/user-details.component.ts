@@ -25,14 +25,16 @@ export class UserDetailsComponent implements OnInit {
 
     ngOnInit() {
         if (this.parentData.id) {
-            this.userService.get(this.parentData.id).subscribe((user: User) => {
-                if (user) {
-                    this.user = user;
-                } else {
+            this.userService.get(this.parentData.id).subscribe(
+                success => {
+                    this.user = success;
+                },
+                error => {
+                    console.log(error.erroe.message);
                     console.log(`User with id '${this.parentData.id}' not found, returning to list`);
                     this.gotoBack();
                 }
-            });
+            );
         }
     }
 
