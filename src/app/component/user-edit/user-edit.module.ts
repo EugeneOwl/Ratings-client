@@ -3,8 +3,6 @@ import { UserEditComponent }   from './user-edit.component';
 import { MatButtonModule }     from '@angular/material';
 import { MatInputModule }      from '@angular/material';
 import { MatCheckboxModule }   from '@angular/material';
-import { MatCardModule }       from '@angular/material';
-import { RouterModule }        from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule }         from '@angular/forms';
 import { CommonModule }        from '@angular/common';
@@ -17,12 +15,10 @@ import { CommonModule }        from '@angular/common';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule,
 
         MatButtonModule,
         MatInputModule,
-        MatCheckboxModule,
-        MatCardModule
+        MatCheckboxModule
     ],
     exports: [UserEditComponent],
     providers: []

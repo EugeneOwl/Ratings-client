@@ -1,12 +1,13 @@
-import { NgModule }              from '@angular/core';
-import { UserToolbarComponent }  from './user-toolbar.component';
-import { MatSidenavModule }      from '@angular/material';
-import { MatToolbarModule }      from '@angular/material';
-import { MatButtonModule }       from '@angular/material';
-import { MatButtonToggleModule } from '@angular/material';
-import { LayoutModule }          from '@angular/cdk/layout';
-import { CommonModule }          from '@angular/common';
-import { GoHomeButtonModule }    from '../go-home-button/go-home-button.module';
+import { NgModule }                            from '@angular/core';
+import { UserToolbarComponent }                from './user-toolbar.component';
+import { MatSidenavModule }                    from '@angular/material';
+import { MatToolbarModule }                    from '@angular/material';
+import { MatButtonModule }                     from '@angular/material';
+import { MatButtonToggleModule }               from '@angular/material';
+import { LayoutModule }                        from '@angular/cdk/layout';
+import { CommonModule }                        from '@angular/common';
+import { GoHomeButtonModule }                  from '../go-home-button/go-home-button.module';
+import { GoToUserProfileSettingsButtonModule } from '../go-to-user-profile-setting-button/go-to-user-profile-settings-button.module';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { GoHomeButtonModule }    from '../go-home-button/go-home-button.module';
         LayoutModule,
 
         GoHomeButtonModule,
+        GoToUserProfileSettingsButtonModule,
 
         MatButtonToggleModule,
         MatToolbarModule,

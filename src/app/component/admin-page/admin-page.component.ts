@@ -16,7 +16,7 @@ export class AdminPageComponent implements OnInit {
     ngOnInit() {
     }
 
-    onChoseList(chosenListName) {
+    onChooseList(chosenListName) {
         this.chosenListName = chosenListName;
     }
 }

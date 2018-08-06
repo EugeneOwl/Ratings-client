@@ -73,7 +73,27 @@ mat-paginator {
     color: #FF403E;
 }
 
+.field-invalid-placeholder {
+    height: 0.95em;
+}
+
 .form-input-panel {
     width: 60%;
     margin: auto;
+}
+
+/* Toolbars */
+
+.main-page-header {
+    padding-left: 15%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+mat-sidenav-container {
+    margin-bottom: 2%;
+}
+
+.to-right-pusher {
+    flex: 1 1 auto;
 }

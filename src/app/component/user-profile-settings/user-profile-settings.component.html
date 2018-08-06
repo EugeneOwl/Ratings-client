@@ -1,0 +1,42 @@
+<mat-card>
+<div class="wrapper">
+  <div class="simple-form">
+    <h1 class="mat-headline form-header"> Account settings </h1>
+
+    <div class="form-content">
+
+      <div class="form-input-panel">
+
+        <p class="mat-body-1">
+          <span class="column-names"> Id: </span>
+          {{user.id}}
+        </p>
+
+        <p class="mat-body-1">
+          <span class="column-names"> Username: </span>
+          {{user.username}}
+        </p>
+
+        <mat-form-field>
+          <input matInput placeholder="mobile number" [formControl]="mobileNumber">
+        </mat-form-field>
+        <div>
+          <label class="field-invalid" *ngIf="mobileNumber.invalid"> Mobile number is required. </label>
+        </div>
+        <div class="field-invalid-placeholder" *ngIf="!mobileNumber.invalid"></div>
+
+      </div>
+
+      <div class="form-panel">
+        <button mat-raised-button mat-button color="accent"
+                [disabled]="mobileNumber.invalid" (click)="saveSettings()">
+          Save
+        </button>
+        <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button">
+          Cancel
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</mat-card>

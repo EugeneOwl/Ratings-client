@@ -6,6 +6,8 @@ import { MatPaginator }       from '@angular/material';
 import { MatDialog }          from '@angular/material';
 import { RoleListDataSource } from './role-list-datasource';
 import { RoleEditComponent }  from '../role-edit/role-edit.component';
+import { forkJoin }           from 'rxjs';
+import { Role }               from '../../model/Role';
 
 @Component({
     selector: 'app-role-list',
@@ -16,8 +18,9 @@ export class RoleListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
+    roles: Role[];
     dataSource: RoleListDataSource;
-    displayedColumns = ['id', 'value'];
+    displayedColumns = ['id', 'label'];
 
     constructor(
         private roleService: RoleService,
@@ -26,23 +29,33 @@ export class RoleListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.roleService.getAll().subscribe(roles => {
+        forkJoin(this.roleService.getAll()).subscribe(data => {
+            this.roles = data[0];
             this.dataSource = new RoleListDataSource(
                 this.paginator,
                 this.sort,
-                roles
+                this.roles
             );
         });
     }
 
     goToEditRoleDialog(id: number): void {
         const dialogRef = this.dialog.open(RoleEditComponent, {
-                width: '500px',
-                data: {id: id}
-            },
-        );
+            width: '500px',
+            data: {id: id}
+        });
+        this.updateComponentPieceAccordingDialog(dialogRef);
+    }
+
+    private updateComponentPieceAccordingDialog(dialogRef): void {
         dialogRef.afterClosed().subscribe(result => {
-            this.ngOnInit();
+            if (this.roles.filter(role => role.id == result.id).length == 0) {
+                this.ngOnInit();
+
+                return;
+            }
+            this.roles.filter(role => role.id == result.id)
+            .map(role => role.label = result.label);
         });
     }
 }

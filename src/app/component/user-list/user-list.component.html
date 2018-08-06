@@ -19,7 +19,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Roles</th>
       <td mat-cell *matCellDef="let row" class="mat-body-1">
           <span *ngFor="let role of row.roles">
-            {{role.value}};
+            {{role.label}};
           </span>
       </td>
     </ng-container>

@@ -6,7 +6,7 @@ import { User }                                  from '../../model/User';
 
 export class UserListDataSource extends DataSource<User> {
 
-    constructor(private paginator: MatPaginator, private sort: MatSort, private data: Array<User>) {
+    constructor(private paginator: MatPaginator, private sort: MatSort, private data: User[]) {
         super();
     }
 

@@ -4,6 +4,8 @@ import { Input }                        from '@angular/core';
 import { MatPaginator, MatSort }        from '@angular/material';
 import { MatDialog }                    from '@angular/material';
 import { UserListDataSource }           from './user-list-datasource';
+import { User }                         from '../../model/User';
+import { forkJoin }                     from 'rxjs';
 
 
 @Component({
@@ -16,6 +18,7 @@ export class UserListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
 
     dataSource: UserListDataSource;
+    users: User[];
 
     @Input()
     displayedColumns: string;
@@ -33,23 +36,32 @@ export class UserListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userService.getAll().subscribe(users => {
+        forkJoin(this.userService.getAll()).subscribe(data => {
+            this.users = data[0];
             this.dataSource = new UserListDataSource(
                 this.paginator,
                 this.sort,
-                users
+                this.users
             );
         });
     }
 
     goToPersonalUserDialog(id: number): void {
         const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
-                width: '450px',
-                data: {id: id}
-            },
-        );
+            width: '450px',
+            data: {id: id}
+        });
+        this.updateComponentPieceAccordingDialog(dialogRef);
+    }
+
+    private updateComponentPieceAccordingDialog(dialogRef): void {
         dialogRef.afterClosed().subscribe(result => {
-            this.ngOnInit();
+            if (!result) {
+
+                return;
+            }
+            this.users.filter(user => user.id == result.user.id)
+            .map(user => user.roles = result.user.roles);
         });
     }
 }

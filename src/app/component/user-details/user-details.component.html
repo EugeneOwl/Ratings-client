@@ -3,20 +3,20 @@
     <h1 class="mat-headline form-header">User details</h1>
 
     <div class="form-content">
-      <p class="mat-body-1" *ngIf="user">
+      <p class="mat-body-1">
         <span class="column-names"> Id: </span>
         {{user.id}}
       </p>
 
-      <p class="mat-body-1" *ngIf="user">
+      <p class="mat-body-1">
         <span class="column-names"> Username: </span>
         {{user.username}}
       </p>
 
-      <p class="mat-body-1" *ngIf="user">
+      <p class="mat-body-1">
         <span class="column-names"> Roles: </span>
         <span class="mat-body-1" *ngFor="let role of user.roles">
-           {{role.value}};
+           {{role.label}};
         </span>
       </p>
 

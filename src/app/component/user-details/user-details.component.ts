@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Inject }            from '@angular/core';
 import { User }              from '../../model/User';
-import { Router }            from '@angular/router';
-import { ActivatedRoute }    from '@angular/router';
 import { UserService }       from '../../service/user.service';
 import { MatDialogRef }      from '@angular/material';
 import { MAT_DIALOG_DATA }   from '@angular/material';
@@ -13,11 +11,14 @@ import { MAT_DIALOG_DATA }   from '@angular/material';
     styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-    user: User;
+    user: User = {
+        id: null,
+        username: '',
+        mobileNumber: '',
+        roles: []
+    };
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                private userService: UserService,
+    constructor(private userService: UserService,
                 public dialogRef: MatDialogRef<UserDetailsComponent>,
                 @Inject(MAT_DIALOG_DATA) public parentData) {
     }

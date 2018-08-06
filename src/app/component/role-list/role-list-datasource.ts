@@ -5,11 +5,11 @@ import { merge, Observable, of as observableOf } from 'rxjs';
 import { Role }                                  from '../../model/Role';
 
 export class RoleListDataSource extends DataSource<Role> {
-    setData(roles: Array<Role>) {
+    setData(roles: Role[]) {
         this.data = roles;
     }
 
-    constructor(private paginator: MatPaginator, private sort: MatSort, private data: Array<Role>) {
+    constructor(private paginator: MatPaginator, private sort: MatSort, private data: Role[]) {
         super();
     }
 
@@ -44,8 +44,8 @@ export class RoleListDataSource extends DataSource<Role> {
         return data.sort((a, b) => {
             const isAsc = this.sort.direction === 'asc';
             switch (this.sort.active) {
-                case 'value':
-                    return compare(a.value, b.value, isAsc);
+                case 'label':
+                    return compare(a.label, b.label, isAsc);
                 case 'id':
                     return compare(+ a.id, + b.id, isAsc);
                 default:

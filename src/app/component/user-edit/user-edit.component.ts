@@ -15,7 +15,12 @@ import { MAT_DIALOG_DATA }   from '@angular/material';
     styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-    user: User;
+    user: User = {
+        id: null,
+        username: '',
+        mobileNumber: '',
+        roles: []
+    };
     roleCheckboxes;
 
     constructor(private route: ActivatedRoute,
@@ -28,21 +33,22 @@ export class UserEditComponent implements OnInit {
 
     ngOnInit() {
         if (this.parentData.id) {
-            this.userService.get(this.parentData.id).subscribe((user: User) => {
-                if (user) {
-                    this.user = user;
+            this.userService.get(this.parentData.id).subscribe(
+                success => {
+                    this.user = success;
                     this.initializeRoleCheckboxes();
-                } else {
+                },
+                error => {
+                    console.log(error.error.message);
                     console.log(`User with id '${this.parentData.id}' not found, returning to list`);
                     this.goBack();
-                }
-            });
+                });
         }
     }
 
-    shouldRoleBeCheckedByDefault(roleValue: string): boolean {
+    shouldRoleBeCheckedByDefault(roleLabel: string): boolean {
         for (const role of this.user.roles) {
-            if (role.value === roleValue) {
+            if (role.label === roleLabel) {
 
                 return true;
             }
@@ -60,19 +66,19 @@ export class UserEditComponent implements OnInit {
     }
 
     goBack(): void {
-        this.dialogRef.close();
+        this.dialogRef.close({user: this.user});
     }
 
-    private getCheckedRoles(): Array<Role> {
+    private getCheckedRoles(): Role[] {
         return this.roleCheckboxes.filter(roleCheckbox => roleCheckbox.checked)
-        .map(roleCheckbox => new Role(roleCheckbox.id, roleCheckbox.value));
+        .map(roleCheckbox => roleCheckbox = {id: roleCheckbox.id, label: roleCheckbox.label});
     }
 
     private initializeRoleCheckboxes(): void {
-        this.roleService.getAll().subscribe((roles: Array<Role>) => {
+        this.roleService.getAll().subscribe((roles: Role[]) => {
             this.roleCheckboxes = roles;
             for (let role of this.roleCheckboxes) {
-                role.checked = this.shouldRoleBeCheckedByDefault(role.value);
+                role.checked = this.shouldRoleBeCheckedByDefault(role.label);
             }
         });
     }

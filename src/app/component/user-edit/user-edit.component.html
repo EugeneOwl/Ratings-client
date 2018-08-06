@@ -1,19 +1,19 @@
 <div class="wrapper">
   <div class="simple-form">
-    <h1 class="mat-headline form-header" *ngIf="user"> Edit User </h1>
+    <h1 class="mat-headline form-header"> Edit User </h1>
 
     <div class="form-content">
 
       <div class="form-input-panel">
-        <p class="mat-body-1" *ngIf="user">
+        <p class="mat-body-1">
           <span class="column-names"> Username: </span> {{user.username}}
         </p>
 
         <form #userRolesForm="ngForm">
           <p *ngFor="let roleCheckbox of roleCheckboxes">
-            <mat-checkbox name="{{roleCheckbox.value}}" color="primary"
+            <mat-checkbox name="{{roleCheckbox.label}}" color="primary"
                           [(ngModel)]="roleCheckbox.checked">
-              {{roleCheckbox.value}}
+              {{roleCheckbox.label}}
             </mat-checkbox>
           </p>
 

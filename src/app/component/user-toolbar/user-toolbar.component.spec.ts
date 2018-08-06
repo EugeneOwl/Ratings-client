@@ -1,7 +1,6 @@
-
-import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { UserToolbarComponent } from './user-toolbar.component';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { MatSidenavModule }                     from '@angular/material/sidenav';
+import { UserToolbarComponent }                 from './user-toolbar.component';
 
 describe('UserToolbarComponent', () => {
   let component: UserToolbarComponent;
