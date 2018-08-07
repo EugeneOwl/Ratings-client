@@ -21,6 +21,11 @@
           </span>
         </p>
 
+        <button mat-button mat-stroked-button matBadge="{{ratings.length}}"
+                matBadgePosition="after" matBadgeColor="accent" (click)="showRatings()">
+          show ratings
+        </button>
+
         <div class="to-bottom-pusher"></div>
         <h4 class="mat-body-1"> Leave rating: </h4>
         <mat-form-field>

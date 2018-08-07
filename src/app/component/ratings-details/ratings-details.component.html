@@ -1,0 +1,23 @@
+<mat-card>
+  <div class="wrapper">
+    <div class="simple-form">
+      <h1 class="mat-headline form-header"> {{recipient.username}}'s ratings </h1>
+
+      <div class="form-content">
+        <div class="form-input-panel" *ngFor="let rating of ratings">
+          <p class="mat-body-1">
+            <span class="column-names"> {{rating.sender.username}}: </span>
+            {{rating.label}}
+          </p>
+        </div>
+
+        <div class="to-bottom-pusher-mini"></div>
+        <div class="form-panel">
+          <a mat-raised-button mat-button (click)="goBack()" class="center-button">
+            Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

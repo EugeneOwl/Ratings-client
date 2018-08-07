@@ -1,15 +1,16 @@
-import { Component, OnInit }     from '@angular/core';
-import { Inject }                from '@angular/core';
-import { User }                  from '../../model/User';
-import { UserService }           from '../../service/user.service';
-import { MatDialogRef }          from '@angular/material';
-import { MAT_DIALOG_DATA }       from '@angular/material';
-import { FormControl }           from '@angular/forms';
-import { Validators }            from '@angular/forms';
-import { MatDialog }             from '@angular/material';
-import { NotificationComponent } from '../notification/notification.component';
-import { RatingService }         from '../../service/rating.service';
-import { Rating }                from '../../model/Rating';
+import { Component, OnInit }       from '@angular/core';
+import { Inject }                  from '@angular/core';
+import { User }                    from '../../model/User';
+import { UserService }             from '../../service/user.service';
+import { MatDialogRef }            from '@angular/material';
+import { MAT_DIALOG_DATA }         from '@angular/material';
+import { FormControl }             from '@angular/forms';
+import { Validators }              from '@angular/forms';
+import { MatDialog }               from '@angular/material';
+import { NotificationComponent }   from '../notification/notification.component';
+import { RatingService }           from '../../service/rating.service';
+import { Rating }                  from '../../model/Rating';
+import { RatingsDetailsComponent } from '../ratings-details/ratings-details.component';
 
 @Component({
     selector: 'app-user-details',
@@ -23,6 +24,7 @@ export class UserDetailsComponent implements OnInit {
         mobileNumber: '',
         roles: []
     };
+    ratings: Rating[] = [];
     currentUser: User;
     label = new FormControl('', [Validators.required]);
 
@@ -58,6 +60,18 @@ export class UserDetailsComponent implements OnInit {
                     this.gotoBack();
                 }
             );
+
+            this.ratingService.getByRecipientId(this.parentData.id).subscribe(
+                (success: Rating[]) => {
+                    this.ratings = success;
+                },
+                error => {
+                    console.log(error.erroe.message);
+                    console.log(`Rating of user with id '${this.parentData.id}'
+                    not found, returning to list`);
+                    this.gotoBack();
+                }
+            );
         }
     }
 
@@ -88,5 +102,12 @@ export class UserDetailsComponent implements OnInit {
         );
 
         this.label.setValue('');
+    }
+
+    showRatings() {
+        this.dialog.open(RatingsDetailsComponent, {
+            width: '600px',
+            data: {recipient: this.user}
+        });
     }
 }

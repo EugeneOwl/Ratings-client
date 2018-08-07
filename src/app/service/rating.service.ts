@@ -10,7 +10,11 @@ export class RatingService {
     }
 
     save(rating: any): Observable<any> {
-        console.log(rating);
+
         return this.http.put(this.API, rating);
+    }
+
+    getByRecipientId(recipientId: number) {
+        return this.http.get(this.API + '/recipient/' + recipientId);
     }
 }
