@@ -1,9 +1,8 @@
 import { Component, OnInit }    from '@angular/core';
-import { Input }                from '@angular/core';
+import { Inject }               from '@angular/core';
 import { User }                 from '../../model/User';
 import { RatingService }        from '../../service/rating.service';
 import { Rating }               from '../../model/Rating';
-import { Inject }               from '@angular/core';
 import { MAT_DIALOG_DATA }      from '@angular/material';
 import { MatDialogRef }         from '@angular/material';
 import { UserDetailsComponent } from '../user-details/user-details.component';

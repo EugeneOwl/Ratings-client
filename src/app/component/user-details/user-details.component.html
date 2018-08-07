@@ -16,6 +16,7 @@
 
         <p class="mat-body-1">
           <span class="column-names"> Roles: </span>
+          <span *ngIf="user.roles.length == 0"> (empty set) </span>
           <span *ngFor="let role of user.roles">
            {{role.label}};
           </span>
@@ -26,7 +27,7 @@
           show ratings
         </button>
 
-        <div class="to-bottom-pusher"></div>
+        <div class="to-bottom-pusher-mini"></div>
         <h4 class="mat-body-1"> Leave rating: </h4>
         <mat-form-field>
           <input matInput placeholder="rating label" [formControl]="label">
@@ -35,11 +36,19 @@
           <label class="field-invalid" *ngIf="label.invalid"> Rating label is required. </label>
         </div>
         <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
+
+        <div class="to-bottom-pusher-mini"></div>
+        <h4 class="mat-body-1"> Leave mark: </h4>
+        <div>
+          <mat-slider [formControl]="mark" min="1" max="5" step="1" thumbLabel tickInterval="1"></mat-slider>
+        </div>
+        <label> Use <mat-icon>arrow_back</mat-icon><mat-icon>arrow_forward</mat-icon> or <mat-icon>mouse</mat-icon>to set mark. </label>
+
       </div>
 
       <div class="to-bottom-pusher-mini"></div>
       <div class="form-panel">
-        <button mat-raised-button mat-button color="accent" [disabled]="!label.value" (click)="save(label.value)">
+        <button mat-raised-button mat-button color="accent" [disabled]="!label.value" (click)="save(label.value, mark.value)">
           Save
         </button>
 

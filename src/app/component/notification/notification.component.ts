@@ -1,9 +1,9 @@
 import { Component, OnInit }    from '@angular/core';
 import { Input }                from '@angular/core';
+import { Inject }               from '@angular/core';
 import { MAT_DIALOG_DATA }      from '@angular/material';
 import { MatDialogRef }         from '@angular/material';
 import { UserDetailsComponent } from '../user-details/user-details.component';
-import { Inject }               from '@angular/core';
 
 @Component({
     selector: 'app-notification',

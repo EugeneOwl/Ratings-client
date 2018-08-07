@@ -4,13 +4,13 @@ import { User }                    from '../../model/User';
 import { UserService }             from '../../service/user.service';
 import { MatDialogRef }            from '@angular/material';
 import { MAT_DIALOG_DATA }         from '@angular/material';
+import { MatDialog }               from '@angular/material';
 import { FormControl }             from '@angular/forms';
 import { Validators }              from '@angular/forms';
-import { MatDialog }               from '@angular/material';
-import { NotificationComponent }   from '../notification/notification.component';
 import { RatingService }           from '../../service/rating.service';
 import { Rating }                  from '../../model/Rating';
 import { RatingsDetailsComponent } from '../ratings-details/ratings-details.component';
+import { NotificationComponent }   from '../notification/notification.component';
 
 @Component({
     selector: 'app-user-details',
@@ -27,6 +27,7 @@ export class UserDetailsComponent implements OnInit {
     ratings: Rating[] = [];
     currentUser: User;
     label = new FormControl('', [Validators.required]);
+    mark = new FormControl('');
 
     constructor(private ratingService: RatingService,
                 private userService: UserService,
@@ -79,20 +80,26 @@ export class UserDetailsComponent implements OnInit {
         this.dialogRef.close();
     }
 
-    save(label: string) {
+    save(label: string, mark: number) {
         const rating: Rating = {
             id: 0,
             label: label,
+            mark: mark,
             sender: this.currentUser,
             recipient: this.user
         };
         this.ratingService.save(rating).subscribe(
             success => {
+                this.ratings.length++;
+                this.label.setValue('');
+                this.mark.setValue('');
+
                 this.dialog.open(NotificationComponent, {
                     width: '400px',
                     data: {
-                        message: `Rating '${label}' from ${this.currentUser.username}
-                                  to ${this.user.username} established.`
+                        message: `Rating '${label}' with mark '${mark}'
+                        from ${this.currentUser.username}
+                        to ${this.user.username} established.`
                     }
                 });
             },
@@ -100,8 +107,6 @@ export class UserDetailsComponent implements OnInit {
                 console.log(error.error.message);
             }
         );
-
-        this.label.setValue('');
     }
 
     showRatings() {

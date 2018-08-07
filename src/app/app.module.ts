@@ -18,7 +18,6 @@ import { UserProfileSettingsModule }           from './component/user-profile-se
 import { GoToUserProfileSettingsButtonModule } from './component/go-to-user-profile-setting-button/go-to-user-profile-settings-button.module';
 import { NotificationModule }                  from './component/notification/notification.module';
 import { RatingService }                       from './service/rating.service';
-import { RatingsDetailsComponent }             from './component/ratings-details/ratings-details.component';
 import { RatingsDetailsModule }                from './component/ratings-details/ratings-details.module';
 
 @NgModule({
