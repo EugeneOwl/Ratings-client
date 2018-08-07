@@ -8,6 +8,8 @@ import { FormControl }           from '@angular/forms';
 import { Validators }            from '@angular/forms';
 import { MatDialog }             from '@angular/material';
 import { NotificationComponent } from '../notification/notification.component';
+import { RatingService }         from '../../service/rating.service';
+import { Rating }                from '../../model/Rating';
 
 @Component({
     selector: 'app-user-details',
@@ -24,7 +26,8 @@ export class UserDetailsComponent implements OnInit {
     currentUser: User;
     label = new FormControl('', [Validators.required]);
 
-    constructor(private userService: UserService,
+    constructor(private ratingService: RatingService,
+                private userService: UserService,
                 private dialog: MatDialog,
                 private dialogRef: MatDialogRef<UserDetailsComponent>,
                 @Inject(MAT_DIALOG_DATA) public parentData) {
@@ -63,11 +66,27 @@ export class UserDetailsComponent implements OnInit {
     }
 
     save(label: string) {
+        const rating: Rating = {
+            id: 0,
+            label: label,
+            sender: this.currentUser,
+            recipient: this.user
+        };
+        this.ratingService.save(rating).subscribe(
+            success => {
+                this.dialog.open(NotificationComponent, {
+                    width: '400px',
+                    data: {
+                        message: `Rating '${label}' from ${this.currentUser.username}
+                                  to ${this.user.username} established.`
+                    }
+                });
+            },
+            error => {
+                console.log(error.error.message);
+            }
+        );
+
         this.label.setValue('');
-        this.dialog.open(NotificationComponent, {
-            width: '400px',
-            data: {message: `Rating '${label}' from ${this.currentUser.username}
-            to ${this.user.username} established`}
-        });
     }
 }

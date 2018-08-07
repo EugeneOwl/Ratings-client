@@ -17,6 +17,7 @@ import { LayoutModule }                        from '@angular/cdk/layout';
 import { UserProfileSettingsModule }           from './component/user-profile-settings/user-profile-settings.module';
 import { GoToUserProfileSettingsButtonModule } from './component/go-to-user-profile-setting-button/go-to-user-profile-settings-button.module';
 import { NotificationModule }                  from './component/notification/notification.module';
+import { RatingService }                       from './service/rating.service';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { NotificationModule }                  from './component/notification/no
     ],
     providers: [
         UserService,
-        RoleService
+        RoleService,
+        RatingService
     ],
     bootstrap: [AppComponent]
 })
