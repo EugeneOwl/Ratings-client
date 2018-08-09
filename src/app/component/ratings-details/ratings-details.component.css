@@ -1,3 +1,7 @@
 .center-button {
     margin-left: 35%;
 }
+
+mat-icon {
+    float: right;
+}
