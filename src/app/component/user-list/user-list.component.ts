@@ -49,7 +49,10 @@ export class UserListComponent implements OnInit {
     goToPersonalUserDialog(id: number): void {
         const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
             width: '550px',
-            data: {id: id, currentUserId: 1} // TODO: dehardcode current user
+            data: {
+                id: id,
+                currentUserId: JSON.parse(localStorage.getItem('user')).id
+            }
         });
         this.updateComponentPieceAccordingDialog(dialogRef);
     }
@@ -64,4 +67,9 @@ export class UserListComponent implements OnInit {
             .map(user => user.roles = result.user.roles);
         });
     }
+}
+
+export interface PersonalUserDialogData {
+    id: any;
+    currentUserId: any;
 }

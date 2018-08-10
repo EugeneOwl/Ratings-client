@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Inject }            from '@angular/core';
-import { Router }            from '@angular/router';
-import { ActivatedRoute }    from '@angular/router';
-import { UserService }       from '../../service/user.service';
-import { User }              from '../../model/User';
-import { RoleService }       from '../../service/role.service';
-import { Role }              from '../../model/Role';
-import { MatDialogRef }      from '@angular/material';
-import { MAT_DIALOG_DATA }   from '@angular/material';
+import { Inject }                 from '@angular/core';
+import { Router }                 from '@angular/router';
+import { ActivatedRoute }         from '@angular/router';
+import { UserService }            from '../../service/user.service';
+import { User }                   from '../../model/User';
+import { RoleService }            from '../../service/role.service';
+import { Role }                   from '../../model/Role';
+import { MatDialogRef }           from '@angular/material';
+import { MAT_DIALOG_DATA }        from '@angular/material';
+import { PersonalUserDialogData } from '../user-list/user-list.component';
 
 @Component({
     selector: 'app-user-edit',
@@ -28,19 +29,19 @@ export class UserEditComponent implements OnInit {
                 private userService: UserService,
                 private roleService: RoleService,
                 public dialogRef: MatDialogRef<UserEditComponent>,
-                @Inject(MAT_DIALOG_DATA) public parentData) {
+                @Inject(MAT_DIALOG_DATA) public data: PersonalUserDialogData) {
     }
 
     ngOnInit() {
-        if (this.parentData.id) {
-            this.userService.get(this.parentData.id).subscribe(
+        if (this.data.id) {
+            this.userService.get(this.data.id).subscribe(
                 success => {
                     this.user = success;
                     this.initializeRoleCheckboxes();
                 },
                 error => {
                     console.log(error.error.message);
-                    console.log(`User with id '${this.parentData.id}' not found, returning to list`);
+                    console.log(`User with id '${this.data.id}' not found, returning to list`);
                     this.goBack();
                 }
             );

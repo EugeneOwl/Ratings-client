@@ -59,3 +59,7 @@ export class RoleListComponent implements OnInit {
         });
     }
 }
+
+export interface PesonalRoleDialogData {
+    id: any;
+}

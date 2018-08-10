@@ -18,7 +18,7 @@ export class GoToUserProfileSettingButtonComponent implements OnInit {
     goToSettings() {
         this.dialog.open(UserProfileSettingsComponent, {
             width: '800px',
-            data: {id: 1} // TODO: dehardcode user id (get current user from session or smth lk th
+            data: {id: JSON.parse(localStorage.getItem('user')).id} // TODO: dehardcode user id (get current user from session or smth lk th
         });
     }
 }

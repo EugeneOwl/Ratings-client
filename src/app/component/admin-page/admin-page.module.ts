@@ -4,6 +4,7 @@ import { RoleListModule }     from '../role-list/role-list.module';
 import { UserListModule }     from '../user-list/user-list.module';
 import { AdminToolbarModule } from '../admin-toolbar/admin-toolbar.module';
 import { CommonModule }       from '@angular/common';
+import { AdminPageGuard }     from './admin-page.guard';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,7 @@ import { CommonModule }       from '@angular/common';
         UserListModule
     ],
     exports: [AdminPageComponent],
-    providers: []
+    providers: [AdminPageGuard]
 })
 export class AdminPageModule {
 }

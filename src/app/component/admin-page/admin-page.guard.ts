@@ -4,7 +4,7 @@ import { Observable }                                                       from
 import { SecurityService }                                                  from '../../auth/security.service';
 
 @Injectable()
-export class LoginPageGuard implements CanActivate {
+export class AdminPageGuard implements CanActivate {
 
     constructor(private securityService: SecurityService, private router: Router) {
     }
@@ -13,7 +13,7 @@ export class LoginPageGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
-        if (this.securityService.isLoggedIn()) {
+        if (! this.securityService.hasAccessToAdminContent()) {
             this.router.navigate(['/client/main']);
 
             return false;
