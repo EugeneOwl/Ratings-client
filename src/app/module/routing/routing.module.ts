@@ -10,6 +10,10 @@ const routes: Routes = [
     {path: 'client/main', component: MainComponent},
     {path: 'client/admin', component: AdminPageComponent},
     {path: 'client/user', component: UserPageComponent},
+    {
+        path: 'login',
+        loadChildren: './../../auth/login/login.module'
+    },
 ];
 
 @NgModule({
