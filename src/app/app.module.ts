@@ -19,6 +19,9 @@ import { GoToUserProfileSettingsButtonModule } from './component/go-to-user-prof
 import { NotificationModule }                  from './component/notification/notification.module';
 import { RatingService }                       from './service/rating.service';
 import { RatingsDetailsModule }                from './component/ratings-details/ratings-details.module';
+import { LoginPageModule }                     from './component/login-page/login-page.module';
+import { AuthModule }                          from './auth/auth.module';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     declarations: [
@@ -44,7 +47,11 @@ import { RatingsDetailsModule }                from './component/ratings-details
         MainModule,
         GoHomeButtonModule,
         GoToUserProfileSettingsButtonModule,
-        NotificationModule
+        NotificationModule,
+
+        LoginPageModule,
+        AuthModule,
+        HttpModule
     ],
     providers: [
         UserService,

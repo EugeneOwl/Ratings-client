@@ -1,25 +1,26 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User }       from '../model/User';
+import { Injectable }  from '@angular/core';
+import { Observable }  from 'rxjs';
+import { User }        from '../model/User';
+import { environment } from '../../environments/environment';
+import { AuthHttp }    from 'angular2-jwt';
 
 @Injectable()
 export class UserService {
-    public API='//127.0.0.1:8080/server/users';
+    public API = `${environment.serverUrl}users`;
 
-    constructor(private http: HttpClient) {
+    constructor(private authHttp: AuthHttp) {
     }
 
     getAll(): Observable<any> {
-        return this.http.get(this.API);
+        return this.authHttp.get(this.API).map(res => res.json());
     }
 
     get(id: string): Observable<any> {
 
-        return this.http.get(this.API + '/' + id);
+        return this.authHttp.get(this.API + '/' + id).map(res => res.json());
     }
 
     save(user: User): Observable<any> {
-        return this.http.post(this.API, user);
+        return this.authHttp.post(this.API, user).map(res => res.json());
     }
 }

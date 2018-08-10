@@ -104,7 +104,7 @@ export class UserDetailsComponent implements OnInit {
                 });
             },
             error => {
-                console.log(error.error.message);
+                console.log(error);
             }
         );
     }

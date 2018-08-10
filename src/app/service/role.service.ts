@@ -1,35 +1,36 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable }  from '@angular/core';
+import { AuthHttp }    from 'angular2-jwt';
+import { Observable }  from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class RoleService {
-    public API = '//127.0.0.1:8080/server/roles';
+    public API = `${environment.serverUrl}roles`;
 
-    constructor(private http: HttpClient) {
+    constructor(private authHttp: AuthHttp) {
     }
 
     getAll(): Observable<any> {
 
-        return this.http.get(this.API);
+        return this.authHttp.get(this.API).map(res => res.json());
     }
 
     get(id: string) {
 
-        return this.http.get(this.API + '/' + id);
+        return this.authHttp.get(this.API + '/' + id).map(res => res.json());
     }
 
     save(role: any): Observable<any> {
         if (! role.id) {
 
-            return this.http.put(this.API, role);
+            return this.authHttp.put(this.API, role).map(res => res.json());
         }
 
-        return this.http.post(this.API, role);
+        return this.authHttp.post(this.API, role).map(res => res.json());
     }
 
     remove(id: string) {
 
-        return this.http.delete(this.API + '/' + id);
+        return this.authHttp.delete(this.API + '/' + id).map(res => res.json());
     }
 }
