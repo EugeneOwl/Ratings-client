@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SecurityService {
-    private userRoles = ['User'];
     private adminRoles = ['Admin'];
+    private userRoles = this.adminRoles.concat(['User']);
 
     constructor() {
     }

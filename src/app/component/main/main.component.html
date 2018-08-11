@@ -1,6 +1,14 @@
+<div class="login-panel">
+  <a mat-raised-button mat-button class="login-button" (click)="logout()"
+     [disabled]="! isLogoutButtonEnabled()">Logout</a>
+  <a mat-raised-button mat-button class="login-button" color="primary"
+     [routerLink]="['/client/login']" [disabled]="! isLoginButtonEnabled()">Login</a>
+</div>
 <h1 class="welcome-header mat-headline">Welcome to Client side!</h1>
-<a (click)="logout()">Logout</a>
+
 <div class="go-to-page-panel">
-  <a mat-raised-button mat-button class="go-to-page-button button" [routerLink]="['/client/admin']">Admin page</a>
-  <a mat-raised-button mat-button class="go-to-page-button button" [routerLink]="['/client/user']">User page</a>
+  <a mat-raised-button mat-button class="go-to-page-button button"
+     [routerLink]="['/client/admin']" [disabled]="! isAdminPageButtonEnabled()">Admin page</a>
+  <a mat-raised-button mat-button class="go-to-page-button button"
+     [routerLink]="['/client/user']" [disabled]="! isUserPageButtonEnabled()">User page</a>
 </div>

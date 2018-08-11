@@ -11,3 +11,12 @@
 .go-to-page-panel {
     margin-left: 50%;
 }
+
+.login-panel {
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+.login-button {
+    margin-right: 1%;
+}

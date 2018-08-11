@@ -4,8 +4,8 @@
       <h1 class="mat-headline form-header"> {{recipient.username}}'s ratings </h1>
 
       <div class="form-content">
-        <div class="form-input-panel" *ngFor="let rating of ratings">
-          <p class="mat-body-1">
+        <div *ngFor="let rating of ratings">
+          <p>
             <span class="column-names"> {{rating.sender.username}}: </span> {{rating.label}}
             <span *ngIf="rating.mark">
               <mat-icon color="accent">filter_{{rating.mark}}</mat-icon>
