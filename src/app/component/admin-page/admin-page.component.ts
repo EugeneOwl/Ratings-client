@@ -7,7 +7,8 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
     styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-    childDialogComponentClassName = UserEditComponent;
+    childDialogComponentClassNameForUserList = UserEditComponent;
+    childDialogComponentClassNameForTaskList = Notification;
     chosenListName = 'role-list';
 
     constructor() {

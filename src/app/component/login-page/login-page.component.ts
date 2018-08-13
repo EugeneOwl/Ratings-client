@@ -42,6 +42,9 @@ export class LoginPageComponent implements OnInit {
                 if (error.status == '401') {
                     this.errorMessage += 'Bad credentials.';
                 }
+                if (error.status == '0') {
+                    this.errorMessage += 'Server is not running.';
+                }
             }
         );
     }

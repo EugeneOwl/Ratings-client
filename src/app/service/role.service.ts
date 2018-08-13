@@ -17,7 +17,7 @@ export class RoleService {
 
     get(id: string) {
 
-        return this.authHttp.get(this.API + '/' + id).map(res => res.json());
+        return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
     save(role: any): Observable<any> {
@@ -31,6 +31,6 @@ export class RoleService {
 
     remove(id: string) {
 
-        return this.authHttp.delete(this.API + '/' + id).map(res => res.json());
+        return this.authHttp.delete(`${this.API}/${id}`).map(res => res.json());
     }
 }

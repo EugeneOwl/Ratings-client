@@ -24,9 +24,6 @@ export class UserListComponent implements OnInit {
     displayedColumns: string;
 
     @Input()
-    usernameButtonLink: string;
-
-    @Input()
     childDialogComponentClassName;
 
     constructor(

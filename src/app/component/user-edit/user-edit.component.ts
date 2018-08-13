@@ -20,7 +20,8 @@ export class UserEditComponent implements OnInit {
         id: null,
         username: '',
         mobileNumber: '',
-        roles: []
+        roles: [],
+        tasks: []
     };
     roleCheckboxes;
 

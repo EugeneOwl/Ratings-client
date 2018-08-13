@@ -1,12 +1,12 @@
 import { Injectable }  from '@angular/core';
-import { Observable }  from 'rxjs';
-import { User }        from '../model/User';
 import { environment } from '../../environments/environment';
 import { AuthHttp }    from 'angular2-jwt';
+import { Observable }  from 'rxjs';
+import { Task }        from '../model/Task';
 
 @Injectable()
-export class UserService {
-    public API = `${environment.serverUrl}users`;
+export class TaskService {
+    public API = `${environment.serverUrl}tasks`;
 
     constructor(private authHttp: AuthHttp) {
     }
@@ -21,8 +21,8 @@ export class UserService {
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
-    save(user: User): Observable<any> {
+    save(task: Task): Observable<any> {
 
-        return this.authHttp.post(this.API, user).map(res => res.json());
+        return this.authHttp.post(this.API, task).map(res => res.json());
     }
 }

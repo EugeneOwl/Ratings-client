@@ -60,6 +60,6 @@ export class RoleListComponent implements OnInit {
     }
 }
 
-export interface PesonalRoleDialogData {
+export interface PersonalRoleDialogData {
     id: any;
 }

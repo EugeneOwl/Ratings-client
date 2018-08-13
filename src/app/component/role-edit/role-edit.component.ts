@@ -7,7 +7,7 @@ import { RoleService }            from '../../service/role.service';
 import { Role }                   from '../../model/Role';
 import { MatDialogRef }           from '@angular/material';
 import { MAT_DIALOG_DATA }        from '@angular/material';
-import { PesonalRoleDialogData }  from '../role-list/role-list.component';
+import { PersonalRoleDialogData } from '../role-list/role-list.component';
 
 @Component({
     selector: 'app-role-edit',
@@ -22,7 +22,7 @@ export class RoleEditComponent implements OnInit {
                 private router: Router,
                 private roleService: RoleService,
                 public dialogRef: MatDialogRef<RoleEditComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: PesonalRoleDialogData) {
+                @Inject(MAT_DIALOG_DATA) public data: PersonalRoleDialogData) {
     }
 
     ngOnInit() {

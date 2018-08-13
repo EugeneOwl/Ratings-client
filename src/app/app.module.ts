@@ -18,10 +18,13 @@ import { UserProfileSettingsModule }           from './component/user-profile-se
 import { GoToUserProfileSettingsButtonModule } from './component/go-to-user-profile-setting-button/go-to-user-profile-settings-button.module';
 import { NotificationModule }                  from './component/notification/notification.module';
 import { RatingService }                       from './service/rating.service';
-import { RatingsDetailsModule }                from './component/ratings-details/ratings-details.module';
-import { LoginPageModule }                     from './component/login-page/login-page.module';
-import { AuthModule }                          from './auth/auth.module';
-import { HttpModule } from '@angular/http';
+import { RatingsDetailsModule } from './component/ratings-details/ratings-details.module';
+import { LoginPageModule }      from './component/login-page/login-page.module';
+import { AuthModule }           from './auth/auth.module';
+import { HttpModule }           from '@angular/http';
+import { TaskService }          from './service/task.service';
+import { TaskListComponent }    from './component/task-list/task-list.component';
+import { TaskListModule }       from './component/task-list/task-list.module';
 
 @NgModule({
     declarations: [
@@ -44,6 +47,8 @@ import { HttpModule } from '@angular/http';
 
         RatingsDetailsModule,
 
+        TaskListModule,
+
         MainModule,
         GoHomeButtonModule,
         GoToUserProfileSettingsButtonModule,
@@ -56,7 +61,8 @@ import { HttpModule } from '@angular/http';
     providers: [
         UserService,
         RoleService,
-        RatingService
+        RatingService,
+        TaskService
     ],
     bootstrap: [AppComponent]
 })
