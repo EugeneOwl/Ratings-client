@@ -18,7 +18,8 @@ export class UserProfileSettingsComponent implements OnInit {
         id: null,
         username: '',
         mobileNumber: '',
-        roles: []
+        roles: [],
+        tasks: []
     };
     mobileNumber = new FormControl('',
         [Validators.pattern('^((375)([0-9]{9}))$'),

@@ -15,11 +15,11 @@ export class NotificationComponent implements OnInit {
     message: string;
 
     constructor(public dialogRef: MatDialogRef<UserDetailsComponent>,
-                @Inject(MAT_DIALOG_DATA) public parentData) {
+                @Inject(MAT_DIALOG_DATA) public data) {
     }
 
     ngOnInit() {
-        this.message = this.parentData.message;
+        this.message = this.data.message;
     }
 
     goBack() {

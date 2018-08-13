@@ -25,6 +25,8 @@ import { HttpModule }           from '@angular/http';
 import { TaskService }          from './service/task.service';
 import { TaskListComponent }    from './component/task-list/task-list.component';
 import { TaskListModule }       from './component/task-list/task-list.module';
+import { TaskDetailsComponent } from './component/task-details/task-details.component';
+import { TaskDetailsModule }    from './component/task-details/task-details.module';
 
 @NgModule({
     declarations: [
@@ -48,6 +50,7 @@ import { TaskListModule }       from './component/task-list/task-list.module';
         RatingsDetailsModule,
 
         TaskListModule,
+        TaskDetailsModule,
 
         MainModule,
         GoHomeButtonModule,

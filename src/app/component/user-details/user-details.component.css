@@ -5,3 +5,7 @@ mat-slider {
 mat-icon {
     font-size: 100%;
 }
+
+.showDetailsButton {
+    margin: 0 3%;
+}

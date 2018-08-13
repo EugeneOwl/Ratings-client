@@ -17,7 +17,8 @@ export class RatingsDetailsComponent implements OnInit {
         id: 0,
         username: '',
         mobileNumber: '',
-        roles: []
+        roles: [],
+        tasks: []
     };
     ratings: Rating[] = [];
 

@@ -12,6 +12,7 @@
 
   <app-task-list *ngIf="chosenListName == 'task-list'"
                  [displayedColumns]="['id', 'label', 'description', 'evaluation', 'user', 'parent']"
-                 [childDialogComponentClassName]="childDialogComponentClassNameForTaskList">
+                 [childDialogComponentClassName]="childDialogComponentClassNameForTaskList"
+                 [customDatasource]="false">
   </app-task-list>
 </div>

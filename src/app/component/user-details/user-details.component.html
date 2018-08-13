@@ -22,8 +22,15 @@
           </span>
         </p>
 
+        <button mat-button mat-stroked-button matBadge="{{user.tasks.length}}"
+                class="showDetailsButton" matBadgePosition="after"
+                matBadgeColor="accent" (click)="showTasks()">
+          show tasks
+        </button>
+
         <button mat-button mat-stroked-button matBadge="{{ratings.length}}"
-                matBadgePosition="after" matBadgeColor="accent" (click)="showRatings()">
+                class="showDetailsButton" matBadgePosition="after"
+                matBadgeColor="accent" (click)="showRatings()">
           show ratings
         </button>
 

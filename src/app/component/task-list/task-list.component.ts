@@ -23,12 +23,16 @@ export class TaskListComponent implements OnInit {
 
     dataSource: TaskListDatasource;
     tasks: Task[];
+    allotedTaskId: number;
 
     @Input()
     displayedColumns: string;
 
     @Input()
     childDialogComponentClassName;
+
+    @Input()
+    customDatasource;
 
     constructor(
         private taskService: TaskService,
@@ -38,6 +42,17 @@ export class TaskListComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.customDatasource !== false) {
+            this.tasks = this.customDatasource;
+            this.dataSource = new TaskListDatasource(
+                this.paginator,
+                this.sort,
+                this.customDatasource
+            );
+
+            return;
+        }
+
         forkJoin(this.taskService.getAll(), this.userService.getAll())
         .subscribe(data => {
             this.tasks = data[0];
@@ -58,5 +73,13 @@ export class TaskListComponent implements OnInit {
 
     goToPersonalTaskDialog() {
         console.log('Going to personal task dialog.');
+    }
+
+    allotTask(taskId: number) {
+        this.allotedTaskId = taskId;
+    }
+
+    allotedIfNeeded(taskId: number) {
+        return (taskId === this.allotedTaskId ? 'allotted' : '');
     }
 }

@@ -13,6 +13,7 @@ import { CommonModule }            from '@angular/common';
 import { NotificationComponent }   from '../notification/notification.component';
 import { RatingsDetailsComponent } from '../ratings-details/ratings-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskDetailsComponent }    from '../task-details/task-details.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     exports: [UserDetailsComponent],
     entryComponents: [
         NotificationComponent,
-        RatingsDetailsComponent
+        RatingsDetailsComponent,
+        TaskDetailsComponent
     ],
     providers: []
 })

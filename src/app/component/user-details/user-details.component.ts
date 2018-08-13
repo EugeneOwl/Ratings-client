@@ -12,6 +12,8 @@ import { Rating }                  from '../../model/Rating';
 import { RatingsDetailsComponent } from '../ratings-details/ratings-details.component';
 import { NotificationComponent }   from '../notification/notification.component';
 import { PersonalUserDialogData }  from '../user-list/user-list.component';
+import { TaskDetailsComponent }    from '../task-details/task-details.component';
+import { Task }                    from '../../model/Task';
 
 @Component({
     selector: 'app-user-details',
@@ -23,7 +25,8 @@ export class UserDetailsComponent implements OnInit {
         id: null,
         username: '',
         mobileNumber: '',
-        roles: []
+        roles: [],
+        tasks: []
     };
     ratings: Rating[] = [];
     currentUser: User;
@@ -116,4 +119,16 @@ export class UserDetailsComponent implements OnInit {
             data: {recipient: this.user}
         });
     }
+
+    showTasks() {
+        this.dialog.open(TaskDetailsComponent, {
+            width: '1200px',
+            data: {tasks: this.user.tasks, user: this.user}
+        });
+    }
+}
+
+export interface PersonalTasksDialogData {
+    tasks: Task[];
+    user: User;
 }

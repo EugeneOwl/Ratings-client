@@ -1,0 +1,18 @@
+<mat-card>
+  <div class="wrapper">
+    <div class="simple-form">
+      <h1 class="mat-headline form-header"> {{user.username}}'s </h1>
+
+      <app-task-list [displayedColumns]="['id', 'label', 'description', 'evaluation']"
+                     [childDialogComponentClassName]=""
+                     [customDatasource]="tasks"></app-task-list>
+
+      <div class="form-panel">
+        <a mat-raised-button mat-button (click)="goBack()"
+           color="accent" class="center-button">
+          Back
+        </a>
+      </div>
+    </div>
+  </div>
+</mat-card>
