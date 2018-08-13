@@ -6,8 +6,8 @@ import { MatTableModule }     from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSortModule }      from '@angular/material';
 import { MatDialogModule }    from '@angular/material';
-import { RoleEditComponent }  from '../role-edit/role-edit.component';
 import { CommonModule }       from '@angular/common';
+import { TaskEditComponent }  from '../task-edit/task-edit.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +24,7 @@ import { CommonModule }       from '@angular/common';
         MatButtonModule
     ],
     exports: [TaskListComponent],
-    entryComponents: [RoleEditComponent],
+    entryComponents: [TaskEditComponent],
     providers: []
 })
 export class TaskListModule {

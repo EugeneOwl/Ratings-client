@@ -22,7 +22,15 @@ export class TaskService {
     }
 
     save(task: Task): Observable<any> {
+        if (! task.id) {
+
+            return this.authHttp.put(this.API, task).map(res => res.json());
+        }
 
         return this.authHttp.post(this.API, task).map(res => res.json());
+    }
+
+    remove(id: string): Observable<any> {
+        return this.authHttp.delete(this.API, id).map(res => res.json());
     }
 }

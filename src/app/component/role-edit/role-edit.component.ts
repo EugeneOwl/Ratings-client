@@ -1,6 +1,5 @@
 import { Component, OnInit }      from '@angular/core';
 import { Inject }                 from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl }            from '@angular/forms';
 import { Validators }             from '@angular/forms';
 import { RoleService }            from '../../service/role.service';
@@ -18,9 +17,7 @@ export class RoleEditComponent implements OnInit {
     id: number = 0;
     label = new FormControl('', [Validators.required]);
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                private roleService: RoleService,
+    constructor(private roleService: RoleService,
                 public dialogRef: MatDialogRef<RoleEditComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: PersonalRoleDialogData) {
     }
@@ -33,7 +30,7 @@ export class RoleEditComponent implements OnInit {
                     this.label.setValue(success.label);
                 },
                 error => {
-                    console.log(error.erroe.message);
+                    console.log(error.error.message);
                     console.log(`Role with id '${this.data.id}' not found, returning to list`);
                     this.goBack();
                 }

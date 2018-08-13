@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { TaskEditComponent } from '../task-edit/task-edit.component';
 
 @Component({
     selector: 'app-admin-page',
@@ -8,7 +9,7 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 })
 export class AdminPageComponent implements OnInit {
     childDialogComponentClassNameForUserList = UserEditComponent;
-    childDialogComponentClassNameForTaskList = Notification;
+    childDialogComponentClassNameForTaskList = TaskEditComponent;
     chosenListName = 'role-list';
 
     constructor() {

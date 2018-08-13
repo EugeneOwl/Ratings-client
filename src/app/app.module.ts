@@ -27,6 +27,8 @@ import { TaskListComponent }    from './component/task-list/task-list.component'
 import { TaskListModule }       from './component/task-list/task-list.module';
 import { TaskDetailsComponent } from './component/task-details/task-details.component';
 import { TaskDetailsModule }    from './component/task-details/task-details.module';
+import { TaskEditComponent }    from './component/task-edit/task-edit.component';
+import { TaskEditModule }       from './component/task-edit/task-edit.module';
 
 @NgModule({
     declarations: [
@@ -50,6 +52,7 @@ import { TaskDetailsModule }    from './component/task-details/task-details.modu
         RatingsDetailsModule,
 
         TaskListModule,
+        TaskEditModule,
         TaskDetailsModule,
 
         MainModule,

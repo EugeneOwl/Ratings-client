@@ -2,3 +2,8 @@
     font-weight: bold;
     color: #3157AF;
 }
+
+.add-task-button {
+    margin-top: 2%;
+    margin-left: 70%;
+}

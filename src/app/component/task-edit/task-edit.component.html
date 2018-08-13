@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="simple-form">
+    <h1 class="mat-headline form-header"> {{id ? 'Edit' : 'Add'}} Task</h1>
+
+    <div class="form-content">
+
+      <div class="form-input-panel">
+
+        <p class="mat-body-1" *ngIf="id != 0">
+          <span class="column-names"> Id: </span> {{id}}
+        </p>
+
+        <mat-form-field>
+          <input matInput placeholder="label" [formControl]="label">
+        </mat-form-field>
+        <div>
+          <label class="field-invalid" *ngIf="label.invalid"> Task label is required. </label>
+        </div>
+        <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
+
+        <mat-form-field>
+          <input matInput placeholder="description" [formControl]="description">
+        </mat-form-field>
+        <div>
+          <label class="field-invalid" *ngIf="description.invalid"> Task description is required. </label>
+        </div>
+        <div class="field-invalid-placeholder" *ngIf="!description.invalid"></div>
+
+        <mat-form-field>
+          <input matInput placeholder="evaluation (in hours)" [formControl]="evaluation">
+        </mat-form-field>
+        <div>
+          <label class="field-invalid" *ngIf="evaluation.invalid"> Task evaluation is required (numeric). </label>
+        </div>
+        <div class="field-invalid-placeholder" *ngIf="!evaluation.invalid"></div>
+
+        <mat-radio-group [(ngModel)]="taskOwner">
+          <mat-radio-button *ngFor="let user of users" [value]="user"
+                            class="mat-radio-button">
+            {{user.username}}
+          </mat-radio-button>
+        </mat-radio-group>
+
+      </div>
+
+      <div class="to-bottom-pusher-mini"></div>
+      <div class="form-panel">
+        <button mat-raised-button mat-button color="primary"
+                [disabled]="! label.valid || ! description.valid || ! evaluation.valid || ! taskOwner"
+                (click)="save()">
+          Save
+        </button>
+
+        <span *ngIf="id">
+          <button mat-raised-button mat-button (click)="remove(id)"> Delete</button>
+        </span>
+
+        <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
+      </div>
+    </div>
+  </div>
+</div>

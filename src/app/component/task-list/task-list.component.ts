@@ -65,14 +65,14 @@ export class TaskListComponent implements OnInit {
         });
     }
 
-    initializeEachTaskWithItsUser(users: User[]): void {
-        this.tasks.map(t => t.user =
-            users.filter(u => u.tasks
-            .filter(u_t => u_t.id === t.id).length !== 0)[0]);
-    }
-
-    goToPersonalTaskDialog() {
-        console.log('Going to personal task dialog.');
+    goToPersonalTaskDialog(id: number) {
+        const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
+            width: '500px',
+            data: {id: id}
+        });
+        dialogRef.afterClosed().subscribe(res => {
+            this.ngOnInit();
+        })
     }
 
     allotTask(taskId: number) {
@@ -81,5 +81,11 @@ export class TaskListComponent implements OnInit {
 
     allotedIfNeeded(taskId: number) {
         return (taskId === this.allotedTaskId ? 'allotted' : '');
+    }
+
+    private initializeEachTaskWithItsUser(users: User[]): void {
+        this.tasks.map(t => t.user =
+            users.filter(u => u.tasks
+            .filter(u_t => u_t.id === t.id).length !== 0)[0]);
     }
 }
