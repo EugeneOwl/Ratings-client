@@ -34,6 +34,8 @@ export class TaskEditComponent implements OnInit {
     };
     users: User[];
     taskOwner: User;
+    tasks: Task[];
+    taskParent: Task;
 
     constructor(private userService: UserService,
                 private taskService: TaskService,
@@ -42,35 +44,17 @@ export class TaskEditComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.data.id) {
-            forkJoin(
-                this.taskService.get(this.data.id),
-                this.userService.getAll()
-            ).subscribe(data => {
-                    this.id = data[0].id;
-                    this.label.setValue(data[0].label);
-                    this.description.setValue(data[0].description);
-                    this.evaluation.setValue(data[0].evaluation);
-                    this.parent = data[0].parent;
-
-                    this.users = data[1];
-                    this.taskOwner = this.users
-                    .filter(u => u.tasks
-                    .filter(t => t.id === this.id).length !== 0)[0];
-                },
-                error => {
-                    console.log(error.error.message);
-                });
-        } else {
-            this.userService.getAll().subscribe(
-                (success: User[]) => {
-                    this.users = success;
-                },
-                error => {
-                    console.log(error.error.message);
-                }
-            )
-        }
+        forkJoin(
+            this.userService.getAll(),
+            this.taskService.getAll()
+        ).subscribe(data => {
+                this.users = data[0];
+                this.tasks = data[1];
+                this.initializeFormWithExistingSettings();
+            }, error => {
+                console.log(error.error.message);
+            }
+        );
     }
 
     goBack(): void {
@@ -85,7 +69,7 @@ export class TaskEditComponent implements OnInit {
             description: this.description.value,
             evaluation: this.evaluation.value,
             user: this.taskOwner,
-            parent: null
+            parent: this.taskParent
         }).subscribe(result => {
             this.goBack();
         }, error => console.error(error.error.message));
@@ -96,5 +80,32 @@ export class TaskEditComponent implements OnInit {
             this.id = 0;
             this.goBack();
         }, error => console.error(error));
+    }
+
+    private initializeFormWithExistingSettings(): void {
+        if (! this.data.id) {
+
+            return;
+        }
+        this.taskService.get(this.data.id).subscribe(success => {
+                this.id = success.id;
+                this.label.setValue(success.label);
+                this.description.setValue(success.description);
+                this.evaluation.setValue(success.evaluation);
+                this.parent = success.parent;
+
+                this.taskOwner = this.users
+                .filter(u => u.tasks
+                .filter(t => t.id === this.id).length !== 0)[0];
+
+                if (this.parent) {
+                    this.taskParent = this.tasks
+                    .filter(t => t.id === this.parent.id)[0];
+                }
+            },
+            error => {
+                console.log(error.error.message);
+            }
+        );
     }
 }

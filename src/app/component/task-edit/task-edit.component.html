@@ -41,6 +41,15 @@
           </mat-radio-button>
         </mat-radio-group>
 
+        <div class="to-bottom-pusher-mini"></div>
+
+        <mat-radio-group [(ngModel)]="taskParent">
+          <mat-radio-button *ngFor="let task of tasks" [value]="task"
+                            class="mat-radio-button" color="primary">
+            {{task.label}}
+          </mat-radio-button>
+        </mat-radio-group>
+
       </div>
 
       <div class="to-bottom-pusher-mini"></div>
