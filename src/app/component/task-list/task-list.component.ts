@@ -10,6 +10,7 @@ import { forkJoin }           from 'rxjs';
 import { TaskService }        from '../../service/task.service';
 import { TaskListDatasource } from './task-list-datasource';
 import { User }               from '../../model/User';
+import { TaskChartComponent } from '../task-chart/task-chart.component';
 
 
 @Component({
@@ -79,7 +80,14 @@ export class TaskListComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(res => {
             this.ngOnInit();
-        })
+        });
+    }
+
+    goToTaskCharts(): void {
+        this.dialog.open(TaskChartComponent, {
+            width: '700px',
+            data: {tasks: this.tasks}
+        });
     }
 
     allotTask(taskId: number): void {

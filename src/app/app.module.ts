@@ -21,11 +21,13 @@ import { RatingService }                       from './service/rating.service';
 import { RatingsDetailsModule }                from './component/ratings-details/ratings-details.module';
 import { LoginPageModule }                     from './component/login-page/login-page.module';
 import { AuthModule }                          from './auth/auth.module';
-import { HttpModule }                          from '@angular/http';
-import { TaskService }                         from './service/task.service';
-import { TaskListModule }                      from './component/task-list/task-list.module';
-import { TaskDetailsModule }                   from './component/task-details/task-details.module';
-import { TaskEditModule }                      from './component/task-edit/task-edit.module';
+import { HttpModule }         from '@angular/http';
+import { TaskService }        from './service/task.service';
+import { TaskListModule }     from './component/task-list/task-list.module';
+import { TaskDetailsModule }  from './component/task-details/task-details.module';
+import { TaskEditModule }     from './component/task-edit/task-edit.module';
+import { TaskChartComponent } from './component/task-chart/task-chart.component';
+import { TaskChartModule }    from './component/task-chart/task-chart.module';
 
 @NgModule({
     declarations: [
@@ -51,6 +53,7 @@ import { TaskEditModule }                      from './component/task-edit/task-
         TaskListModule,
         TaskEditModule,
         TaskDetailsModule,
+        TaskChartModule,
 
         MainModule,
         GoHomeButtonModule,

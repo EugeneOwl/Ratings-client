@@ -2,6 +2,9 @@
 
 <div class="mat-elevation-z8">
 
+  <a mat-raised-button mat-button *ngIf="adminMode"
+     class="button" (click)="goToTaskCharts()">Show task chart</a>
+
   <a mat-raised-button mat-button color="primary" *ngIf="adminMode"
      class="add-task-button button" (click)="goToPersonalTaskDialog()">Add task</a>
 

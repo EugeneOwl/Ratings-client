@@ -8,6 +8,7 @@ import { MatSortModule }      from '@angular/material';
 import { MatDialogModule }    from '@angular/material';
 import { CommonModule }       from '@angular/common';
 import { TaskEditComponent }  from '../task-edit/task-edit.component';
+import { TaskChartComponent } from '../task-chart/task-chart.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,10 @@ import { TaskEditComponent }  from '../task-edit/task-edit.component';
         MatButtonModule
     ],
     exports: [TaskListComponent],
-    entryComponents: [TaskEditComponent],
+    entryComponents: [
+        TaskEditComponent,
+        TaskChartComponent
+    ],
     providers: []
 })
 export class TaskListModule {
