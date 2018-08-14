@@ -93,7 +93,7 @@ export class TaskEditComponent implements OnInit {
                 this.description.setValue(success.description);
                 this.evaluation.setValue(success.evaluation);
                 this.parent = success.parent;
-
+                this.excludeImpossibleParents();
                 this.taskOwner = this.users
                 .filter(u => u.tasks
                 .filter(t => t.id === this.id).length !== 0)[0];
@@ -102,10 +102,25 @@ export class TaskEditComponent implements OnInit {
                     this.taskParent = this.tasks
                     .filter(t => t.id === this.parent.id)[0];
                 }
+
             },
             error => {
                 console.log(error.error.message);
             }
         );
+    }
+
+    private excludeImpossibleParents() {
+        this.tasks = this.tasks.filter(t => t.id !== this.id);
+
+        for (const task of this.tasks) {
+            let parent = task.parent;
+            while (parent !== null) {
+                if (parent.id === this.id) {
+                    this.tasks = this.tasks.filter(t => t.id !== task.id);
+                }
+                parent = parent.parent;
+            }
+        }
     }
 }
