@@ -1,8 +1,8 @@
 import { Component, OnInit }       from '@angular/core';
 import { Inject }                  from '@angular/core';
 import { MAT_DIALOG_DATA }         from '@angular/material';
-import { UserDetailsComponent }    from '../user-details/user-details.component';
 import { MatDialogRef }            from '@angular/material';
+import { UserDetailsComponent }    from '../user-details/user-details.component';
 import { PersonalTasksDialogData } from '../user-details/user-details.component';
 import { Task }                    from '../../model/Task';
 import { User }                    from '../../model/User';

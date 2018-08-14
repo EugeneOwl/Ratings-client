@@ -1,5 +1,5 @@
 import { Injectable }                 from '@angular/core';
-import { Http, Headers }              from '@angular/http';
+import { Headers, Http }              from '@angular/http';
 import { environment }                from '../../environments/environment';
 import { AuthConfigConsts, AuthHttp } from 'angular2-jwt';
 import { Router }                     from '@angular/router';
