@@ -2,6 +2,7 @@ import { Injectable }  from '@angular/core';
 import { AuthHttp }    from 'angular2-jwt';
 import { Observable }  from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Role }        from '../model/Role';
 
 @Injectable()
 export class RoleService {
@@ -10,7 +11,7 @@ export class RoleService {
     constructor(private authHttp: AuthHttp) {
     }
 
-    getAll(): Observable<any> {
+    getAll(): Observable<Role[]> {
 
         return this.authHttp.get(this.API).map(res => res.json());
     }
@@ -20,7 +21,7 @@ export class RoleService {
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
-    save(role: any): Observable<any> {
+    save(role: Role): Observable<Role> {
         if (! role.id) {
 
             return this.authHttp.put(this.API, role).map(res => res.json());

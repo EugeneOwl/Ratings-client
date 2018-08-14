@@ -11,17 +11,17 @@ export class TaskService {
     constructor(private authHttp: AuthHttp) {
     }
 
-    getAll(): Observable<any> {
+    getAll(): Observable<Task[]> {
 
         return this.authHttp.get(this.API).map(res => res.json());
     }
 
-    get(id: string): Observable<any> {
+    get(id: string): Observable<Task> {
 
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
-    save(task: Task): Observable<any> {
+    save(task: Task): Observable<Task> {
         if (! task.id) {
 
             return this.authHttp.put(this.API, task).map(res => res.json());
@@ -30,7 +30,7 @@ export class TaskService {
         return this.authHttp.post(this.API, task).map(res => res.json());
     }
 
-    remove(id: string): Observable<any> {
+    remove(id: string): Observable<Task> {
         return this.authHttp.delete(this.API, id).map(res => res.json());
     }
 }

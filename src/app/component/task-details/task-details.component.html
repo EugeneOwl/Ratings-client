@@ -5,7 +5,8 @@
 
       <app-task-list [displayedColumns]="['id', 'label', 'description', 'evaluation']"
                      [childDialogComponentClassName]=""
-                     [customDatasource]="tasks"></app-task-list>
+                     [customDatasource]="tasks"
+                     [adminMode]="false"></app-task-list>
 
       <div class="form-panel">
         <a mat-raised-button mat-button (click)="goBack()"

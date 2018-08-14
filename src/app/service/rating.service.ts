@@ -2,6 +2,7 @@ import { Injectable }  from '@angular/core';
 import { AuthHttp }    from 'angular2-jwt';
 import { Observable }  from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Rating }      from '../model/Rating';
 
 @Injectable()
 export class RatingService {
@@ -10,12 +11,12 @@ export class RatingService {
     constructor(private authHttp: AuthHttp) {
     }
 
-    save(rating: any): Observable<any> {
+    save(rating: Rating): Observable<Rating> {
 
         return this.authHttp.put(this.API, rating).map(res => res.json());
     }
 
-    getByRecipientId(recipientId: number) {
+    getByRecipientId(recipientId: number): Observable<Rating[]> {
         return this.authHttp.get(this.API + '/recipient/' + recipientId).map(res => res.json());
     }
 }

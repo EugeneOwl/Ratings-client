@@ -34,6 +34,9 @@ export class TaskListComponent implements OnInit {
     @Input()
     customDatasource;
 
+    @Input()
+    adminMode: boolean;
+
     constructor(
         private taskService: TaskService,
         private userService: UserService,
@@ -65,7 +68,11 @@ export class TaskListComponent implements OnInit {
         });
     }
 
-    goToPersonalTaskDialog(id: number) {
+    goToPersonalTaskDialog(id: number): void {
+        if (! this.childDialogComponentClassName) {
+
+            return;
+        }
         const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
             width: '500px',
             data: {id: id}
@@ -75,11 +82,11 @@ export class TaskListComponent implements OnInit {
         })
     }
 
-    allotTask(taskId: number) {
+    allotTask(taskId: number): void {
         this.allotedTaskId = taskId;
     }
 
-    allotedIfNeeded(taskId: number) {
+    allotedIfNeeded(taskId: number): string {
         return (taskId === this.allotedTaskId ? 'allotted' : '');
     }
 

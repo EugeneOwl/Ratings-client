@@ -11,17 +11,17 @@ export class UserService {
     constructor(private authHttp: AuthHttp) {
     }
 
-    getAll(): Observable<any> {
+    getAll(): Observable<User[]> {
 
         return this.authHttp.get(this.API).map(res => res.json());
     }
 
-    get(id: string): Observable<any> {
+    get(id: string): Observable<User> {
 
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
-    save(user: User): Observable<any> {
+    save(user: User): Observable<User> {
 
         return this.authHttp.post(this.API, user).map(res => res.json());
     }

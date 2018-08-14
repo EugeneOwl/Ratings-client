@@ -2,7 +2,7 @@
 
 <div class="mat-elevation-z8">
 
-  <a mat-raised-button mat-button color="primary"
+  <a mat-raised-button mat-button color="primary" *ngIf="adminMode"
      class="add-task-button button" (click)="goToPersonalTaskDialog()">Add task</a>
 
   <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
