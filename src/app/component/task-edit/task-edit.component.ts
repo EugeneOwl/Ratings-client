@@ -52,7 +52,7 @@ export class TaskEditComponent implements OnInit {
                 this.tasks = data[1];
                 this.initializeFormWithExistingSettings();
             }, error => {
-                console.log(error.error.message);
+                console.log(error);
             }
         );
     }
@@ -72,7 +72,7 @@ export class TaskEditComponent implements OnInit {
             parent: this.taskParent
         }).subscribe(result => {
             this.goBack();
-        }, error => console.error(error.error.message));
+        }, error => console.error(error));
     }
 
     remove(id): void {
@@ -105,7 +105,7 @@ export class TaskEditComponent implements OnInit {
 
             },
             error => {
-                console.log(error.error.message);
+                console.log(error);
             }
         );
     }

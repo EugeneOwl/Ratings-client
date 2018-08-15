@@ -3,6 +3,7 @@ import { Observable }  from 'rxjs';
 import { User }        from '../model/User';
 import { environment } from '../../environments/environment';
 import { AuthHttp }    from 'angular2-jwt';
+import { UserUpdate }  from '../model/UserUpdate';
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,7 @@ export class UserService {
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
-    save(user: User): Observable<User> {
+    save(user: UserUpdate): Observable<UserUpdate> {
 
         return this.authHttp.post(this.API, user).map(res => res.json());
     }

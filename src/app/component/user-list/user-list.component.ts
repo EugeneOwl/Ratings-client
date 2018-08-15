@@ -51,18 +51,7 @@ export class UserListComponent implements OnInit {
                 currentUserId: JSON.parse(localStorage.getItem('user')).id
             }
         });
-        this.updateComponentPieceAccordingDialog(dialogRef);
-    }
-
-    private updateComponentPieceAccordingDialog(dialogRef): void {
-        dialogRef.afterClosed().subscribe(result => {
-            if (!result) {
-
-                return;
-            }
-            this.users.filter(user => user.id == result.user.id)
-            .map(user => user.roles = result.user.roles);
-        });
+        dialogRef.afterClosed().subscribe(res => this.ngOnInit());
     }
 }
 

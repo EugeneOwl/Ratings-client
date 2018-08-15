@@ -35,9 +35,7 @@ export class RatingsDetailsComponent implements OnInit {
                     this.ratings = success;
                 },
                 error => {
-                    console.log(error.erroe.message);
-                    console.log(`Rating of user with id '${this.recipient.id}'
-                    not found, returning to list`);
+                    console.log(error);
                     this.goBack();
                 }
             );

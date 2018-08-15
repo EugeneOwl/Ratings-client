@@ -7,6 +7,7 @@ import { User }              from '../../model/User';
 import { UserService }       from '../../service/user.service';
 import { FormControl }       from '@angular/forms';
 import { Validators }        from '@angular/forms';
+import { UserUpdate }        from '../../model/UserUpdate';
 
 @Component({
     selector: 'app-user-profile-settings',
@@ -32,15 +33,15 @@ export class UserProfileSettingsComponent implements OnInit {
 
     ngOnInit() {
         if (this.parentData.id) {
-            this.userService.get(this.parentData.id).subscribe((user: User) => {
-                if (user) {
-                    this.user = user;
-                    this.mobileNumber.setValue(user.mobileNumber);
-                } else {
-                    console.log(`User with id '${this.parentData.id}' not found, returning to list`);
+            this.userService.get(this.parentData.id).subscribe(
+                (success: User) => {
+                    this.user = success;
+                    this.mobileNumber.setValue(success.mobileNumber);
+                }, error => {
+                    console.log(error);
                     this.goBack();
                 }
-            });
+            );
         }
     }
 
@@ -49,8 +50,12 @@ export class UserProfileSettingsComponent implements OnInit {
     }
 
     saveSettings() {
-        this.user.mobileNumber = this.mobileNumber.value;
-        this.userService.save(this.user).subscribe(result => {
+        const userUpdate: UserUpdate = {
+            id: this.user.id,
+            mobileNumber: this.mobileNumber.value,
+            roleIds: this.user.roles.map(r => r.id)
+        };
+        this.userService.save(userUpdate).subscribe(result => {
             this.goBack();
         }, error => console.error(error));
     }

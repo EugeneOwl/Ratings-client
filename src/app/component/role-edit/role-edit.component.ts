@@ -30,8 +30,7 @@ export class RoleEditComponent implements OnInit {
                     this.label.setValue(success.label);
                 },
                 error => {
-                    console.log(error.error.message);
-                    console.log(`Role with id '${this.data.id}' not found, returning to list`);
+                    console.log(error);
                     this.goBack();
                 }
             );

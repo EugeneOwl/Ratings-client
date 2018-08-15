@@ -9,6 +9,7 @@ import { Role }                   from '../../model/Role';
 import { MatDialogRef }           from '@angular/material';
 import { MAT_DIALOG_DATA }        from '@angular/material';
 import { PersonalUserDialogData } from '../user-list/user-list.component';
+import { UserUpdate }             from '../../model/UserUpdate';
 
 @Component({
     selector: 'app-user-edit',
@@ -41,8 +42,7 @@ export class UserEditComponent implements OnInit {
                     this.initializeRoleCheckboxes();
                 },
                 error => {
-                    console.log(error.error.message);
-                    console.log(`User with id '${this.data.id}' not found, returning to list`);
+                    console.log(error);
                     this.goBack();
                 }
             );
@@ -62,8 +62,12 @@ export class UserEditComponent implements OnInit {
 
 
     updateRawRoles(): void {
-        this.user.roles = this.getCheckedRoles();
-        this.userService.save(this.user).subscribe(result => {
+        const userUpdate: UserUpdate = {
+            id: this.user.id,
+            mobileNumber: this.user.mobileNumber,
+            roleIds: this.getCheckedRoleIds()
+        };
+        this.userService.save(userUpdate).subscribe(result => {
             this.goBack();
         }, error => console.error(error));
     }
@@ -72,9 +76,9 @@ export class UserEditComponent implements OnInit {
         this.dialogRef.close({user: this.user});
     }
 
-    private getCheckedRoles(): Role[] {
+    private getCheckedRoleIds(): number[] {
         return this.roleCheckboxes.filter(roleCheckbox => roleCheckbox.checked)
-        .map(roleCheckbox => roleCheckbox = {id: roleCheckbox.id, label: roleCheckbox.label});
+        .map(roleCheckbox => roleCheckbox.id);
     }
 
     private initializeRoleCheckboxes(): void {
