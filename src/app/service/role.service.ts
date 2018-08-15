@@ -24,10 +24,10 @@ export class RoleService {
     save(role: Role): Observable<Role> {
         if (! role.id) {
 
-            return this.authHttp.put(this.API, role).map(res => res.json());
+            return this.authHttp.post(this.API, role).map(res => res.json());
         }
 
-        return this.authHttp.post(this.API, role).map(res => res.json());
+        return this.authHttp.put(this.API, role).map(res => res.json());
     }
 
     remove(id: string) {

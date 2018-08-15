@@ -13,7 +13,7 @@ export class RatingService {
 
     save(rating: Rating): Observable<Rating> {
 
-        return this.authHttp.put(this.API, rating).map(res => res.json());
+        return this.authHttp.post(this.API, rating).map(res => res.json());
     }
 
     getByRecipientId(recipientId: number): Observable<Rating[]> {

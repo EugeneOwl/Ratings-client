@@ -24,6 +24,6 @@ export class UserService {
 
     save(user: UserUpdate): Observable<UserUpdate> {
 
-        return this.authHttp.post(this.API, user).map(res => res.json());
+        return this.authHttp.put(this.API, user).map(res => res.json());
     }
 }

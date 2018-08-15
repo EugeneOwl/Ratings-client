@@ -24,10 +24,10 @@ export class TaskService {
     save(task: Task): Observable<Task> {
         if (! task.id) {
 
-            return this.authHttp.put(this.API, task).map(res => res.json());
+            return this.authHttp.post(this.API, task).map(res => res.json());
         }
 
-        return this.authHttp.post(this.API, task).map(res => res.json());
+        return this.authHttp.put(this.API, task).map(res => res.json());
     }
 
     remove(id: string): Observable<Task> {
