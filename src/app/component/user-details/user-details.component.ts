@@ -47,9 +47,7 @@ export class UserDetailsComponent implements OnInit {
                     this.user = success;
                 },
                 error => {
-                    console.log(error.erroe.message);
-                    console.log(`User with id '${this.data.id}'
-                    not found, returning to list`);
+                    console.log(error);
                     this.gotoBack();
                 }
             );
@@ -60,8 +58,6 @@ export class UserDetailsComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
-                    console.log(`User with id '${this.data.currentUserId}'
-                    not found, returning to list`);
                     this.gotoBack();
                 }
             );
@@ -72,8 +68,6 @@ export class UserDetailsComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
-                    console.log(`Rating of user with id '${this.data.id}'
-                    not found, returning to list`);
                     this.gotoBack();
                 }
             );
