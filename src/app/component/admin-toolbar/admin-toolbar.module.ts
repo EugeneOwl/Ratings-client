@@ -6,8 +6,8 @@ import { MatButtonModule }          from '@angular/material';
 import { MatButtonToggleModule }    from '@angular/material';
 import { LayoutModule }             from '@angular/cdk/layout';
 import { CommonModule }             from '@angular/common';
-import { LoginPanelModule }         from '../login-panel/login-panel.module';
-import { GoToUserSideButtonModule } from '../go-to-user-side-button/go-to-user-side-button.module';
+import { LoginPanelModule }         from '../../module/component/login-panel/login-panel.module';
+import { GoToUserSideButtonModule } from '../../module/component/go-to-user-side-button/go-to-user-side-button.module';
 
 @NgModule({
     declarations: [

@@ -9,9 +9,9 @@ import { ErrorPageComponent } from './component/error-page/error-page.component'
 
 const routes: Routes = [
     {path: '', redirectTo: '/client/login', pathMatch: 'full'},
+    {path: 'client/login', component: LoginPageComponent, canActivate: [LoginPageGuard]},
     {path: 'client/admin', component: AdminPageComponent, canActivate: [AdminPageGuard]},
     {path: 'client/user', component: UserPageComponent, canActivate: [UserPageGuard]},
-    {path: 'client/login', component: LoginPageComponent, canActivate: [LoginPageGuard]},
     {path: 'client/error', component: ErrorPageComponent}
 ];
 

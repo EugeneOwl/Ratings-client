@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserEditComponent } from '../user-edit/user-edit.component';
-import { TaskEditComponent } from '../task-edit/task-edit.component';
+import { UserEditComponent } from '../../module/sections/user/user-edit/user-edit.component';
+import { TaskEditComponent } from '../../module/sections/task/task-edit/task-edit.component';
 
 @Component({
     selector: 'app-admin-page',
