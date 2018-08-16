@@ -1,12 +1,12 @@
 import { NgModule }              from '@angular/core';
-import { GoHomeButtonComponent } from './go-home-button.component';
+import { GoToUserSideButtonComponent } from './go-to-user-side-button.component';
 import { RouterModule }          from '@angular/router';
 import { MatIconModule }         from '@angular/material';
 import { MatButtonModule }       from '@angular/material';
 
 @NgModule({
     declarations: [
-        GoHomeButtonComponent
+        GoToUserSideButtonComponent
     ],
     imports: [
         RouterModule,
@@ -14,8 +14,8 @@ import { MatButtonModule }       from '@angular/material';
         MatButtonModule,
         MatIconModule
     ],
-    exports: [GoHomeButtonComponent],
+    exports: [GoToUserSideButtonComponent],
     providers: []
 })
-export class GoHomeButtonModule {
+export class GoToUserSideButtonModule {
 }

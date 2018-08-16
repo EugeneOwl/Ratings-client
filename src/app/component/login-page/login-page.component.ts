@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
         .subscribe(
             data => {
                 localStorage.setItem('user', JSON.stringify(data));
-                this.router.navigate(['/client/main']);
+                this.router.navigate(['/client/user']);
             },
             error => {
                 this.loading = false;

@@ -14,7 +14,7 @@ export class LoginPageGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
         if (this.securityService.isLoggedIn()) {
-            this.router.navigate(['/client/main']);
+            this.router.navigate(['/client/user']);
 
             return false;
         }

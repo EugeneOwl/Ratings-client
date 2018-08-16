@@ -6,8 +6,9 @@ import { MatButtonModule }                     from '@angular/material';
 import { MatButtonToggleModule }               from '@angular/material';
 import { LayoutModule }                        from '@angular/cdk/layout';
 import { CommonModule }                        from '@angular/common';
-import { GoHomeButtonModule }                  from '../go-home-button/go-home-button.module';
 import { GoToUserProfileSettingsButtonModule } from '../go-to-user-profile-setting-button/go-to-user-profile-settings-button.module';
+import { LoginPanelModule }                    from '../login-panel/login-panel.module';
+import { GoToAdminSideButtonModule }           from '../go-to-admin-side-button/go-to-admin-side-button.module';
 
 @NgModule({
     declarations: [
@@ -17,8 +18,9 @@ import { GoToUserProfileSettingsButtonModule } from '../go-to-user-profile-setti
         CommonModule,
         LayoutModule,
 
-        GoHomeButtonModule,
         GoToUserProfileSettingsButtonModule,
+        LoginPanelModule,
+        GoToAdminSideButtonModule,
 
         MatButtonToggleModule,
         MatToolbarModule,

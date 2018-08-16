@@ -13,8 +13,14 @@ export class AdminPageGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
+        if (! this.securityService.isLoggedIn()) {
+            this.router.navigate(['/client/login']);
+
+            return false;
+        }
+
         if (! this.securityService.hasAccessToAdminContent()) {
-            this.router.navigate(['/client/main']);
+            this.router.navigate(['/client/error']);
 
             return false;
         }

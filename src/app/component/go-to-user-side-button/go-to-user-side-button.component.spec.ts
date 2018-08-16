@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GoHomeButtonComponent } from './go-home-button.component';
+import { GoToUserSideButtonComponent } from './go-to-user-side-button.component';
 
-describe('GoHomeButtonComponent', () => {
-  let component: GoHomeButtonComponent;
-  let fixture: ComponentFixture<GoHomeButtonComponent>;
+describe('GoToUserSideButtonComponent', () => {
+  let component: GoToUserSideButtonComponent;
+  let fixture: ComponentFixture<GoToUserSideButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoHomeButtonComponent ]
+      declarations: [ GoToUserSideButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GoHomeButtonComponent);
+    fixture = TestBed.createComponent(GoToUserSideButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
