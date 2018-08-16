@@ -3,7 +3,7 @@ import { Input }                from '@angular/core';
 import { Inject }               from '@angular/core';
 import { MAT_DIALOG_DATA }      from '@angular/material';
 import { MatDialogRef }         from '@angular/material';
-import { UserDetailsComponent } from '../user-details/user-details.component';
+import { UserDetailsComponent } from '../../sections/user/user-details/user-details.component';
 
 @Component({
     selector: 'app-notification',
