@@ -1,33 +1,35 @@
-<div class="wrapper">
-  <div class="simple-form">
-    <h1 class="mat-headline form-header"> Edit User </h1>
+<mat-card>
+  <div class="wrapper">
+    <div class="simple-form">
+      <h1 class="mat-headline form-header"> Edit User </h1>
 
-    <div class="form-content">
+      <div class="form-content">
 
-      <div class="form-input-panel">
-        <p class="mat-body-1">
-          <span class="column-names"> Username: </span> {{user.username}}
-        </p>
-
-        <form #userRolesForm="ngForm">
-          <p *ngFor="let roleCheckbox of roleCheckboxes">
-            <mat-checkbox name="{{roleCheckbox.label}}" color="primary"
-                          [(ngModel)]="roleCheckbox.checked">
-              {{roleCheckbox.label}}
-            </mat-checkbox>
+        <div class="form-input-panel">
+          <p class="mat-body-1">
+            <span class="column-names"> Username: </span> {{user.username}}
           </p>
 
-        </form>
-      </div>
+          <form #userRolesForm="ngForm">
+            <p *ngFor="let roleCheckbox of roleCheckboxes">
+              <mat-checkbox name="{{roleCheckbox.label}}" color="primary"
+                            [(ngModel)]="roleCheckbox.checked">
+                {{roleCheckbox.label}}
+              </mat-checkbox>
+            </p>
 
-      <div class="to-bottom-pusher-mini"></div>
-      <div class="form-panel">
-        <button mat-raised-button mat-button color="primary" (click)="updateRawRoles(userRolesForm.value)">
-          Update Roles
-        </button>
+          </form>
+        </div>
 
-        <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
+        <div class="to-bottom-pusher-mini"></div>
+        <div class="form-panel">
+          <button mat-raised-button mat-button color="primary" (click)="updateRawRoles(userRolesForm.value)">
+            Update Roles
+          </button>
+
+          <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</mat-card>

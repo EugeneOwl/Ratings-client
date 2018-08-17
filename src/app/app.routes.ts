@@ -1,9 +1,4 @@
 import { RouterModule, Routes } from '@angular/router';
-import { UserPageComponent }    from './component/user-page/user-page.component';
-import { UserPageGuard }        from './component/user-page/user-page.guard';
-import { AdminPageGuard }       from './component/admin-page/admin-page.guard';
-import { ErrorPageComponent }   from './component/error-page/error-page.component';
-import { AdminPageComponent }   from './component/admin-page/admin-page.component';
 
 const routes: Routes = [
     {
@@ -17,17 +12,15 @@ const routes: Routes = [
     },
     {
         path: 'client/admin',
-        component: AdminPageComponent,
-        canActivate: [AdminPageGuard]
+        loadChildren: './module/layout/admin-layout/admin-layout.module#AdminLayoutModule'
     },
     {
         path: 'client/user',
-        component: UserPageComponent,
-        canActivate: [UserPageGuard]
+        loadChildren: './module/layout/user-layout/user-layout.module#UserLayoutModule'
     },
     {
         path: 'client/error',
-        component: ErrorPageComponent
+        loadChildren: './module/layout/error-layout/error-layout.module#ErrorLayoutModule'
     }
 ];
 

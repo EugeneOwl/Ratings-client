@@ -1,11 +1,8 @@
-import { Component, OnInit }       from '@angular/core';
-import { Inject }                  from '@angular/core';
-import { MAT_DIALOG_DATA }         from '@angular/material';
-import { MatDialogRef }            from '@angular/material';
-import { UserDetailsComponent }    from '../../user/user-details/user-details.component';
-import { PersonalTasksDialogData } from '../../user/user-details/user-details.component';
-import { Task }                    from '../../../../model/Task';
-import { User }                    from '../../../../model/User';
+import { Component, OnInit } from '@angular/core';
+import { User }              from '../../../../model/User';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
+import { UserService }       from '../../../../service/user.service';
 
 @Component({
     selector: 'app-task-details',
@@ -13,7 +10,7 @@ import { User }                    from '../../../../model/User';
     styleUrls: ['./task-details.component.css']
 })
 export class TaskDetailsComponent implements OnInit {
-    tasks: Task[] = [];
+    userId: number;
     user: User = {
         id: 0,
         username: '',
@@ -22,16 +19,27 @@ export class TaskDetailsComponent implements OnInit {
         tasks: []
     };
 
-    constructor(public dialogRef: MatDialogRef<UserDetailsComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: PersonalTasksDialogData) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private userService: UserService) {
     }
 
     ngOnInit() {
-        this.user = this.data.user;
-        this.tasks = this.data.tasks;
+        this.activatedRoute.params.subscribe(params => {
+            this.userId = params['id'];
+        });
+
+        this.userService.get(this.userId).subscribe(
+            (success: User) => {
+                this.user = success; //TODO у Eugene каждой таски по 8 штук. Какого
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 
     goBack() {
-        this.dialogRef.close();
+        this.router.navigate([`client/user/users/${this.userId}`]);
     }
 }

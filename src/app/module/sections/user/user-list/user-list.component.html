@@ -11,7 +11,7 @@
     <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
       <td mat-cell *matCellDef="let row" class="mat-body-1">
-        <a (click)="goToPersonalUserDialog(row.id)" mat-button class="table-button">{{row.username}}</a>
+        <a [routerLink]="[row.id]" mat-button class="table-button">{{row.username}}</a>
       </td>
     </ng-container>
 

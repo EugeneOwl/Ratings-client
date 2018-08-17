@@ -1,16 +1,13 @@
-import { Component, OnInit }      from '@angular/core';
-import { Inject }                 from '@angular/core';
-import { MAT_DIALOG_DATA }        from '@angular/material';
-import { MatDialogRef }           from '@angular/material';
-import { RoleEditComponent }      from '../../role/role-edit/role-edit.component';
-import { PersonalRoleDialogData } from '../../role/role-list/role-list.component';
-import { TaskService }            from '../../../../service/task.service';
-import { Task }                   from '../../../../model/Task';
-import { FormControl }            from '@angular/forms';
-import { Validators }             from '@angular/forms';
-import { UserService }            from '../../../../service/user.service';
-import { User }                   from '../../../../model/User';
-import { forkJoin }               from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { TaskService }       from '../../../../service/task.service';
+import { Task }              from '../../../../model/Task';
+import { FormControl }       from '@angular/forms';
+import { Validators }        from '@angular/forms';
+import { UserService }       from '../../../../service/user.service';
+import { User }              from '../../../../model/User';
+import { forkJoin }          from 'rxjs';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
 
 @Component({
     selector: 'app-task-edit',
@@ -18,7 +15,7 @@ import { forkJoin }               from 'rxjs';
     styleUrls: ['./task-edit.component.css']
 })
 export class TaskEditComponent implements OnInit {
-    id: number = 0;
+    taskId: number;
     label = new FormControl('', [Validators.required]);
     description = new FormControl('', [Validators.required]);
     evaluation = new FormControl('',
@@ -37,34 +34,43 @@ export class TaskEditComponent implements OnInit {
     tasks: Task[];
     taskParent: Task;
 
-    constructor(private userService: UserService,
-                private taskService: TaskService,
-                public dialogRef: MatDialogRef<RoleEditComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: PersonalRoleDialogData) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private userService: UserService,
+                private taskService: TaskService) {
     }
 
     ngOnInit() {
+        this.activatedRoute.params.subscribe(params => {
+            if (params['id'] !== 'new') {
+                this.taskId = params['id'];
+            }
+        });
+
         forkJoin(
             this.userService.getAll(),
             this.taskService.getAll()
-        ).subscribe(data => {
+        ).subscribe(
+            data => {
                 this.users = data[0];
                 this.tasks = data[1];
                 this.initializeFormWithExistingSettings();
-            }, error => {
+            },
+            error => {
                 console.log(error);
+                this.goBack();
             }
         );
     }
 
     goBack(): void {
-        this.dialogRef.close();
+        this.router.navigate(['client/admin/tasks']);
     }
 
 
     save(): void {
         this.taskService.save({
-            id: this.id ? this.id : 0,
+            id: this.taskId ? this.taskId : 0,
             label: this.label.value,
             description: this.description.value,
             evaluation: this.evaluation.value,
@@ -77,18 +83,17 @@ export class TaskEditComponent implements OnInit {
 
     remove(id): void {
         this.taskService.remove(id).subscribe(result => {
-            this.id = 0;
             this.goBack();
         }, error => console.error(error));
     }
 
     private initializeFormWithExistingSettings(): void {
-        if (! this.data.id) {
+        if (! this.taskId) {
 
             return;
         }
-        this.taskService.get(this.data.id).subscribe(success => {
-                this.id = success.id;
+        this.taskService.get(this.taskId).subscribe(success => {
+                this.taskId = success.id;
                 this.label.setValue(success.label);
                 this.description.setValue(success.description);
                 this.evaluation.setValue(success.evaluation);
@@ -96,7 +101,7 @@ export class TaskEditComponent implements OnInit {
                 this.excludeImpossibleParents();
                 this.taskOwner = this.users
                 .filter(u => u.tasks
-                .filter(t => t.id === this.id).length !== 0)[0];
+                .filter(t => t.id === this.taskId).length !== 0)[0];
 
                 if (this.parent) {
                     this.taskParent = this.tasks
@@ -106,17 +111,18 @@ export class TaskEditComponent implements OnInit {
             },
             error => {
                 console.log(error);
+                this.goBack();
             }
         );
     }
 
     private excludeImpossibleParents() {
-        this.tasks = this.tasks.filter(t => t.id !== this.id);
+        this.tasks = this.tasks.filter(t => t.id !== this.taskId);
 
         for (const task of this.tasks) {
             let parent = task.parent;
             while (parent !== null) {
-                if (parent.id === this.id) {
+                if (parent.id === this.taskId) {
                     this.tasks = this.tasks.filter(t => t.id !== task.id);
                 }
                 parent = parent.parent;

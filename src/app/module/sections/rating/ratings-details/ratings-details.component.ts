@@ -1,11 +1,8 @@
-import { Component, OnInit }    from '@angular/core';
-import { Inject }               from '@angular/core';
-import { User }                 from '../../../../model/User';
-import { RatingService }        from '../../../../service/rating.service';
-import { Rating }               from '../../../../model/Rating';
-import { MAT_DIALOG_DATA }      from '@angular/material';
-import { MatDialogRef }         from '@angular/material';
-import { UserDetailsComponent } from '../../user/user-details/user-details.component';
+import { Component, OnInit } from '@angular/core';
+import { RatingService }     from '../../../../service/rating.service';
+import { Rating }            from '../../../../model/Rating';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
 
 @Component({
     selector: 'app-ratings-details',
@@ -13,24 +10,21 @@ import { UserDetailsComponent } from '../../user/user-details/user-details.compo
     styleUrls: ['./ratings-details.component.css']
 })
 export class RatingsDetailsComponent implements OnInit {
-    recipient: User = {
-        id: 0,
-        username: '',
-        mobileNumber: '',
-        roles: [],
-        tasks: []
-    };
+    userId: number;
     ratings: Rating[] = [];
 
-    constructor(private ratingService: RatingService,
-                private dialogRef: MatDialogRef<UserDetailsComponent>,
-                @Inject(MAT_DIALOG_DATA) public parentData) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private ratingService: RatingService) {
     }
 
     ngOnInit() {
-        if (this.parentData.recipient) {
-            this.recipient = this.parentData.recipient;
-            this.ratingService.getByRecipientId(this.recipient.id).subscribe(
+        this.activatedRoute.params.subscribe(params => {
+            this.userId = params['id'];
+        });
+
+        if (this.userId) {
+            this.ratingService.getByRecipientId(this.userId).subscribe(
                 (success: Rating[]) => {
                     this.ratings = success;
                 },
@@ -43,6 +37,6 @@ export class RatingsDetailsComponent implements OnInit {
     }
 
     goBack() {
-        this.dialogRef.close();
+        this.router.navigate([`client/user/users/${this.userId}`]);
     }
 }

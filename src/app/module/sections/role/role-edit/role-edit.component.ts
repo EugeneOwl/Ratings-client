@@ -1,12 +1,10 @@
-import { Component, OnInit }      from '@angular/core';
-import { Inject }                 from '@angular/core';
-import { FormControl }            from '@angular/forms';
-import { Validators }             from '@angular/forms';
-import { RoleService }            from '../../../../service/role.service';
-import { Role }                   from '../../../../model/Role';
-import { MatDialogRef }           from '@angular/material';
-import { MAT_DIALOG_DATA }        from '@angular/material';
-import { PersonalRoleDialogData } from '../role-list/role-list.component';
+import { Component, OnInit } from '@angular/core';
+import { FormControl }       from '@angular/forms';
+import { Validators }        from '@angular/forms';
+import { RoleService }       from '../../../../service/role.service';
+import { Role }              from '../../../../model/Role';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
 
 @Component({
     selector: 'app-role-edit',
@@ -14,19 +12,24 @@ import { PersonalRoleDialogData } from '../role-list/role-list.component';
     styleUrls: ['./role-edit.component.css']
 })
 export class RoleEditComponent implements OnInit {
-    id: number = 0;
+    roleId: number;
     label = new FormControl('', [Validators.required]);
 
-    constructor(private roleService: RoleService,
-                public dialogRef: MatDialogRef<RoleEditComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: PersonalRoleDialogData) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private roleService: RoleService) {
     }
 
     ngOnInit() {
-        if (this.data.id) {
-            this.roleService.get(this.data.id).subscribe(
+        this.activatedRoute.params.subscribe(params => {
+            if (params['id'] !== 'new') {
+                this.roleId = params['id'];
+            }
+        });
+
+        if (this.roleId) {
+            this.roleService.get(this.roleId).subscribe(
                 (success: Role) => {
-                    this.id = success.id;
                     this.label.setValue(success.label);
                 },
                 error => {
@@ -39,7 +42,7 @@ export class RoleEditComponent implements OnInit {
 
     save(): void {
         this.roleService.save({
-            id: this.id ? this.id : 0,
+            id: this.roleId ? this.roleId : 0,
             label: this.label.value
         }).subscribe(result => {
             this.goBack();
@@ -47,12 +50,11 @@ export class RoleEditComponent implements OnInit {
     }
 
     goBack(): void {
-        this.dialogRef.close({id: this.id ? this.id : 0, label: this.label.value});
+        this.router.navigate(['client/admin/roles/']);
     }
 
     remove(id): void {
         this.roleService.remove(id).subscribe(result => {
-            this.id = 0;
             this.goBack();
         }, error => console.error(error));
     }

@@ -16,7 +16,7 @@ export class TaskService {
         return this.authHttp.get(this.API).map(res => res.json());
     }
 
-    get(id: string): Observable<Task> {
+    get(id: number | string): Observable<Task> {
 
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }

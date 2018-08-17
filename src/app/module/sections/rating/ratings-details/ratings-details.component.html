@@ -1,7 +1,7 @@
 <mat-card>
   <div class="wrapper">
     <div class="simple-form">
-      <h1 class="mat-headline form-header"> {{recipient.username}}'s ratings </h1>
+      <h1 class="mat-headline form-header"> Ratings </h1>
 
       <div class="form-content">
         <div *ngFor="let rating of ratings">
@@ -16,7 +16,8 @@
 
         <div class="to-bottom-pusher-mini"></div>
         <div class="form-panel">
-          <a mat-raised-button mat-button (click)="goBack()" class="center-button">
+          <a mat-raised-button mat-button (click)="goBack()" class="center-button"
+             color="accent">
             Back
           </a>
         </div>

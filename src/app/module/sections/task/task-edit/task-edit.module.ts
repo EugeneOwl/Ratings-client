@@ -2,6 +2,7 @@ import { NgModule }                from '@angular/core';
 import { MatButtonModule }         from '@angular/material';
 import { MatInputModule }          from '@angular/material';
 import { MatRadioModule }          from '@angular/material';
+import { MatCardModule }           from '@angular/material';
 import { TaskEditComponent }       from './task-edit.component';
 import { ReactiveFormsModule }     from '@angular/forms';
 import { FormsModule }             from '@angular/forms';
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ReactiveFormsModule,
         RouterModule,
 
+        MatCardModule,
         MatButtonModule,
         MatInputModule,
         MatRadioModule

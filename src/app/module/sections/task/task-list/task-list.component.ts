@@ -1,7 +1,6 @@
 import { Component, OnInit }  from '@angular/core';
 import { ViewChild }          from '@angular/core';
 import { Input }              from '@angular/core';
-import { MatDialog }          from '@angular/material';
 import { MatSort }            from '@angular/material';
 import { MatPaginator }       from '@angular/material';
 import { forkJoin }           from 'rxjs';
@@ -10,6 +9,8 @@ import { TaskService }        from '../../../../service/task.service';
 import { UserService }        from '../../../../service/user.service';
 import { User }               from '../../../../model/User';
 import { Task }               from '../../../../model/Task';
+import { ActivatedRoute }     from '@angular/router';
+import { Router }             from '@angular/router';
 
 
 @Component({
@@ -23,13 +24,10 @@ export class TaskListComponent implements OnInit {
 
     dataSource: TaskListDatasource;
     tasks: Task[];
-    allotedTaskId: number;
+    allottedTaskId: number;
 
     @Input()
-    displayedColumns: string;
-
-    @Input()
-    childDialogComponentClassName;
+    displayedColumns: string[];
 
     @Input()
     customDatasource;
@@ -38,13 +36,23 @@ export class TaskListComponent implements OnInit {
     adminMode: boolean;
 
     constructor(
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
         private taskService: TaskService,
-        private userService: UserService,
-        private dialog: MatDialog
+        private userService: UserService
     ) {
     }
 
     ngOnInit() {
+        this.activatedRoute.data.subscribe(data => {
+            if (data.displayedColumns) {
+                this.displayedColumns = data.displayedColumns;
+                this.customDatasource = data.customDatasource;
+                this.adminMode = data.adminMode;
+            }
+        });
+
+
         if (this.customDatasource !== false) {
             this.tasks = this.customDatasource;
             this.dataSource = new TaskListDatasource(
@@ -68,26 +76,18 @@ export class TaskListComponent implements OnInit {
         });
     }
 
-    goToPersonalTaskDialog(id: number): void {
-        if (! this.childDialogComponentClassName) {
-
-            return;
+    goToPersonalTaskDialog(taskId: number) {
+        if (this.adminMode) {
+            this.router.navigate([`${this.router.url}/${taskId}`]);
         }
-        const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
-            width: '500px',
-            data: {id: id}
-        });
-        dialogRef.afterClosed().subscribe(res => {
-            this.ngOnInit();
-        })
     }
 
     allotTask(taskId: number): void {
-        this.allotedTaskId = taskId;
+        this.allottedTaskId = taskId;
     }
 
-    allotedIfNeeded(taskId: number): string {
-        return (taskId === this.allotedTaskId ? 'allotted' : '');
+    allottedIfNeeded(taskId: number): string {
+        return (taskId === this.allottedTaskId ? 'allotted' : '');
     }
 
     private initializeEachTaskWithItsUser(users: User[]): void {

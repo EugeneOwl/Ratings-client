@@ -1,18 +1,60 @@
-import {RouterModule, Routes} from '@angular/router';
-// import { UserPageComponent }  from './component/user-page/user-page.component';
-// import { UserPageGuard }      from './component/user-page/user-page.guard';
-// import { LoginPageGuard }     from './component/login-page/login-page.guard';
-// import { LoginPageComponent } from './component/login-page/login-page.component';
-// import { AdminPageGuard }     from './component/admin-page/admin-page.guard';
-// import { AdminPageComponent } from './component/admin-page/admin-page.component';
-// import { ErrorPageComponent } from './component/error-page/error-page.component';
+import { Routes }               from '@angular/router';
+import { AdminLayoutComponent } from './admin-layout.component';
+import { AdminLayoutGuard }     from './admin-layout.guard';
+import { UserListComponent }    from '../../sections/user/user-list/user-list.component';
+import { TaskListComponent }    from '../../sections/task/task-list/task-list.component';
+import { RoleListComponent }    from '../../sections/role/role-list/role-list.component';
+import { UserEditComponent }    from '../../sections/user/user-edit/user-edit.component';
+import { TaskEditComponent }    from '../../sections/task/task-edit/task-edit.component';
+import { RoleEditComponent }    from '../../sections/role/role-edit/role-edit.component';
 
-const adminRoutes: Routes = [
-    // {path: '', redirectTo: '/client/login', pathMatch: 'full'},
-    // {path: 'client/login', component: LoginPageComponent, canActivate: [LoginPageGuard]},
-    // {path: 'client/admin', component: AdminPageComponent, canActivate: [AdminPageGuard]},
-    // {path: 'client/user', component: UserPageComponent, canActivate: [UserPageGuard]},
-    // {path: 'client/error', component: ErrorPageComponent}
+const routes: Routes = [
+    {
+        path: 'client/admin',
+        component: AdminLayoutComponent,
+        canActivate: [AdminLayoutGuard],
+        children: [
+            {
+                path: 'roles',
+                component: RoleListComponent
+            },
+            {
+                path: 'roles/:id',
+                component: RoleEditComponent
+            },
+            {
+                path: 'users',
+                component: UserListComponent,
+                data: {
+                    displayedColumns: ['id', 'username', 'roles']
+                }
+            },
+            {
+                path: 'users/:id',
+                component: UserEditComponent
+            },
+            {
+                path: 'tasks',
+                component: TaskListComponent,
+                data: {
+                    displayedColumns: [
+                        'id',
+                        'label',
+                        'description',
+                        'evaluation',
+                        'user',
+                        'parent'
+                    ],
+                    customDatasource: false,
+                    adminMode: true
+                }
+            },
+            {
+                path: 'tasks/:id',
+                component: TaskEditComponent
+            }
+        ]
+    }
 ];
 
-export const adminRouting = RouterModule.forRoot(adminRoutes);
+export const adminRoutes = routes;

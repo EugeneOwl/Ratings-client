@@ -1,7 +1,16 @@
+mat-card {
+    width: 50%;
+    margin: auto;
+}
+
 .center-button {
     margin-left: 35%;
 }
 
 mat-icon {
     float: right;
+}
+
+.form-header {
+    margin-left: 10% !important;
 }

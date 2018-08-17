@@ -10,10 +10,7 @@ import { MatIconModule }           from '@angular/material';
 import { RouterModule }            from '@angular/router';
 import { ReactiveFormsModule }     from '@angular/forms';
 import { CommonModule }            from '@angular/common';
-import { NotificationComponent }   from '../../../component/notification/notification.component';
-import { RatingsDetailsComponent } from '../../rating/ratings-details/ratings-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TaskDetailsComponent }    from '../../task/task-details/task-details.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +22,7 @@ import { TaskDetailsComponent }    from '../../task/task-details/task-details.co
         ReactiveFormsModule,
         RouterModule,
 
+        MatCardModule,
         MatIconModule,
         MatDialogModule,
         MatButtonModule,
@@ -34,11 +32,6 @@ import { TaskDetailsComponent }    from '../../task/task-details/task-details.co
         MatSliderModule
     ],
     exports: [UserDetailsComponent],
-    entryComponents: [
-        NotificationComponent,
-        RatingsDetailsComponent,
-        TaskDetailsComponent
-    ],
     providers: []
 })
 export class UserDetailsModule {

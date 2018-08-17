@@ -1,26 +1,22 @@
 import { NgModule }             from '@angular/core';
 import { AdminLayoutComponent } from './admin-layout.component';
 import { CommonModule }         from '@angular/common';
-import { AdminToolbarModule }   from '../../../component/admin-toolbar/admin-toolbar.module';
-import { RoleListModule }       from '../../sections/role/role-list/role-list.module';
-import { UserListModule }       from '../../sections/user/user-list/user-list.module';
-import { TaskListModule }       from '../../sections/task/task-list/task-list.module';
-import { adminRouting }         from './admin-layout.routes';
+import { adminRoutes }          from './admin-layout.routes';
+import { RouterModule }         from '@angular/router';
+import { AdminLayoutGuard }     from './admin-layout.guard';
+import { AdminToolbarModule }   from '../../sections/admin-toolbar/admin-toolbar.module';
 
 @NgModule({
     declarations: [
         AdminLayoutComponent
     ],
     imports: [
-        adminRouting,
+        RouterModule.forChild(adminRoutes),
         CommonModule,
-        AdminToolbarModule,
-        RoleListModule,
-        UserListModule,
-        TaskListModule
+        AdminToolbarModule
     ],
     exports: [AdminLayoutComponent],
-    providers: []
+    providers: [AdminLayoutGuard]
 })
 export class AdminLayoutModule {
 }

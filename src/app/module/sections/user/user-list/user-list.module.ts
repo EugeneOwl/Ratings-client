@@ -7,8 +7,6 @@ import { MatButtonModule }         from '@angular/material';
 import { MatDialogModule }         from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule }            from '@angular/router';
-import { UserDetailsComponent }    from '../user-details/user-details.component';
-import { UserEditComponent }       from '../user-edit/user-edit.component';
 
 @NgModule({
     declarations: [
@@ -25,10 +23,6 @@ import { UserEditComponent }       from '../user-edit/user-edit.component';
         MatButtonModule
     ],
     exports: [UserListComponent],
-    entryComponents: [
-        UserEditComponent,
-        UserDetailsComponent
-    ],
     providers: []
 })
 export class UserListModule {

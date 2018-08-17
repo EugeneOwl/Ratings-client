@@ -6,7 +6,6 @@ import { MatTableModule }     from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSortModule }      from '@angular/material';
 import { MatDialogModule }    from '@angular/material';
-import { RoleEditComponent }  from '../role-edit/role-edit.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +21,6 @@ import { RoleEditComponent }  from '../role-edit/role-edit.component';
         MatButtonModule
     ],
     exports: [RoleListComponent],
-    entryComponents: [RoleEditComponent],
     providers: []
 })
 export class RoleListModule {

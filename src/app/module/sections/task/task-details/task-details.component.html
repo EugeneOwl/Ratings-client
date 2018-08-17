@@ -3,14 +3,14 @@
     <div class="simple-form">
       <h1 class="mat-headline form-header"> {{user.username}}'s </h1>
 
-      <app-task-list [displayedColumns]="['id', 'label', 'description', 'evaluation']"
-                     [childDialogComponentClassName]=""
-                     [customDatasource]="tasks"
+      <app-task-list *ngIf="user.tasks.length != 0"
+                     [displayedColumns]="['id', 'label', 'description', 'evaluation']"
+                     [customDatasource]="user.tasks"
                      [adminMode]="false"></app-task-list>
 
       <div class="form-panel">
         <a mat-raised-button mat-button (click)="goBack()"
-           color="accent" class="center-button">
+           color="accent">
           Back
         </a>
       </div>

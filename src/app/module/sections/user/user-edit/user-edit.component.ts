@@ -1,15 +1,11 @@
-import { Component, OnInit }      from '@angular/core';
-import { Inject }                 from '@angular/core';
-import { Router }                 from '@angular/router';
-import { ActivatedRoute }         from '@angular/router';
-import { UserService }            from '../../../../service/user.service';
-import { User }                   from '../../../../model/User';
-import { RoleService }            from '../../../../service/role.service';
-import { Role }                   from '../../../../model/Role';
-import { MatDialogRef }           from '@angular/material';
-import { MAT_DIALOG_DATA }        from '@angular/material';
-import { PersonalUserDialogData } from '../user-list/user-list.component';
-import { UserUpdate }             from '../../../../model/UserUpdate';
+import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
+import { ActivatedRoute }    from '@angular/router';
+import { UserService }       from '../../../../service/user.service';
+import { User }              from '../../../../model/User';
+import { RoleService }       from '../../../../service/role.service';
+import { Role }              from '../../../../model/Role';
+import { UserUpdate }        from '../../../../model/UserUpdate';
 
 @Component({
     selector: 'app-user-edit',
@@ -17,6 +13,7 @@ import { UserUpdate }             from '../../../../model/UserUpdate';
     styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
+    userId: number;
     user: User = {
         id: null,
         username: '',
@@ -26,17 +23,19 @@ export class UserEditComponent implements OnInit {
     };
     roleCheckboxes;
 
-    constructor(private route: ActivatedRoute,
+    constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
                 private userService: UserService,
-                private roleService: RoleService,
-                public dialogRef: MatDialogRef<UserEditComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: PersonalUserDialogData) {
+                private roleService: RoleService,) {
     }
 
     ngOnInit() {
-        if (this.data.id) {
-            this.userService.get(this.data.id).subscribe(
+        this.activatedRoute.params.subscribe(params => {
+            this.userId = params['id'];
+        });
+
+        if (this.userId) {
+            this.userService.get(this.userId).subscribe(
                 success => {
                     this.user = success;
                     this.initializeRoleCheckboxes();
@@ -73,7 +72,7 @@ export class UserEditComponent implements OnInit {
     }
 
     goBack(): void {
-        this.dialogRef.close({user: this.user});
+        this.router.navigate(['client/admin/users']);
     }
 
     private getCheckedRoleIds(): number[] {

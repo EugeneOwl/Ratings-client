@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Input }                        from '@angular/core';
 import { MatPaginator, MatSort }        from '@angular/material';
-import { MatDialog }                    from '@angular/material';
 import { UserListDataSource }           from './user-list-datasource';
 import { forkJoin }                     from 'rxjs';
 import { UserService }                  from '../../../../service/user.service';
 import { User }                         from '../../../../model/User';
+import { ActivatedRoute }               from '@angular/router';
 
 @Component({
     selector: 'app-user-list',
@@ -20,18 +20,19 @@ export class UserListComponent implements OnInit {
     users: User[];
 
     @Input()
-    displayedColumns: string;
-
-    @Input()
-    childDialogComponentClassName;
+    displayedColumns: string[];
 
     constructor(
+        private activatedRoute: ActivatedRoute,
         private userService: UserService,
-        private dialog: MatDialog
     ) {
     }
 
     ngOnInit() {
+        this.activatedRoute.data.subscribe(data => {
+            this.displayedColumns = data.displayedColumns;
+        });
+
         forkJoin(this.userService.getAll()).subscribe(data => {
             this.users = data[0];
             this.dataSource = new UserListDataSource(
@@ -41,20 +42,4 @@ export class UserListComponent implements OnInit {
             );
         });
     }
-
-    goToPersonalUserDialog(id: number): void {
-        const dialogRef = this.dialog.open(this.childDialogComponentClassName, {
-            width: '550px',
-            data: {
-                id: id,
-                currentUserId: JSON.parse(localStorage.getItem('user')).id
-            }
-        });
-        dialogRef.afterClosed().subscribe(res => this.ngOnInit());
-    }
-}
-
-export interface PersonalUserDialogData {
-    id: any;
-    currentUserId: any;
 }

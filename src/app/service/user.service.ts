@@ -17,7 +17,7 @@ export class UserService {
         return this.authHttp.get(this.API).map(res => res.json());
     }
 
-    get(id: string): Observable<User> {
+    get(id: number | string): Observable<User> {
 
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }

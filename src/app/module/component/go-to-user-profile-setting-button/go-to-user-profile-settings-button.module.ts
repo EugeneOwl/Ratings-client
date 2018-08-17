@@ -4,7 +4,6 @@ import { RouterModule }                          from '@angular/router';
 import { MatIconModule }                         from '@angular/material';
 import { MatButtonModule }                       from '@angular/material';
 import { MatDialogModule }                       from '@angular/material';
-import { UserProfileSettingsComponent }          from '../../sections/user/user-profile-settings/user-profile-settings.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +17,6 @@ import { UserProfileSettingsComponent }          from '../../sections/user/user-
         MatIconModule
     ],
     exports: [GoToUserProfileSettingButtonComponent],
-    entryComponents: [UserProfileSettingsComponent],
     providers: []
 })
 export class GoToUserProfileSettingsButtonModule {

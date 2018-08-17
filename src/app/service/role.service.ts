@@ -16,7 +16,7 @@ export class RoleService {
         return this.authHttp.get(this.API).map(res => res.json());
     }
 
-    get(id: string) {
+    get(id: number | string) {
 
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
@@ -30,7 +30,7 @@ export class RoleService {
         return this.authHttp.put(this.API, role).map(res => res.json());
     }
 
-    remove(id: string) {
+    remove(id: number | string) {
 
         return this.authHttp.delete(`${this.API}/${id}`).map(res => res.json());
     }

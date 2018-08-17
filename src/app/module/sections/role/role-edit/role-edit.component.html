@@ -1,34 +1,36 @@
-<div class="wrapper">
-  <div class="simple-form">
-    <h1 class="mat-headline form-header"> {{id ? 'Edit' : 'Add'}} Role</h1>
+<mat-card>
+  <div class="wrapper">
+    <div class="simple-form">
+      <h1 class="mat-headline form-header"> {{roleId ? 'Edit' : 'Add'}} Role</h1>
 
-    <div class="form-content">
+      <div class="form-content">
 
-      <div class="form-input-panel">
-        <p class="mat-body-1" *ngIf="id != 0">
-          <span class="column-names"> Id: </span> {{id}}
-        </p>
-        <mat-form-field>
-          <input matInput placeholder="label" [formControl]="label">
-        </mat-form-field>
-        <div>
-          <label class="field-invalid" *ngIf="label.invalid"> Role label is required. </label>
+        <div class="form-input-panel">
+          <p class="mat-body-1" *ngIf="roleId">
+            <span class="column-names"> Id: </span> {{roleId}}
+          </p>
+          <mat-form-field>
+            <input matInput placeholder="label" [formControl]="label">
+          </mat-form-field>
+          <div>
+            <label class="field-invalid" *ngIf="label.invalid"> Role label is required. </label>
+          </div>
+          <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
         </div>
-        <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
-      </div>
 
-      <div class="to-bottom-pusher-mini"></div>
-      <div class="form-panel">
-        <button mat-raised-button mat-button color="primary" [disabled]="!label.value" (click)="save()">
-          Save
-        </button>
+        <div class="to-bottom-pusher-mini"></div>
+        <div class="form-panel">
+          <button mat-raised-button mat-button color="primary" [disabled]="!label.value" (click)="save()">
+            Save
+          </button>
 
-        <span *ngIf="id">
-          <button mat-raised-button mat-button (click)="remove(id)"> Delete</button>
+          <span *ngIf="roleId">
+          <button mat-raised-button mat-button (click)="remove(roleId)"> Delete</button>
         </span>
 
-        <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
+          <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</mat-card>

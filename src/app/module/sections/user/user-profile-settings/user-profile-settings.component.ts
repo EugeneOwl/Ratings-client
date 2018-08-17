@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Inject }            from '@angular/core';
-import { MAT_DIALOG_DATA }   from '@angular/material';
-import { MatDialogRef }      from '@angular/material';
-import { UserEditComponent } from '../user-edit/user-edit.component';
 import { User }              from '../../../../model/User';
 import { UserService }       from '../../../../service/user.service';
 import { FormControl }       from '@angular/forms';
 import { Validators }        from '@angular/forms';
 import { UserUpdate }        from '../../../../model/UserUpdate';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
 
 @Component({
     selector: 'app-user-profile-settings',
@@ -26,14 +24,17 @@ export class UserProfileSettingsComponent implements OnInit {
         [Validators.pattern('^((375)([0-9]{9}))$'),
             Validators.required]);
 
-    constructor(private userService: UserService,
-                public dialogRef: MatDialogRef<UserEditComponent>,
-                @Inject(MAT_DIALOG_DATA) public parentData) {
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+        private userService: UserService
+    ) {
     }
 
     ngOnInit() {
-        if (this.parentData.id) {
-            this.userService.get(this.parentData.id).subscribe(
+        const userId = JSON.parse(localStorage.getItem('user')).id;
+        if (userId) {
+            this.userService.get(userId).subscribe(
                 (success: User) => {
                     this.user = success;
                     this.mobileNumber.setValue(success.mobileNumber);
@@ -46,7 +47,7 @@ export class UserProfileSettingsComponent implements OnInit {
     }
 
     goBack() {
-        this.dialogRef.close();
+        this.router.navigate(['client/user']);
     }
 
     saveSettings() {

@@ -16,7 +16,7 @@ export class RatingService {
         return this.authHttp.post(this.API, rating).map(res => res.json());
     }
 
-    getByRecipientId(recipientId: number): Observable<Rating[]> {
+    getByRecipientId(recipientId: number | string): Observable<Rating[]> {
         return this.authHttp.get(this.API + '/recipient/' + recipientId).map(res => res.json());
     }
 }

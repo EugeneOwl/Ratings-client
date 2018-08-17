@@ -1,3 +1,9 @@
+mat-card {
+    width: 40%;
+    margin: auto;
+    height: 47em;
+}
+
 .mat-radio-button {
     display: block;
     padding: 2% 0;

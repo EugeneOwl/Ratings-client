@@ -1,6 +1,4 @@
-import { Component, OnInit }            from '@angular/core';
-import { MatDialog }                    from '@angular/material';
-import { UserProfileSettingsComponent } from '../../sections/user/user-profile-settings/user-profile-settings.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-go-to-user-profile-setting-button',
@@ -9,16 +7,9 @@ import { UserProfileSettingsComponent } from '../../sections/user/user-profile-s
 })
 export class GoToUserProfileSettingButtonComponent implements OnInit {
 
-    constructor(private dialog: MatDialog) {
+    constructor() {
     }
 
     ngOnInit() {
-    }
-
-    goToSettings() {
-        this.dialog.open(UserProfileSettingsComponent, {
-            width: '800px',
-            data: {id: JSON.parse(localStorage.getItem('user')).id} // TODO: dehardcode user id (get current user from session or smth lk th
-        });
     }
 }

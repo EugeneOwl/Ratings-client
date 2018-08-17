@@ -1,68 +1,74 @@
-<div class="wrapper">
-  <div class="simple-form">
-    <h1 class="mat-headline form-header">User details</h1>
+<mat-card>
+  <div class="wrapper">
+    <div class="simple-form">
+      <h1 class="mat-headline form-header">User details</h1>
 
-    <div class="form-content">
-      <div class="form-input-panel">
-        <p class="mat-body-1">
-          <span class="column-names"> Id: </span>
-          {{user.id}}
-        </p>
+      <div class="form-content">
+        <div class="form-input-panel">
+          <p class="mat-body-1">
+            <span class="column-names"> Id: </span>
+            {{user.id}}
+          </p>
 
-        <p class="mat-body-1">
-          <span class="column-names"> Username: </span>
-          {{user.username}}
-        </p>
+          <p class="mat-body-1">
+            <span class="column-names"> Username: </span>
+            {{user.username}}
+          </p>
 
-        <p class="mat-body-1">
-          <span class="column-names"> Roles: </span>
-          <span *ngIf="user.roles.length == 0"> (empty set) </span>
-          <span *ngFor="let role of user.roles">
+          <p class="mat-body-1">
+            <span class="column-names"> Roles: </span>
+            <span *ngIf="user.roles.length == 0"> (empty set) </span>
+            <span *ngFor="let role of user.roles">
            {{role.label}};
           </span>
-        </p>
+          </p>
 
-        <button mat-button mat-stroked-button matBadge="{{user.tasks.length}}"
-                class="showDetailsButton" matBadgePosition="after"
-                matBadgeColor="accent" (click)="showTasks()">
-          show tasks
-        </button>
+          <button mat-button mat-stroked-button matBadge="{{user.tasks.length}}"
+                  class="showDetailsButton" matBadgePosition="after"
+                  matBadgeColor="accent" [routerLink]="['tasks']">
+            show tasks
+          </button>
 
-        <button mat-button mat-stroked-button matBadge="{{ratings.length}}"
-                class="showDetailsButton" matBadgePosition="after"
-                matBadgeColor="accent" (click)="showRatings()">
-          show ratings
-        </button>
+          <button mat-button mat-stroked-button matBadge="{{ratings.length}}"
+                  class="showDetailsButton" matBadgePosition="after"
+                  matBadgeColor="accent" [routerLink]="['ratings']">
+            show ratings
+          </button>
+
+          <div class="to-bottom-pusher-mini"></div>
+          <h4 class="mat-body-1"> Leave rating: </h4>
+          <mat-form-field>
+            <input matInput placeholder="rating label" [formControl]="label">
+          </mat-form-field>
+          <div>
+            <label class="field-invalid" *ngIf="label.invalid"> Rating label is required. </label>
+          </div>
+          <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
+
+          <div>
+            <mat-slider [formControl]="mark" min="1" max="5" step="1" thumbLabel tickInterval="1"></mat-slider>
+          </div>
+          <label> Use
+            <mat-icon>arrow_back</mat-icon>
+            <mat-icon>arrow_forward</mat-icon>
+            or
+            <mat-icon>mouse</mat-icon>
+            to set mark. </label>
+
+        </div>
 
         <div class="to-bottom-pusher-mini"></div>
-        <h4 class="mat-body-1"> Leave rating: </h4>
-        <mat-form-field>
-          <input matInput placeholder="rating label" [formControl]="label">
-        </mat-form-field>
-        <div>
-          <label class="field-invalid" *ngIf="label.invalid"> Rating label is required. </label>
+        <div class="form-panel">
+          <button mat-raised-button mat-button color="accent" [disabled]="!label.value"
+                  (click)="save(label.value, mark.value)">
+            Save
+          </button>
+
+          <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button">
+            Back
+          </a>
         </div>
-        <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
-
-        <div class="to-bottom-pusher-mini"></div>
-        <h4 class="mat-body-1"> Leave mark: </h4>
-        <div>
-          <mat-slider [formControl]="mark" min="1" max="5" step="1" thumbLabel tickInterval="1"></mat-slider>
-        </div>
-        <label> Use <mat-icon>arrow_back</mat-icon><mat-icon>arrow_forward</mat-icon> or <mat-icon>mouse</mat-icon>to set mark. </label>
-
-      </div>
-
-      <div class="to-bottom-pusher-mini"></div>
-      <div class="form-panel">
-        <button mat-raised-button mat-button color="accent" [disabled]="!label.value" (click)="save(label.value, mark.value)">
-          Save
-        </button>
-
-        <a mat-raised-button mat-button (click)="gotoBack()" class="cancel-form-button">
-          Back
-        </a>
       </div>
     </div>
   </div>
-</div>
+</mat-card>

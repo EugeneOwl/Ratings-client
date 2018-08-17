@@ -3,6 +3,7 @@
     <div class="simple-form">
       <h1 class="mat-headline form-header"> Account settings </h1>
 
+      <div class="to-bottom-pusher-mini"></div>
       <div class="form-content">
 
         <div class="form-input-panel">
@@ -30,7 +31,7 @@
           <div class="field-invalid-placeholder" *ngIf="!mobileNumber.invalid"></div>
         </div>
 
-        <div class="to-bottom-pusher-mini"></div>
+        <div class="to-bottom-pusher"></div>
         <div class="form-panel">
           <button mat-raised-button mat-button color="accent"
                   [disabled]="mobileNumber.invalid" (click)="saveSettings()">
