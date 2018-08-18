@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { User }              from '../../../../model/User';
-import { UserService }       from '../../../../service/user.service';
-import { FormControl }       from '@angular/forms';
-import { Validators }        from '@angular/forms';
-import { RatingService }     from '../../../../service/rating.service';
-import { Rating }            from '../../../../model/Rating';
-import { Task }              from '../../../../model/Task';
-import { ActivatedRoute }    from '@angular/router';
-import { Router }            from '@angular/router';
+import { Component, OnInit }     from '@angular/core';
+import { User }                  from '../../../../model/User';
+import { UserService }           from '../../../../service/user.service';
+import { FormControl }           from '@angular/forms';
+import { Validators }            from '@angular/forms';
+import { RatingService }         from '../../../../service/rating.service';
+import { Rating }                from '../../../../model/Rating';
+import { Task }                  from '../../../../model/Task';
+import { ActivatedRoute }        from '@angular/router';
+import { Router }                from '@angular/router';
+import { NotificationComponent } from '../../../component/notification/notification.component';
+import { MatDialog }             from '@angular/material';
 
 @Component({
     selector: 'app-user-details',
@@ -32,7 +34,8 @@ export class UserDetailsComponent implements OnInit {
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
                 private ratingService: RatingService,
-                private userService: UserService) {
+                private userService: UserService,
+                private dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -92,33 +95,19 @@ export class UserDetailsComponent implements OnInit {
                 this.label.setValue('');
                 this.mark.setValue('');
 
-                // this.dialog.open(NotificationComponent, {
-                //     width: '400px',
-                //     data: {
-                //         message: `Rating '${label}' with mark '${mark}'
-                //         from ${this.currentUser.username}
-                //         to ${this.user.username} established.`
-                //     }
-                // });
+                this.dialog.open(NotificationComponent, {
+                    width: '400px',
+                    data: {
+                        message: `Rating '${label}' with mark '${mark}'
+                        from ${this.currentUser.username}
+                        to ${this.user.username} established.`
+                    }
+                });
             },
             error => {
                 console.log(error);
             }
         );
-    }
-
-    showRatings() {
-        // this.dialog.open(RatingsDetailsComponent, {
-        //     width: '600px',
-        //     data: {recipient: this.user}
-        // });
-    }
-
-    showTasks() {
-        // this.dialog.open(TaskDetailsComponent, {
-        //     width: '1200px',
-        //     data: {tasks: this.user.tasks, user: this.user}
-        // });
     }
 }
 

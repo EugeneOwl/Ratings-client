@@ -11,6 +11,7 @@ import { RouterModule }            from '@angular/router';
 import { ReactiveFormsModule }     from '@angular/forms';
 import { CommonModule }            from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationComponent }   from '../../../component/notification/notification.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         MatSliderModule
     ],
     exports: [UserDetailsComponent],
+    entryComponents: [NotificationComponent],
     providers: []
 })
 export class UserDetailsModule {

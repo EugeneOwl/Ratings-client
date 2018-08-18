@@ -29,6 +29,7 @@ import { AdminLayoutModule }                   from './module/layout/admin-layou
 import { LoginFormModule }                     from './module/sections/login-form/login-form.module';
 import { UserLayoutModule }                    from './module/layout/user-layout/user-layout.module';
 import { ErrorLayoutModule }                   from './module/layout/error-layout/error-layout.module';
+import { TaskStatisticsModule }                from './module/sections/task/task-statistics/task-statistics.module';
 
 @NgModule({
     declarations: [
@@ -63,6 +64,7 @@ import { ErrorLayoutModule }                   from './module/layout/error-layou
 
         UserProfileSettingsModule,
         LoginFormModule,
+        TaskStatisticsModule,
 
         // components
         GoToUserProfileSettingsButtonModule,
