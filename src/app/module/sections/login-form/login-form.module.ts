@@ -8,7 +8,6 @@ import { MatInputModule }     from '@angular/material';
 import { MatBadgeModule }     from '@angular/material';
 import { MatButtonModule }    from '@angular/material';
 import { MatIconModule }      from '@angular/material';
-import { MatDialogModule }    from '@angular/material';
 import { MatSliderModule }    from '@angular/material';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { MatSliderModule }    from '@angular/material';
         FormsModule,
 
         MatIconModule,
-        MatDialogModule,
         MatButtonModule,
         MatInputModule,
         MatCardModule,

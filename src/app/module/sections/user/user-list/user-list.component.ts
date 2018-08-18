@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Input }                        from '@angular/core';
-import { MatPaginator, MatSort }        from '@angular/material';
-import { UserListDataSource }           from './user-list-datasource';
-import { forkJoin }                     from 'rxjs';
-import { UserService }                  from '../../../../service/user.service';
-import { User }                         from '../../../../model/User';
-import { ActivatedRoute }               from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Input }             from '@angular/core';
+import { UserService }       from '../../../../service/user.service';
+import { User }              from '../../../../model/User';
+import { ActivatedRoute }    from '@angular/router';
+import { FormControl }       from '@angular/forms';
 
 @Component({
     selector: 'app-user-list',
@@ -13,11 +11,12 @@ import { ActivatedRoute }               from '@angular/router';
     styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    private usersOnPage: User[] = [];
+    private pageNumber: number = 0;
+    private pageNumbers: number[] = [];
+    private sortByColumn: string = 'id';
+    filterPattern = new FormControl('');
 
-    dataSource: UserListDataSource;
-    users: User[];
 
     @Input()
     displayedColumns: string[];
@@ -32,14 +31,41 @@ export class UserListComponent implements OnInit {
         this.activatedRoute.data.subscribe(data => {
             this.displayedColumns = data.displayedColumns;
         });
+        this.getUsersOnPage();
+    }
 
-        forkJoin(this.userService.getAll()).subscribe(data => {
-            this.users = data[0];
-            this.dataSource = new UserListDataSource(
-                this.paginator,
-                this.sort,
-                this.users
-            );
-        });
+    setPage(number: number): void {
+        this.pageNumber = number;
+        this.getUsersOnPage();
+    }
+
+    setSortColumn(sortColumn: string): void {
+        this.sortByColumn = sortColumn;
+        this.getUsersOnPage();
+    }
+
+    isActiveColor(sortColumn: string): string {
+        return sortColumn === this.sortByColumn ? 'accent' : '';
+    }
+
+    executeSearch() {
+        this.pageNumber = 0;
+        this.getUsersOnPage();
+    }
+
+    private getUsersOnPage() {
+        this.userService.getPage(
+            this.pageNumber,
+            this.sortByColumn,
+            this.filterPattern.value
+        ).subscribe(
+            (success: User[]) => {
+                this.usersOnPage = success['content'];
+                this.pageNumbers = new Array(success['totalPages']);
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 }

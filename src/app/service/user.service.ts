@@ -22,6 +22,12 @@ export class UserService {
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
+    getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<User[]> {
+        return this.authHttp.get(
+            `${this.API}/page?pageNumber=${pageNumber}&sortByColumn=${sortByColumn}&filterPattern=${filterPattern}`
+        ).map(res => res.json());
+    }
+
     save(user: UserUpdate): Observable<UserUpdate> {
 
         return this.authHttp.put(this.API, user).map(res => res.json());

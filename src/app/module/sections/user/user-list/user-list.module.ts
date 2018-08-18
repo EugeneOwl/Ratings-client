@@ -4,9 +4,12 @@ import { MatTableModule }          from '@angular/material';
 import { MatPaginatorModule }      from '@angular/material';
 import { MatSortModule }           from '@angular/material';
 import { MatButtonModule }         from '@angular/material';
-import { MatDialogModule }         from '@angular/material';
+import { MatButtonToggleModule }   from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule }            from '@angular/router';
+import { MatFormFieldModule }      from '@angular/material';
+import { ReactiveFormsModule }     from '@angular/forms';
+import { MatInputModule }          from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -15,8 +18,11 @@ import { RouterModule }            from '@angular/router';
     imports: [
         RouterModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
 
-        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonToggleModule,
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,

@@ -3,7 +3,6 @@ import { GoToUserProfileSettingButtonComponent } from './go-to-user-profile-sett
 import { RouterModule }                          from '@angular/router';
 import { MatIconModule }                         from '@angular/material';
 import { MatButtonModule }                       from '@angular/material';
-import { MatDialogModule }                       from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -12,7 +11,6 @@ import { MatDialogModule }                       from '@angular/material';
     imports: [
         RouterModule,
 
-        MatDialogModule,
         MatButtonModule,
         MatIconModule
     ],

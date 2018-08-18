@@ -1,35 +1,37 @@
 <h1 class="mat-headline">User list</h1>
 
-<div class="mat-elevation-z8">
-  <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+<mat-button-toggle-group *ngIf="pageNumbers.length > 1" class="pagination-panel">
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row" class="mat-body-1">{{row.id}}</td>
-    </ng-container>
+  <mat-button-toggle *ngFor="let p of pageNumbers; let number = index"
+                     (click)="setPage(number)">
+    <a>{{number + 1}}</a>
+  </mat-button-toggle>
 
-    <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-      <td mat-cell *matCellDef="let row" class="mat-body-1">
-        <a [routerLink]="[row.id]" mat-button class="table-button">{{row.username}}</a>
-      </td>
-    </ng-container>
+</mat-button-toggle-group>
 
-    <ng-container matColumnDef="roles">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Roles</th>
-      <td mat-cell *matCellDef="let row" class="mat-body-1">
-          <span *ngFor="let role of row.roles">
-            {{role.label}};
-          </span>
-      </td>
-    </ng-container>
+<mat-form-field class="search-panel">
+  <input type="search" (input)="executeSearch()" matInput placeholder="search" [formControl]="filterPattern">
+</mat-form-field>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+<table mat-table [dataSource]="usersOnPage" class="mat-elevation-z8">
 
-  <mat-paginator #paginator
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 15]">
-  </mat-paginator>
-</div>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef (click)="setSortColumn('id')" class="tableHeader" >
+      <a mat-button color="{{isActiveColor('id')}}"> Id </a>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef (click)="setSortColumn('username')" class="tableHeader">
+      <a mat-button color="{{isActiveColor('username')}}"> Username </a>
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.username}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+

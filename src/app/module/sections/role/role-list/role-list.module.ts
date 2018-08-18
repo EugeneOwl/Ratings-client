@@ -5,7 +5,6 @@ import { MatButtonModule }    from '@angular/material';
 import { MatTableModule }     from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSortModule }      from '@angular/material';
-import { MatDialogModule }    from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -14,7 +13,6 @@ import { MatDialogModule }    from '@angular/material';
     imports: [
         RouterModule,
 
-        MatDialogModule,
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,

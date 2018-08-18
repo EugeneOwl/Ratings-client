@@ -30,26 +30,37 @@ html, body {
     font-style: italic;
 }
 
+.search-panel {
+    float: right;
+}
+
 /* Tables */
 
 table {
     width: 100%;
-    margin: auto;
 }
 
-mat-paginator {
-    padding-top: 3%;
-    padding-right: 17%;
+.pagination-panel {
+    margin-bottom: 2%;
+    margin-left: 10%;
 }
 
 .mat-elevation-z8 {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .table-button {
     width: 100%;
     text-align: left !important;
     font-size: 100%;
+}
+
+.tableHeader {
+    cursor: pointer;
+}
+
+.activeTableHeader {
+    color: red;
 }
 
 /* Forms */

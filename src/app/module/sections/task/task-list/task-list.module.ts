@@ -5,7 +5,6 @@ import { MatButtonModule }    from '@angular/material';
 import { MatTableModule }     from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSortModule }      from '@angular/material';
-import { MatDialogModule }    from '@angular/material';
 import { CommonModule }       from '@angular/common';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { CommonModule }       from '@angular/common';
         CommonModule,
         RouterModule,
 
-        MatDialogModule,
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
