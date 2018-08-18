@@ -1,13 +1,9 @@
-import { Component, OnInit }  from '@angular/core';
-import { ViewChild }          from '@angular/core';
-import { MatSort }            from '@angular/material';
-import { MatPaginator }       from '@angular/material';
-import { MatDialog }          from '@angular/material';
-import { RoleListDataSource } from './role-list-datasource';
-import { forkJoin }           from 'rxjs';
-import { Role }               from '../../../../model/Role';
-import { RoleService }        from '../../../../service/role.service';
-import { RoleEditComponent }  from '../role-edit/role-edit.component';
+import { Component, OnInit } from '@angular/core';
+import { Input }             from '@angular/core';
+import { Role }              from '../../../../model/Role';
+import { RoleService }       from '../../../../service/role.service';
+import { ActivatedRoute }    from '@angular/router';
+import { FormControl }       from '@angular/forms';
 
 @Component({
     selector: 'app-role-list',
@@ -15,51 +11,61 @@ import { RoleEditComponent }  from '../role-edit/role-edit.component';
     styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    private rolesOnPage: Role[] = [];
+    private pageNumber: number = 0;
+    private pageNumbers: number[] = [];
+    private sortByColumn: string = 'id';
+    filterPattern = new FormControl('');
 
-    roles: Role[];
-    dataSource: RoleListDataSource;
-    displayedColumns = ['id', 'label'];
+
+    @Input()
+    displayedColumns: string[];
 
     constructor(
+        private activatedRoute: ActivatedRoute,
         private roleService: RoleService,
-        private dialog: MatDialog
     ) {
     }
 
     ngOnInit() {
-        forkJoin(this.roleService.getAll()).subscribe(data => {
-            this.roles = data[0];
-            this.dataSource = new RoleListDataSource(
-                this.paginator,
-                this.sort,
-                this.roles
-            );
+        this.activatedRoute.data.subscribe(data => {
+            this.displayedColumns = data.displayedColumns;
         });
+        this.getRolesOnPage();
     }
 
-    goToEditRoleDialog(id: number): void {
-        const dialogRef = this.dialog.open(RoleEditComponent, {
-            width: '500px',
-            data: {id: id}
-        });
-        this.updateComponentPieceAccordingDialog(dialogRef);
+    setPage(number: number): void {
+        this.pageNumber = number;
+        this.getRolesOnPage();
     }
 
-    private updateComponentPieceAccordingDialog(dialogRef): void {
-        dialogRef.afterClosed().subscribe(result => {
-            if (this.roles.filter(role => role.id == result.id).length == 0) {
-                this.ngOnInit();
+    setSortColumn(sortColumn: string): void {
+        this.sortByColumn = sortColumn;
+        this.getRolesOnPage();
+    }
 
-                return;
+    isActiveColor(sortColumn: string): string {
+        return sortColumn === this.sortByColumn ? 'primary' : '';
+    }
+
+    executeSearch() {
+        this.pageNumber = 0;
+        this.getRolesOnPage();
+    }
+
+    private getRolesOnPage() {
+        this.roleService.getPage(
+            this.pageNumber,
+            this.sortByColumn,
+            this.filterPattern.value
+        ).subscribe(
+            (success: Role[]) => {
+                this.rolesOnPage = success['content'];
+                this.pageNumbers = new Array(success['totalPages']);
+            },
+            error => {
+                console.log(error);
             }
-            this.roles.filter(role => role.id == result.id)
-            .map(role => role.label = result.label);
-        });
+        );
     }
-}
-
-export interface PersonalRoleDialogData {
-    id: any;
 }

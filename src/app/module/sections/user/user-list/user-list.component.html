@@ -26,7 +26,20 @@
     <th mat-header-cell *matHeaderCellDef (click)="setSortColumn('username')" class="tableHeader">
       <a mat-button color="{{isActiveColor('username')}}"> Username </a>
     </th>
-    <td mat-cell *matCellDef="let element"> {{element.username}}</td>
+    <td mat-cell *matCellDef="let element" [routerLink]="[element.id]">
+      <a [routerLink]="[element.id]" mat-button class="table-button">{{element.username}}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="roles">
+    <th mat-header-cell *matHeaderCellDef>
+      <a mat-button> Roles </a>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngFor="let role of element.roles">
+        {{role.label}};
+      </span>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { AuthHttp }    from 'angular2-jwt';
 import { Observable }  from 'rxjs';
 import { Task }        from '../model/Task';
+import { User }        from '../model/User';
 
 @Injectable()
 export class TaskService {
@@ -19,6 +20,12 @@ export class TaskService {
     get(id: number | string): Observable<Task> {
 
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
+    }
+
+    getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<Task[]> {
+        return this.authHttp.get(
+            `${this.API}/page?pageNumber=${pageNumber}&sortByColumn=${sortByColumn}&filterPattern=${filterPattern}`
+        ).map(res => res.json());
     }
 
     save(task: Task): Observable<Task> {

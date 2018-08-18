@@ -1,16 +1,13 @@
-import { Component, OnInit }  from '@angular/core';
-import { ViewChild }          from '@angular/core';
-import { Input }              from '@angular/core';
-import { MatSort }            from '@angular/material';
-import { MatPaginator }       from '@angular/material';
-import { forkJoin }           from 'rxjs';
-import { TaskListDatasource } from './task-list-datasource';
-import { TaskService }        from '../../../../service/task.service';
-import { UserService }        from '../../../../service/user.service';
-import { User }               from '../../../../model/User';
-import { Task }               from '../../../../model/Task';
-import { ActivatedRoute }     from '@angular/router';
-import { Router }             from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Input }             from '@angular/core';
+import { TaskService }       from '../../../../service/task.service';
+import { Task }              from '../../../../model/Task';
+import { ActivatedRoute }    from '@angular/router';
+import { Router }            from '@angular/router';
+import { FormControl }       from '@angular/forms';
+import { forkJoin }          from 'rxjs';
+import { UserService }       from '../../../../service/user.service';
+import { User }              from '../../../../model/User';
 
 
 @Component({
@@ -19,11 +16,11 @@ import { Router }             from '@angular/router';
     styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
-
-    dataSource: TaskListDatasource;
-    tasks: Task[];
+    private tasksOnPage: Task[] = [];
+    private pageNumber: number = 0;
+    private pageNumbers: number[] = [];
+    private sortByColumn: string = 'id';
+    filterPattern = new FormControl('');
     allottedTaskId: number;
 
     @Input()
@@ -45,35 +42,55 @@ export class TaskListComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(data => {
-            if (data.displayedColumns) {
-                this.displayedColumns = data.displayedColumns;
-                this.customDatasource = data.customDatasource;
-                this.adminMode = data.adminMode;
-            }
+            this.displayedColumns = data.displayedColumns;
+            this.customDatasource = data.customDatasource;
+            this.adminMode = data.adminMode;
         });
-
-
         if (this.customDatasource !== false) {
-            this.tasks = this.customDatasource;
-            this.dataSource = new TaskListDatasource(
-                this.paginator,
-                this.sort,
-                this.customDatasource
-            );
+            this.tasksOnPage = this.customDatasource;
 
             return;
         }
+        this.getTasksOnPage();
+    }
 
-        forkJoin(this.taskService.getAll(), this.userService.getAll())
-        .subscribe(data => {
-            this.tasks = data[0];
-            this.initializeEachTaskWithItsUser(data[1]);
-            this.dataSource = new TaskListDatasource(
-                this.paginator,
-                this.sort,
-                this.tasks
-            );
-        });
+    setPage(number: number): void {
+        this.pageNumber = number;
+        this.getTasksOnPage();
+    }
+
+    setSortColumn(sortColumn: string): void {
+        this.sortByColumn = sortColumn;
+        this.getTasksOnPage();
+    }
+
+    isActiveColor(sortColumn: string): string {
+        return sortColumn === this.sortByColumn ? 'primary' : '';
+    }
+
+    executeSearch() {
+        this.pageNumber = 0;
+        this.getTasksOnPage();
+    }
+
+    private getTasksOnPage() {
+        forkJoin(
+            this.taskService.getPage(
+                this.pageNumber,
+                this.sortByColumn,
+                this.filterPattern.value
+            ),
+            this.userService.getAll()
+        )
+        .subscribe(success => {
+                this.tasksOnPage = success[0]['content'];
+                this.pageNumbers = new Array(success[0]['totalPages']);
+                this.initializeEachTaskWithItsUser(success[1]);
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 
     goToPersonalTaskDialog(taskId: number) {
@@ -91,7 +108,7 @@ export class TaskListComponent implements OnInit {
     }
 
     private initializeEachTaskWithItsUser(users: User[]): void {
-        this.tasks.map(t => t.user =
+        this.tasksOnPage.map(t => t.user =
             users.filter(u => u.tasks
             .filter(u_t => u_t.id === t.id).length !== 0)[0]);
     }

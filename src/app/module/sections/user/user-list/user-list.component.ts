@@ -45,7 +45,7 @@ export class UserListComponent implements OnInit {
     }
 
     isActiveColor(sortColumn: string): string {
-        return sortColumn === this.sortByColumn ? 'accent' : '';
+        return sortColumn === this.sortByColumn ? 'primary' : '';
     }
 
     executeSearch() {

@@ -21,7 +21,10 @@ const routes: Routes = [
             },
             {
                 path: 'roles',
-                component: RoleListComponent
+                component: RoleListComponent,
+                data: {
+                    displayedColumns: ['id', 'label']
+                }
             },
             {
                 path: 'roles/:id',
