@@ -23,7 +23,7 @@ const routes: Routes = [
                 path: 'roles',
                 component: RoleListComponent,
                 data: {
-                    displayedColumns: ['id', 'label']
+                    displayedColumns: ['id', 'label', 'delete']
                 }
             },
             {
@@ -51,7 +51,8 @@ const routes: Routes = [
                         'description',
                         'evaluation',
                         'user',
-                        'parent'
+                        'parent',
+                        'delete'
                     ],
                     customDatasource: false,
                     adminMode: true

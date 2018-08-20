@@ -73,6 +73,17 @@ export class TaskListComponent implements OnInit {
         this.getTasksOnPage();
     }
 
+    deleteTask(taskId: number): void {
+        this.taskService.remove(taskId).subscribe(
+            success => {
+                this.getTasksOnPage();
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+
     private getTasksOnPage() {
         forkJoin(
             this.taskService.getPage(

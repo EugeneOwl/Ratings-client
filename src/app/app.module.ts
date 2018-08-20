@@ -30,6 +30,10 @@ import { LoginFormModule }                     from './module/sections/login-for
 import { UserLayoutModule }                    from './module/layout/user-layout/user-layout.module';
 import { ErrorLayoutModule }                   from './module/layout/error-layout/error-layout.module';
 import { TaskStatisticsModule }                from './module/sections/task/task-statistics/task-statistics.module';
+import { ErrorHandler }                        from '@angular/core';
+import { AppErrorHandler }                     from './service/errorHandling/app-error-handler';
+import { PathLocationStrategy }                from '@angular/common';
+import { LocationStrategy }                    from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -81,7 +85,10 @@ import { TaskStatisticsModule }                from './module/sections/task/task
         UserService,
         RoleService,
         RatingService,
-        TaskService
+        TaskService,
+        {provide: ErrorHandler, useClass: AppErrorHandler},
+        Location,
+        {provide: LocationStrategy, useClass: PathLocationStrategy}
     ],
     bootstrap: [AppComponent]
 })

@@ -53,6 +53,17 @@ export class RoleListComponent implements OnInit {
         this.getRolesOnPage();
     }
 
+    deleteRole(roleId: number): void {
+        this.roleService.remove(roleId).subscribe(
+            success => {
+                this.getRolesOnPage();
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+
     private getRolesOnPage() {
         this.roleService.getPage(
             this.pageNumber,

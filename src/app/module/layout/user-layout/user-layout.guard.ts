@@ -23,7 +23,15 @@ export class UserLayoutGuard implements CanActivate {
         }
 
         if (! this.securityService.hasAccessToUserContent()) {
-            this.router.navigate(['/client/error']);
+            this.router.navigate(
+                ['/client/error'],
+                {
+                    queryParams: {
+                        errorCode: 401,
+                        errorMessage: 'Not enough access rights for user content.'
+                    }
+                }
+            );
 
             return false;
         }

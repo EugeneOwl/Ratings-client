@@ -37,7 +37,7 @@ export class TaskService {
         return this.authHttp.put(this.API, task).map(res => res.json());
     }
 
-    remove(id: string): Observable<Task> {
+    remove(id: number | string): Observable<Task> {
 
         return this.authHttp.delete(`${this.API}/${id}`).map(res => res.json());
     }

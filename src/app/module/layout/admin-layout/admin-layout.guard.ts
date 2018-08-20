@@ -23,7 +23,15 @@ export class AdminLayoutGuard implements CanActivate {
         }
 
         if (! this.securityService.hasAccessToAdminContent()) {
-            this.router.navigate(['/client/error']);
+            this.router.navigate(
+                ['/client/error'],
+                {
+                    queryParams: {
+                        errorCode: 401,
+                        errorMessage: 'Not enough access rights for admin content.'
+                    }
+                }
+            );
 
             return false;
         }
