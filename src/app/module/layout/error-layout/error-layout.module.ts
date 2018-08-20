@@ -3,8 +3,7 @@ import { ErrorLayoutComponent } from './error-layout.component';
 import { CommonModule }         from '@angular/common';
 import { errorRoutes }          from './error-layout.routes';
 import { RouterModule }         from '@angular/router';
-import { UserToolbarModule }    from '../../sections/user-toolbar/user-toolbar.module';
-import { LoginPanelModule }     from '../../component/login-panel/login-panel.module';
+import { ErrorToolbarModule }   from '../../sections/toolbars/error-toolbar/error-toolbar.module';
 
 @NgModule({
     declarations: [
@@ -13,7 +12,7 @@ import { LoginPanelModule }     from '../../component/login-panel/login-panel.mo
     imports: [
         RouterModule.forChild(errorRoutes),
         CommonModule,
-        LoginPanelModule
+        ErrorToolbarModule
     ],
     exports: [ErrorLayoutComponent],
 })

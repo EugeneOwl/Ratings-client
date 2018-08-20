@@ -1,7 +1,7 @@
 import { NgModule }                     from '@angular/core';
 import { UserProfileSettingsComponent } from './user-profile-settings.component';
 import { UserListModule }               from '../user-list/user-list.module';
-import { UserToolbarModule }            from '../../user-toolbar/user-toolbar.module';
+import { UserToolbarModule }            from '../../toolbars/user-toolbar/user-toolbar.module';
 import { CommonModule }                 from '@angular/common';
 import { FormsModule }                  from '@angular/forms';
 import { ReactiveFormsModule }          from '@angular/forms';

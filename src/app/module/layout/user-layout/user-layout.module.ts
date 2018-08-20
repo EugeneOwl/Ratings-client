@@ -4,7 +4,7 @@ import { CommonModule }        from '@angular/common';
 import { userRoutes }          from './user-layout.routes';
 import { RouterModule }        from '@angular/router';
 import { UserLayoutGuard }     from './user-layout.guard';
-import { UserToolbarModule }   from '../../sections/user-toolbar/user-toolbar.module';
+import { UserToolbarModule }   from '../../sections/toolbars/user-toolbar/user-toolbar.module';
 
 @NgModule({
     declarations: [

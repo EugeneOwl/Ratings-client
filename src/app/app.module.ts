@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule }     from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
 import { AppComponent }                        from './app.component';
 import { UserService }                         from './service/user.service';
@@ -30,10 +31,11 @@ import { LoginFormModule }                     from './module/sections/login-for
 import { UserLayoutModule }                    from './module/layout/user-layout/user-layout.module';
 import { ErrorLayoutModule }                   from './module/layout/error-layout/error-layout.module';
 import { TaskStatisticsModule }                from './module/sections/task/task-statistics/task-statistics.module';
-import { ErrorHandler }                        from '@angular/core';
 import { AppErrorHandler }                     from './service/errorHandling/app-error-handler';
 import { PathLocationStrategy }                from '@angular/common';
 import { LocationStrategy }                    from '@angular/common';
+import { ErrorPlateModule }                    from './module/component/error-plate/error-plate.module';
+import { GoBackButtonModule }                  from './module/component/go-back-button/go-back-button.module';
 
 @NgModule({
     declarations: [
@@ -74,12 +76,16 @@ import { LocationStrategy }                    from '@angular/common';
         GoToUserProfileSettingsButtonModule,
         GoToUserSideButtonModule,
         GoToAdminSideButtonModule,
+        GoBackButtonModule,
         LoginPanelModule,
 
         NotificationModule,
 
         // security
-        AuthModule
+        AuthModule,
+
+        // errors
+        ErrorPlateModule
     ],
     providers: [
         UserService,
