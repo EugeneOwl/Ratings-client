@@ -39,10 +39,6 @@ export class UserEditComponent implements OnInit {
                 success => {
                     this.user = success;
                     this.initializeRoleCheckboxes();
-                },
-                error => {
-                    console.log(error);
-                    this.goBack();
                 }
             );
         }
@@ -68,7 +64,7 @@ export class UserEditComponent implements OnInit {
         };
         this.userService.save(userUpdate).subscribe(result => {
             this.goBack();
-        }, error => console.error(error));
+        });
     }
 
     goBack(): void {

@@ -38,9 +38,6 @@ export class UserProfileSettingsComponent implements OnInit {
                 (success: User) => {
                     this.user = success;
                     this.mobileNumber.setValue(success.mobileNumber);
-                }, error => {
-                    console.log(error);
-                    this.goBack();
                 }
             );
         }
@@ -58,6 +55,6 @@ export class UserProfileSettingsComponent implements OnInit {
         };
         this.userService.save(userUpdate).subscribe(result => {
             this.goBack();
-        }, error => console.error(error));
+        });
     }
 }

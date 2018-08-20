@@ -31,10 +31,6 @@ export class RoleEditComponent implements OnInit {
             this.roleService.get(this.roleId).subscribe(
                 (success: Role) => {
                     this.label.setValue(success.label);
-                },
-                error => {
-                    console.log(error);
-                    this.goBack();
                 }
             );
         }
@@ -46,7 +42,7 @@ export class RoleEditComponent implements OnInit {
             label: this.label.value
         }).subscribe(result => {
             this.goBack();
-        }, error => console.error(error));
+        });
     }
 
     goBack(): void {
@@ -56,6 +52,6 @@ export class RoleEditComponent implements OnInit {
     remove(id): void {
         this.roleService.remove(id).subscribe(result => {
             this.goBack();
-        }, error => console.error(error));
+        });
     }
 }

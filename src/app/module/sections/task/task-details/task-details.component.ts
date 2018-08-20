@@ -31,10 +31,7 @@ export class TaskDetailsComponent implements OnInit {
 
         this.userService.get(this.userId).subscribe(
             (success: User) => {
-                this.user = success; //TODO у Eugene каждой таски по 8 штук. Какого
-            },
-            error => {
-                console.log(error);
+                this.user = success;
             }
         );
     }

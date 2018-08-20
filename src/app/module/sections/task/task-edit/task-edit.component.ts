@@ -55,10 +55,6 @@ export class TaskEditComponent implements OnInit {
                 this.users = data[0];
                 this.tasks = data[1];
                 this.initializeFormWithExistingSettings();
-            },
-            error => {
-                console.log(error);
-                this.goBack();
             }
         );
     }
@@ -84,7 +80,7 @@ export class TaskEditComponent implements OnInit {
     remove(id): void {
         this.taskService.remove(id).subscribe(result => {
             this.goBack();
-        }, error => console.error(error));
+        });
     }
 
     private initializeFormWithExistingSettings(): void {
@@ -108,10 +104,6 @@ export class TaskEditComponent implements OnInit {
                     .filter(t => t.id === this.parent.id)[0];
                 }
 
-            },
-            error => {
-                console.log(error);
-                this.goBack();
             }
         );
     }

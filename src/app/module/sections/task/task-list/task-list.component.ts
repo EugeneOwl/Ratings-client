@@ -42,9 +42,11 @@ export class TaskListComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(data => {
-            this.displayedColumns = data.displayedColumns;
-            this.customDatasource = data.customDatasource;
-            this.adminMode = data.adminMode;
+            if (data.displayedColumns) {
+                this.displayedColumns = data.displayedColumns;
+                this.customDatasource = data.customDatasource;
+                this.adminMode = data.adminMode;
+            }
         });
         if (this.customDatasource !== false) {
             this.tasksOnPage = this.customDatasource;
@@ -77,9 +79,6 @@ export class TaskListComponent implements OnInit {
         this.taskService.remove(taskId).subscribe(
             success => {
                 this.getTasksOnPage();
-            },
-            error => {
-                console.log(error);
             }
         );
     }
@@ -97,9 +96,6 @@ export class TaskListComponent implements OnInit {
                 this.tasksOnPage = success[0]['content'];
                 this.pageNumbers = new Array(success[0]['totalPages']);
                 this.initializeEachTaskWithItsUser(success[1]);
-            },
-            error => {
-                console.log(error);
             }
         );
     }

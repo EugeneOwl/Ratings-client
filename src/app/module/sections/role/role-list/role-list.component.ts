@@ -57,9 +57,6 @@ export class RoleListComponent implements OnInit {
         this.roleService.remove(roleId).subscribe(
             success => {
                 this.getRolesOnPage();
-            },
-            error => {
-                console.log(error);
             }
         );
     }
@@ -73,9 +70,6 @@ export class RoleListComponent implements OnInit {
             (success: Role[]) => {
                 this.rolesOnPage = success['content'];
                 this.pageNumbers = new Array(success['totalPages']);
-            },
-            error => {
-                console.log(error);
             }
         );
     }

@@ -1,7 +1,7 @@
 <mat-card>
   <div class="wrapper">
     <div class="simple-form">
-      <h1 class="mat-headline form-header"> {{user.username}}'s </h1>
+      <h1 class="mat-headline"> {{user.username}}'s </h1>
 
       <app-task-list *ngIf="user.tasks.length != 0"
                      [displayedColumns]="['id', 'label', 'description', 'evaluation']"

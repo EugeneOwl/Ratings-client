@@ -5,7 +5,6 @@ import { FormControl }           from '@angular/forms';
 import { Validators }            from '@angular/forms';
 import { RatingService }         from '../../../../service/rating.service';
 import { Rating }                from '../../../../model/Rating';
-import { Task }                  from '../../../../model/Task';
 import { ActivatedRoute }        from '@angular/router';
 import { Router }                from '@angular/router';
 import { NotificationComponent } from '../../../component/notification/notification.component';
@@ -48,30 +47,18 @@ export class UserDetailsComponent implements OnInit {
             this.userService.get(this.userId).subscribe(
                 success => {
                     this.user = success;
-                },
-                error => {
-                    console.log(error);
-                    this.goBack();
                 }
             );
 
             this.userService.get(this.currentUserId).subscribe(
                 success => {
                     this.currentUser = success;
-                },
-                error => {
-                    console.log(error);
-                    this.goBack();
                 }
             );
 
             this.ratingService.getByRecipientId(this.userId).subscribe(
                 (success: Rating[]) => {
                     this.ratings = success;
-                },
-                error => {
-                    console.log(error);
-                    this.goBack();
                 }
             );
         }
@@ -91,7 +78,7 @@ export class UserDetailsComponent implements OnInit {
         };
         this.ratingService.save(rating).subscribe(
             success => {
-                this.ratings.length ++;
+                this.ratings.length++;
                 this.label.setValue('');
                 this.mark.setValue('');
 
@@ -103,15 +90,7 @@ export class UserDetailsComponent implements OnInit {
                         to ${this.user.username} established.`
                     }
                 });
-            },
-            error => {
-                console.log(error);
             }
         );
     }
-}
-
-export interface PersonalTasksDialogData {
-    tasks: Task[];
-    user: User;
 }

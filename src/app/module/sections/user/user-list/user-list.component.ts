@@ -62,9 +62,6 @@ export class UserListComponent implements OnInit {
             (success: User[]) => {
                 this.usersOnPage = success['content'];
                 this.pageNumbers = new Array(success['totalPages']);
-            },
-            error => {
-                console.log(error);
             }
         );
     }
