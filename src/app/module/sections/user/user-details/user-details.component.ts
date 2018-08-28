@@ -93,4 +93,9 @@ export class UserDetailsComponent implements OnInit {
             }
         );
     }
+
+    getErrorMessage(): string {
+
+        return this.label.hasError('required') ? 'Rating label is required.' : '';
+    }
 }

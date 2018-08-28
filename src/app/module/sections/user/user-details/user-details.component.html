@@ -39,11 +39,8 @@
           <h4 class="mat-body-1"> Leave rating: </h4>
           <mat-form-field>
             <input matInput placeholder="rating label" [formControl]="label">
+            <mat-error class="field-invalid" *ngIf="label.invalid"> {{ getErrorMessage() }} </mat-error>
           </mat-form-field>
-          <div>
-            <label class="field-invalid" *ngIf="label.invalid"> Rating label is required. </label>
-          </div>
-          <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
 
           <div>
             <mat-slider [formControl]="mark" min="1" max="5" step="1" thumbLabel tickInterval="1"></mat-slider>

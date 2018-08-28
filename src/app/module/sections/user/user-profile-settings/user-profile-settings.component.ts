@@ -57,4 +57,12 @@ export class UserProfileSettingsComponent implements OnInit {
             this.goBack();
         });
     }
+
+    getErrorMessage() : string {
+
+        return this.mobileNumber.hasError('required') ? 'Mobile number is required.' :
+            this.mobileNumber.hasError('pattern') ? 'Mobile number does not match.' :
+                '';
+
+    }
 }

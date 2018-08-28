@@ -83,6 +83,23 @@ export class TaskEditComponent implements OnInit {
         });
     }
 
+    getLabelErrorMessage(): string {
+
+        return this.label.hasError('required') ? 'Task label is required.' : '';
+    }
+
+    getDescriptionErrorMessage(): string {
+
+        return this.description.hasError('required') ? 'Task description is required.' : '';
+    }
+
+    getEvaluationErrorMessage(): string {
+
+        return this.evaluation.hasError('required') ? 'Task evaluation is required.' :
+            this.evaluation.hasError('pattern') ? 'Evaluation should consist of 4 or less numeric.' :
+                '';
+    }
+
     private initializeFormWithExistingSettings(): void {
         if (! this.taskId) {
 
@@ -121,4 +138,6 @@ export class TaskEditComponent implements OnInit {
             }
         }
     }
+
+
 }

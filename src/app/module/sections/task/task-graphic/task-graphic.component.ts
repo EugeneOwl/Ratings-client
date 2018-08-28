@@ -89,6 +89,7 @@ export class TaskGraphicComponent implements OnInit, AfterViewInit {
     }
 
     private getRandomColor(): string {
+
         return `rgb(
                     ${Math.floor(Math.random() * 250)},
                     ${Math.floor(Math.random() * 250)},

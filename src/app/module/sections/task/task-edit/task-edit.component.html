@@ -13,27 +13,21 @@
 
           <mat-form-field>
             <input matInput placeholder="label" [formControl]="label">
+            <mat-error *ngIf="label.invalid"> {{ getLabelErrorMessage() }} </mat-error>
           </mat-form-field>
-          <div>
-            <label class="field-invalid" *ngIf="label.invalid"> Task label is required. </label>
-          </div>
-          <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
 
           <mat-form-field>
             <input matInput placeholder="description" [formControl]="description">
+            <mat-error *ngIf="label.invalid"> {{ getDescriptionErrorMessage() }} </mat-error>
           </mat-form-field>
-          <div>
-            <label class="field-invalid" *ngIf="description.invalid"> Task description is required. </label>
-          </div>
-          <div class="field-invalid-placeholder" *ngIf="!description.invalid"></div>
 
           <mat-form-field>
             <input matInput placeholder="evaluation (in hours)" [formControl]="evaluation">
+            <mat-error *ngIf="label.invalid"> {{ getEvaluationErrorMessage() }} </mat-error>
           </mat-form-field>
-          <div>
-            <label class="field-invalid" *ngIf="evaluation.invalid"> Task evaluation is required (numeric). </label>
-          </div>
-          <div class="field-invalid-placeholder" *ngIf="!evaluation.invalid"></div>
+
+          <div class="to-bottom-pusher-mini"></div>
+          <p class="column-names"> User: </p>
 
           <mat-radio-group [(ngModel)]="taskOwner">
             <mat-radio-button *ngFor="let user of users" [value]="user"
@@ -43,6 +37,7 @@
           </mat-radio-group>
 
           <div class="to-bottom-pusher-mini"></div>
+          <p class="column-names"> Parent: </p>
 
           <mat-radio-group [(ngModel)]="taskParent">
             <mat-radio-button *ngFor="let task of tasks" [value]="task"

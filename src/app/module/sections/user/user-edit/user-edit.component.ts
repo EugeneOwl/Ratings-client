@@ -72,6 +72,7 @@ export class UserEditComponent implements OnInit {
     }
 
     private getCheckedRoleIds(): number[] {
+
         return this.roleCheckboxes.filter(roleCheckbox => roleCheckbox.checked)
         .map(roleCheckbox => roleCheckbox.id);
     }

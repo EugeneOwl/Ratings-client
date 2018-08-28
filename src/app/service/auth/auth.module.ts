@@ -6,6 +6,7 @@ import { AuthService }          from './auth.service';
 import { SecurityService }      from './security.service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+
     return new AuthHttp(new AuthConfig(), http, options);
 }
 

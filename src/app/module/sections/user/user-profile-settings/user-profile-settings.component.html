@@ -22,13 +22,10 @@
           +
           <mat-form-field hintLabel="e.g. +375221113344">
             <input matInput placeholder="mobile number" [formControl]="mobileNumber">
+            <mat-error *ngIf="mobileNumber.invalid"> {{ getErrorMessage() }} </mat-error>
           </mat-form-field>
-          <mat-icon>phone</mat-icon>
 
-          <div>
-            <label class="field-invalid" *ngIf="mobileNumber.invalid"> Mobile number does not match. </label>
-          </div>
-          <div class="field-invalid-placeholder" *ngIf="!mobileNumber.invalid"></div>
+          <mat-icon>phone</mat-icon>
         </div>
 
         <div class="to-bottom-pusher"></div>

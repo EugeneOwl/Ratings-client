@@ -10,11 +10,10 @@
             <span class="column-names"> Id: </span> {{roleId}}
           </p>
           <mat-form-field>
-            <input matInput placeholder="label" [formControl]="label">
+            <input matInput placeholder="label" [formControl]="label" required>
+            <mat-error *ngIf="label.invalid"> {{ getErrorMessage() }} </mat-error>
           </mat-form-field>
-          <div>
-            <label class="field-invalid" *ngIf="label.invalid"> Role label is required. </label>
-          </div>
+
           <div class="field-invalid-placeholder" *ngIf="!label.invalid"></div>
         </div>
 

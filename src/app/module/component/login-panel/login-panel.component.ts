@@ -21,10 +21,12 @@ export class LoginPanelComponent implements OnInit {
     }
 
     isLoginButtonEnabled(): boolean {
+
         return ! this.securityService.isLoggedIn();
     }
 
     isLogoutButtonEnabled(): boolean {
+
         return this.securityService.isLoggedIn();
     }
 

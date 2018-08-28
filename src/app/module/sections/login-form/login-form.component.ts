@@ -29,6 +29,7 @@ export class LoginFormComponent implements OnInit {
         this.errorMessage = null;
         this.authService.login(this.model.username, this.model.password)
         .flatMap(data => {
+
             return this.authService.getMe();
         })
         .subscribe(

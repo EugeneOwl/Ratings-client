@@ -54,4 +54,9 @@ export class RoleEditComponent implements OnInit {
             this.goBack();
         });
     }
+
+    getErrorMessage(): string {
+
+        return this.label.hasError('required') ? 'Role label is required.' : '';
+    }
 }

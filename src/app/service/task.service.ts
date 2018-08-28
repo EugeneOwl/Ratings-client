@@ -22,6 +22,7 @@ export class TaskService {
     }
 
     getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<Task[]> {
+
         return this.authHttp.get(
             `${this.API}/page?pageNumber=${pageNumber}&sortByColumn=${sortByColumn}&filterPattern=${filterPattern}`
         ).map(res => res.json());

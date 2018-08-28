@@ -25,6 +25,7 @@ export class AuthService {
             {headers}
         )
         .map(res => {
+
             return res.json();
         })
         .do(token => {
@@ -39,6 +40,7 @@ export class AuthService {
     }
 
     getMe() {
+
         return this.authHttp.get(`${environment.serverUrl}auth/me`)
         .map(res => res.json());
     }

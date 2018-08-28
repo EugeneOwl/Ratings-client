@@ -67,6 +67,7 @@ export class TaskListComponent implements OnInit {
     }
 
     isActiveColor(sortColumn: string): string {
+
         return sortColumn === this.sortByColumn ? 'primary' : '';
     }
 
@@ -111,6 +112,7 @@ export class TaskListComponent implements OnInit {
     }
 
     allottedIfNeeded(taskId: number): string {
+
         return (taskId === this.allottedTaskId ? 'allotted' : '');
     }
 

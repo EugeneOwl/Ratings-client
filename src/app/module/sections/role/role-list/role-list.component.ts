@@ -45,6 +45,7 @@ export class RoleListComponent implements OnInit {
     }
 
     isActiveColor(sortColumn: string): string {
+
         return sortColumn === this.sortByColumn ? 'primary' : '';
     }
 
