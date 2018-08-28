@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 import { AuthHttp }    from 'angular2-jwt';
 import { Observable }  from 'rxjs';
 import { Task }        from '../model/Task';
-import { User }        from '../model/User';
 
 @Injectable()
 export class TaskService {

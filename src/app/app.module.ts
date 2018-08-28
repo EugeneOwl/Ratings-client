@@ -30,13 +30,12 @@ import { AdminLayoutModule }                   from './module/layout/admin-layou
 import { LoginFormModule }                     from './module/sections/login-form/login-form.module';
 import { UserLayoutModule }                    from './module/layout/user-layout/user-layout.module';
 import { ErrorLayoutModule }                   from './module/layout/error-layout/error-layout.module';
-import { TaskStatisticsModule }                from './module/sections/task/task-statistics/task-statistics.module';
-import { AppErrorHandler }                     from './service/errorHandling/app-error-handler';
-import { PathLocationStrategy }                from '@angular/common';
-import { LocationStrategy }                    from '@angular/common';
-import { ErrorPlateModule }                    from './module/component/error-plate/error-plate.module';
-import { GoBackButtonModule }                  from './module/component/go-back-button/go-back-button.module';
-import { TaskGraphicModule }                   from './module/sections/task-graphic/task-graphic.module';
+import { AppErrorHandler }      from './service/errorHandling/app-error-handler';
+import { PathLocationStrategy } from '@angular/common';
+import { LocationStrategy }     from '@angular/common';
+import { ErrorPlateModule }     from './module/component/error-plate/error-plate.module';
+import { GoBackButtonModule }   from './module/component/go-back-button/go-back-button.module';
+import { TaskGraphicModule }    from './module/sections/task/task-graphic/task-graphic.module';
 
 @NgModule({
     declarations: [
@@ -71,7 +70,6 @@ import { TaskGraphicModule }                   from './module/sections/task-grap
 
         UserProfileSettingsModule,
         LoginFormModule,
-        TaskStatisticsModule,
         TaskGraphicModule,
 
         // components

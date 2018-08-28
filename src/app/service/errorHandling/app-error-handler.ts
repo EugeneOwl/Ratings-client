@@ -21,15 +21,15 @@ export class AppErrorHandler extends ErrorHandler {
         console.log('Error handler catches error.');
         console.error(error);
 
-        // this.zone.run(() => this.router.navigate(
-        //     ['client/error'],
-        //     {
-        //         queryParams: {
-        //             errorCode: error.status,
-        //             errorMessage: error._body
-        //         }
-        //     }
-        //     )
-        // );
+        this.zone.run(() => this.router.navigate(
+            ['client/error'],
+            {
+                queryParams: {
+                    errorCode: error.status,
+                    errorMessage: error._body
+                }
+            }
+            )
+        );
     }
 }

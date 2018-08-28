@@ -11,10 +11,10 @@ import { FormControl }       from '@angular/forms';
     styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-    private usersOnPage: User[] = [];
-    private pageNumber: number = 0;
-    private pageNumbers: number[] = [];
-    private sortByColumn: string = 'id';
+    usersOnPage: User[] = [];
+    pageNumber: number = 0;
+    pageNumbers: number[] = [];
+    sortByColumn: string = 'id';
     filterPattern = new FormControl('');
 
 

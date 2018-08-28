@@ -11,10 +11,10 @@ import { FormControl }       from '@angular/forms';
     styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
-    private rolesOnPage: Role[] = [];
-    private pageNumber: number = 0;
-    private pageNumbers: number[] = [];
-    private sortByColumn: string = 'id';
+    rolesOnPage: Role[] = [];
+    pageNumber: number = 0;
+    pageNumbers: number[] = [];
+    sortByColumn: string = 'id';
     filterPattern = new FormControl('');
 
 
