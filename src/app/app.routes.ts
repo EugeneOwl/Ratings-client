@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { TaskGraphicComponent } from './module/sections/task-graphic/task-graphic.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,14 @@ const routes: Routes = [
     {
         path: 'client/error',
         loadChildren: './module/layout/error-layout/error-layout.module#ErrorLayoutModule'
+    },
+    {
+        path: 'client/chart',
+        component: TaskGraphicComponent
+    },
+    {
+        path: '**',
+        redirectTo: 'client/error'
     }
 ];
 

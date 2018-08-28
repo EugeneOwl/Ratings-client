@@ -36,6 +36,7 @@ import { PathLocationStrategy }                from '@angular/common';
 import { LocationStrategy }                    from '@angular/common';
 import { ErrorPlateModule }                    from './module/component/error-plate/error-plate.module';
 import { GoBackButtonModule }                  from './module/component/go-back-button/go-back-button.module';
+import { TaskGraphicModule }                   from './module/sections/task-graphic/task-graphic.module';
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import { GoBackButtonModule }                  from './module/component/go-back-
         UserProfileSettingsModule,
         LoginFormModule,
         TaskStatisticsModule,
+        TaskGraphicModule,
 
         // components
         GoToUserProfileSettingsButtonModule,
