@@ -15,9 +15,18 @@ export class ErrorPlateComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.activatedRoute.queryParams.subscribe(params => {
-            this.errorCode = params.errorCode;
-            this.errorMessage = params.errorMessage;
+        this.activatedRoute.queryParams.subscribe(queryParams => {
+            this.errorCode = queryParams.errorCode;
+            this.errorMessage = queryParams.errorMessage;
+        });
+
+        this.activatedRoute.data.subscribe(params => {
+            if (params.errorCode) {
+                this.errorCode = params.errorCode;
+            }
+            if (params.errorMessage) {
+                this.errorMessage = params.errorMessage;
+            }
         });
     }
 

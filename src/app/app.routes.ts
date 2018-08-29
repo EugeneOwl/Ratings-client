@@ -24,7 +24,15 @@ const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'client/error'
+        redirectTo: 'client/error/404'
+    },
+    {
+        path: 'client/**',
+        redirectTo: 'client/error/404'
+    },
+    {
+        path: 'client/admin/**',
+        redirectTo: 'client/error/404'
     }
 ];
 

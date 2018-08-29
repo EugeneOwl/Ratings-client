@@ -7,6 +7,7 @@ import { Task }        from '../model/Task';
 @Injectable()
 export class TaskService {
     public API = `${environment.serverUrl}tasks`;
+    public PAGE_SIZE = 4;
 
     constructor(private authHttp: AuthHttp) {
     }
@@ -24,7 +25,7 @@ export class TaskService {
     getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<Task[]> {
 
         return this.authHttp.get(
-            `${this.API}/page?pageNumber=${pageNumber}&sortByColumn=${sortByColumn}&filterPattern=${filterPattern}`
+            `${this.API}/page?page=${pageNumber}&size=${this.PAGE_SIZE}&sort=${sortByColumn}&filterPattern=${filterPattern}`
         ).map(res => res.json());
     }
 

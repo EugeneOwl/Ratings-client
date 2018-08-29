@@ -9,7 +9,8 @@
 
 </mat-button-toggle-group>
 
-<a [routerLink]="['new']" mat-button mat-raised-button class="add-role-button button"> Add role </a>
+<a [routerLink]="['new']" mat-button mat-raised-button
+   class="add-role-button button" color="primary"> Add role </a>
 
 <mat-form-field class="search-panel">
   <input type="search" (input)="executeSearch()" matInput placeholder="search" [formControl]="filterPattern">

@@ -8,6 +8,7 @@ import { UserUpdate }  from '../model/UserUpdate';
 @Injectable()
 export class UserService {
     public API = `${environment.serverUrl}users`;
+    public PAGE_SIZE = 5;
 
     constructor(private authHttp: AuthHttp) {
     }
@@ -24,7 +25,7 @@ export class UserService {
 
     getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<User[]> {
         return this.authHttp.get(
-            `${this.API}/page?pageNumber=${pageNumber}&sortByColumn=${sortByColumn}&filterPattern=${filterPattern}`
+            `${this.API}/page?page=${pageNumber}&size=${this.PAGE_SIZE}&sort=${sortByColumn}&filterPattern=${filterPattern}`
         ).map(res => res.json());
     }
 

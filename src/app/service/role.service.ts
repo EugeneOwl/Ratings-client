@@ -7,6 +7,7 @@ import { Role }        from '../model/Role';
 @Injectable()
 export class RoleService {
     public API = `${environment.serverUrl}roles`;
+    public PAGE_SIZE = 2;
 
     constructor(private authHttp: AuthHttp) {
     }
@@ -24,7 +25,7 @@ export class RoleService {
     getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<Role[]> {
 
         return this.authHttp.get(
-            `${this.API}/page?pageNumber=${pageNumber}&sortByColumn=${sortByColumn}&filterPattern=${filterPattern}`
+            `${this.API}/page?page=${pageNumber}&size=${this.PAGE_SIZE}&sort=${sortByColumn}&filterPattern=${filterPattern}`
         ).map(res => res.json());
     }
 

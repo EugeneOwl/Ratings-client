@@ -10,6 +10,14 @@ const routes: Routes = [
             {
                 path: '',
                 component: ErrorPlateComponent
+            },
+            {
+                path: '404',
+                component: ErrorPlateComponent,
+                data: {
+                    errorCode: 404,
+                    errorMessage: 'URL not found.'
+                }
             }
         ]
     }
