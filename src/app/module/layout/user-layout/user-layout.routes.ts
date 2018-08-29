@@ -6,6 +6,7 @@ import { UserDetailsComponent }         from '../../sections/user/user-details/u
 import { UserProfileSettingsComponent } from '../../sections/user/user-profile-settings/user-profile-settings.component';
 import { RatingsDetailsComponent }      from '../../sections/rating/ratings-details/ratings-details.component';
 import { TaskDetailsComponent }         from '../../sections/task/task-details/task-details.component';
+import { RouterModule }                 from '@angular/router';
 
 const routes: Routes = [
     {
@@ -45,4 +46,4 @@ const routes: Routes = [
     }
 ];
 
-export const userRoutes = routes;
+export const userRouting = RouterModule.forRoot(routes);

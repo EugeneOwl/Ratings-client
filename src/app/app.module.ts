@@ -21,7 +21,7 @@ import { TaskService }                         from './service/task.service';
 import { TaskListModule }                      from './module/sections/task/task-list/task-list.module';
 import { TaskDetailsModule }                   from './module/sections/task/task-details/task-details.module';
 import { TaskEditModule }                      from './module/sections/task/task-edit/task-edit.module';
-import { routing }                             from './app.routes';
+import { appRouting }                          from './app.routes';
 import { LoginPanelModule }                    from './module/component/login-panel/login-panel.module';
 import { GoToUserSideButtonModule }            from './module/component/go-to-user-side-button/go-to-user-side-button.module';
 import { GoToAdminSideButtonModule }           from './module/component/go-to-admin-side-button/go-to-admin-side-button.module';
@@ -30,12 +30,12 @@ import { AdminLayoutModule }                   from './module/layout/admin-layou
 import { LoginFormModule }                     from './module/sections/login-form/login-form.module';
 import { UserLayoutModule }                    from './module/layout/user-layout/user-layout.module';
 import { ErrorLayoutModule }                   from './module/layout/error-layout/error-layout.module';
-import { AppErrorHandler }      from './service/errorHandling/app-error-handler';
-import { PathLocationStrategy } from '@angular/common';
-import { LocationStrategy }     from '@angular/common';
-import { ErrorPlateModule }     from './module/component/error-plate/error-plate.module';
-import { GoBackButtonModule }   from './module/component/go-back-button/go-back-button.module';
-import { TaskGraphicModule }    from './module/sections/task/task-graphic/task-graphic.module';
+import { AppErrorHandler }                     from './service/errorHandling/app-error-handler';
+import { PathLocationStrategy }                from '@angular/common';
+import { LocationStrategy }                    from '@angular/common';
+import { ErrorPlateModule }                    from './module/component/error-plate/error-plate.module';
+import { GoBackButtonModule }                  from './module/component/go-back-button/go-back-button.module';
+import { TaskGraphicModule }                   from './module/sections/task/task-graphic/task-graphic.module';
 
 @NgModule({
     declarations: [
@@ -47,7 +47,7 @@ import { TaskGraphicModule }    from './module/sections/task/task-graphic/task-g
         HttpModule,
 
         // routing
-        routing,
+        appRouting,
 
         // layout
         AdminLayoutModule,
@@ -78,7 +78,6 @@ import { TaskGraphicModule }    from './module/sections/task/task-graphic/task-g
         GoToAdminSideButtonModule,
         GoBackButtonModule,
         LoginPanelModule,
-
         NotificationModule,
 
         // security

@@ -1,8 +1,7 @@
 import { NgModule }            from '@angular/core';
 import { UserLayoutComponent } from './user-layout.component';
 import { CommonModule }        from '@angular/common';
-import { userRoutes }          from './user-layout.routes';
-import { RouterModule }        from '@angular/router';
+import { userRouting }         from './user-layout.routes';
 import { UserLayoutGuard }     from './user-layout.guard';
 import { UserToolbarModule }   from '../../sections/toolbars/user-toolbar/user-toolbar.module';
 
@@ -11,7 +10,7 @@ import { UserToolbarModule }   from '../../sections/toolbars/user-toolbar/user-t
         UserLayoutComponent
     ],
     imports: [
-        RouterModule.forChild(userRoutes),
+        userRouting,
         CommonModule,
         UserToolbarModule
     ],

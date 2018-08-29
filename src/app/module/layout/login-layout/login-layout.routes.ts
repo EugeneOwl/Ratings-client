@@ -2,6 +2,7 @@ import { Routes }               from '@angular/router';
 import { LoginLayoutComponent } from './login-layout.component';
 import { LoginLayoutGuard }     from './login-layout.guard';
 import { LoginFormComponent }   from '../../sections/login-form/login-form.component';
+import { RouterModule }         from '@angular/router';
 
 const routes: Routes = [
     {
@@ -17,4 +18,4 @@ const routes: Routes = [
     }
 ];
 
-export const loginRoutes = routes;
+export const loginRouting = RouterModule.forRoot(routes);

@@ -8,6 +8,7 @@ import { UserEditComponent }    from '../../sections/user/user-edit/user-edit.co
 import { TaskEditComponent }    from '../../sections/task/task-edit/task-edit.component';
 import { RoleEditComponent }    from '../../sections/role/role-edit/role-edit.component';
 import { TaskGraphicComponent } from '../../sections/task/task-graphic/task-graphic.component';
+import { RouterModule }         from '@angular/router';
 
 const routes: Routes = [
     {
@@ -66,4 +67,4 @@ const routes: Routes = [
     }
 ];
 
-export const adminRoutes = routes;
+export const adminRouting = RouterModule.forRoot(routes);

@@ -1,8 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { ErrorLayoutComponent } from './error-layout.component';
 import { CommonModule }         from '@angular/common';
-import { errorRoutes }          from './error-layout.routes';
-import { RouterModule }         from '@angular/router';
+import { errorRouting }         from './error-layout.routes';
 import { ErrorToolbarModule }   from '../../sections/toolbars/error-toolbar/error-toolbar.module';
 
 @NgModule({
@@ -10,7 +9,7 @@ import { ErrorToolbarModule }   from '../../sections/toolbars/error-toolbar/erro
         ErrorLayoutComponent
     ],
     imports: [
-        RouterModule.forChild(errorRoutes),
+        errorRouting,
         CommonModule,
         ErrorToolbarModule
     ],

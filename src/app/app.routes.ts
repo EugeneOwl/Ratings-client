@@ -36,4 +36,4 @@ const routes: Routes = [
     }
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const appRouting = RouterModule.forRoot(routes);
