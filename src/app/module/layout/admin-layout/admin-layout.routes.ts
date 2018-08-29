@@ -1,4 +1,5 @@
 import { Routes }               from '@angular/router';
+import { RouterModule }         from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout.component';
 import { AdminLayoutGuard }     from './admin-layout.guard';
 import { UserListComponent }    from '../../sections/user/user-list/user-list.component';
@@ -7,18 +8,16 @@ import { RoleListComponent }    from '../../sections/role/role-list/role-list.co
 import { UserEditComponent }    from '../../sections/user/user-edit/user-edit.component';
 import { TaskEditComponent }    from '../../sections/task/task-edit/task-edit.component';
 import { RoleEditComponent }    from '../../sections/role/role-edit/role-edit.component';
-import { TaskGraphicComponent } from '../../sections/task/task-graphic/task-graphic.component';
-import { RouterModule }         from '@angular/router';
 
 const routes: Routes = [
     {
-        path: 'client/admin',
+        path: '',
         component: AdminLayoutComponent,
         canActivate: [AdminLayoutGuard],
         children: [
             {
                 path: '',
-                component: TaskGraphicComponent
+                loadChildren: '../../sections/task/task-graphic/task-graphic.module#TaskGraphicModule'
             },
             {
                 path: 'roles',
@@ -67,4 +66,4 @@ const routes: Routes = [
     }
 ];
 
-export const adminRouting = RouterModule.forRoot(routes);
+export const adminRouting = RouterModule.forChild(routes);

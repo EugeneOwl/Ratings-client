@@ -1,17 +1,18 @@
-import { NgModule }                from '@angular/core';
-import { MatButtonModule }         from '@angular/material';
-import { MatCardModule }           from '@angular/material';
-import { NotificationComponent }   from './notification.component';
-import { ReactiveFormsModule }     from '@angular/forms';
-import { RouterModule }            from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule }              from '@angular/core';
+import { MatButtonModule }       from '@angular/material';
+import { MatCardModule }         from '@angular/material';
+import { NotificationComponent } from './notification.component';
+import { ReactiveFormsModule }   from '@angular/forms';
+import { RouterModule }          from '@angular/router';
+
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
         NotificationComponent
     ],
     imports: [
-        BrowserAnimationsModule,
+        // BrowserAnimationsModule,
         ReactiveFormsModule,
         RouterModule,
 

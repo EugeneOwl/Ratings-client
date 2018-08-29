@@ -1,11 +1,11 @@
 import { Routes }               from '@angular/router';
+import { RouterModule }         from '@angular/router';
 import { ErrorLayoutComponent } from './error-layout.component';
 import { ErrorPlateComponent }  from '../../component/error-plate/error-plate.component';
-import { RouterModule }         from '@angular/router';
 
 const routes: Routes = [
     {
-        path: 'client/error',
+        path: '',
         component: ErrorLayoutComponent,
         children: [
             {
@@ -24,4 +24,4 @@ const routes: Routes = [
     }
 ];
 
-export const errorRouting = RouterModule.forRoot(routes);
+export const errorRouting = RouterModule.forChild(routes);

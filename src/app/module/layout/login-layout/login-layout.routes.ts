@@ -1,12 +1,12 @@
 import { Routes }               from '@angular/router';
+import { RouterModule }         from '@angular/router';
 import { LoginLayoutComponent } from './login-layout.component';
 import { LoginLayoutGuard }     from './login-layout.guard';
 import { LoginFormComponent }   from '../../sections/login-form/login-form.component';
-import { RouterModule }         from '@angular/router';
 
 const routes: Routes = [
     {
-        path: 'client/login', // TODO clear тут же должно быть пусто? А пусто не пашет.
+        path: '',
         component: LoginLayoutComponent,
         canActivate: [LoginLayoutGuard],
         children: [
@@ -18,4 +18,4 @@ const routes: Routes = [
     }
 ];
 
-export const loginRouting = RouterModule.forRoot(routes);
+export const loginRouting = RouterModule.forChild(routes);

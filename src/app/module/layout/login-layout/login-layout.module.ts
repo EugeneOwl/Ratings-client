@@ -3,6 +3,7 @@ import { LoginLayoutComponent } from './login-layout.component';
 import { CommonModule }         from '@angular/common';
 import { loginRouting }         from './login-layout.routes';
 import { LoginLayoutGuard }     from './login-layout.guard';
+import { LoginFormModule }      from '../../sections/login-form/login-form.module';
 
 @NgModule({
     declarations: [
@@ -10,7 +11,9 @@ import { LoginLayoutGuard }     from './login-layout.guard';
     ],
     imports: [
         loginRouting,
-        CommonModule
+        CommonModule,
+
+        LoginFormModule
     ],
     exports: [LoginLayoutComponent],
     providers: [LoginLayoutGuard]

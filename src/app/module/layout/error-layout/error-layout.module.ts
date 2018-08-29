@@ -3,6 +3,7 @@ import { ErrorLayoutComponent } from './error-layout.component';
 import { CommonModule }         from '@angular/common';
 import { errorRouting }         from './error-layout.routes';
 import { ErrorToolbarModule }   from '../../sections/toolbars/error-toolbar/error-toolbar.module';
+import { ErrorPlateModule }     from '../../component/error-plate/error-plate.module';
 
 @NgModule({
     declarations: [
@@ -11,6 +12,7 @@ import { ErrorToolbarModule }   from '../../sections/toolbars/error-toolbar/erro
     imports: [
         errorRouting,
         CommonModule,
+        ErrorPlateModule,
         ErrorToolbarModule
     ],
     exports: [ErrorLayoutComponent],
