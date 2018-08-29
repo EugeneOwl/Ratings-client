@@ -39,7 +39,8 @@
       <span> Delete </span>
     </th>
     <td mat-cell *matCellDef="let element">
-      <a (click)="deleteRole(element.id)" mat-button class="table-button"> Delete </a>
+      <button (click)="deleteRole(element.id)" [disabled]="isRolePermanent(element.label)"
+         mat-button class="table-button"> Delete </button>
     </td>
   </ng-container>
 

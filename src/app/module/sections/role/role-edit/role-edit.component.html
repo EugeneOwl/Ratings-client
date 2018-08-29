@@ -19,12 +19,12 @@
 
         <div class="to-bottom-pusher-mini"></div>
         <div class="form-panel">
-          <button mat-raised-button mat-button color="primary" [disabled]="!label.value" (click)="save()">
-            Save
-          </button>
+          <button (click)="save()" mat-raised-button mat-button color="primary"
+                  [disabled]="!label.value || isRolePermanent(originalRoleLabel)"> Save </button>
 
           <span *ngIf="roleId">
-          <button mat-raised-button mat-button (click)="remove(roleId)"> Delete</button>
+          <button mat-raised-button mat-button (click)="remove(roleId)"
+                  [disabled]="isRolePermanent(originalRoleLabel)"> Delete </button>
         </span>
 
           <a mat-raised-button mat-button (click)="goBack()" class="cancel-form-button"> Cancel </a>

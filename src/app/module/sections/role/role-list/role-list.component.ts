@@ -4,6 +4,7 @@ import { Role }              from '../../../../model/Role';
 import { RoleService }       from '../../../../service/role.service';
 import { ActivatedRoute }    from '@angular/router';
 import { FormControl }       from '@angular/forms';
+import { SecurityService }   from '../../../../service/auth/security.service';
 
 @Component({
     selector: 'app-role-list',
@@ -16,18 +17,20 @@ export class RoleListComponent implements OnInit {
     pageNumbers: number[] = [];
     sortByColumn: string = 'id';
     filterPattern = new FormControl('');
+    permanentRoles: string[] = [];
 
 
     @Input()
     displayedColumns: string[];
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
+    constructor(private activatedRoute: ActivatedRoute,
         private roleService: RoleService,
-    ) {
+        private securityService: SecurityService) {
     }
 
     ngOnInit() {
+        this.permanentRoles = this.securityService.adminRoles.concat(this.securityService.userRoles);
+
         this.activatedRoute.data.subscribe(data => {
             this.displayedColumns = data.displayedColumns;
         });
@@ -57,9 +60,14 @@ export class RoleListComponent implements OnInit {
     deleteRole(roleId: number): void {
         this.roleService.remove(roleId).subscribe(
             success => {
+                this.pageNumber = 0;
                 this.getRolesOnPage();
             }
         );
+    }
+
+    isRolePermanent(roleLabel: string): boolean {
+        return this.permanentRoles.includes(roleLabel);
     }
 
     private getRolesOnPage() {

@@ -5,6 +5,7 @@ import { RoleService }       from '../../../../service/role.service';
 import { Role }              from '../../../../model/Role';
 import { ActivatedRoute }    from '@angular/router';
 import { Router }            from '@angular/router';
+import { SecurityService }   from '../../../../service/auth/security.service';
 
 @Component({
     selector: 'app-role-edit',
@@ -13,14 +14,19 @@ import { Router }            from '@angular/router';
 })
 export class RoleEditComponent implements OnInit {
     roleId: number;
+    originalRoleLabel = '';
     label = new FormControl('', [Validators.required]);
+    permanentRoles: string[] = [];
 
     constructor(private activatedRoute: ActivatedRoute,
                 private router: Router,
-                private roleService: RoleService) {
+                private roleService: RoleService,
+                private securityService: SecurityService) {
     }
 
     ngOnInit() {
+        this.permanentRoles = this.securityService.adminRoles.concat(this.securityService.userRoles);
+
         this.activatedRoute.params.subscribe(params => {
             if (params['id'] !== 'new') {
                 this.roleId = params['id'];
@@ -31,6 +37,7 @@ export class RoleEditComponent implements OnInit {
             this.roleService.get(this.roleId).subscribe(
                 (success: Role) => {
                     this.label.setValue(success.label);
+                    this.originalRoleLabel = success.label;
                 }
             );
         }
@@ -53,6 +60,10 @@ export class RoleEditComponent implements OnInit {
         this.roleService.remove(id).subscribe(result => {
             this.goBack();
         });
+    }
+
+    isRolePermanent(roleLabel: string): boolean {
+        return this.permanentRoles.includes(roleLabel);
     }
 
     getErrorMessage(): string {
