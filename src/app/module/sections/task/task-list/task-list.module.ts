@@ -7,8 +7,8 @@ import { MatInputModule }        from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatFormFieldModule }    from '@angular/material';
 import { CommonModule }          from '@angular/common';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule }   from '@angular/forms';
+import { TaskEditModule }        from '../task-edit/task-edit.module';
 
 @NgModule({
     declarations: [
@@ -17,8 +17,9 @@ import { ReactiveFormsModule }   from '@angular/forms';
     imports: [
         CommonModule,
         RouterModule,
-        // BrowserAnimationsModule,
         ReactiveFormsModule,
+
+        TaskEditModule,
 
         MatFormFieldModule,
         MatInputModule,

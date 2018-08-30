@@ -6,19 +6,22 @@ import { MatTableModule }        from '@angular/material';
 import { MatInputModule }        from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatFormFieldModule }    from '@angular/material';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { CommonModule }          from '@angular/common';
+import { roleListRouting }       from './role-list.routes';
+import { RoleEditModule }        from '../role-edit/role-edit.module';
 
 @NgModule({
     declarations: [
         RoleListComponent
     ],
     imports: [
+        roleListRouting,
         RouterModule,
-        // BrowserAnimationsModule,
         CommonModule,
         ReactiveFormsModule,
+
+        RoleEditModule,
 
         MatFormFieldModule,
         MatInputModule,

@@ -9,14 +9,11 @@ import { FormsModule }         from '@angular/forms';
 import { RouterModule }        from '@angular/router';
 import { CommonModule }        from '@angular/common';
 
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 @NgModule({
     declarations: [
         TaskEditComponent
     ],
     imports: [
-        // BrowserAnimationsModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

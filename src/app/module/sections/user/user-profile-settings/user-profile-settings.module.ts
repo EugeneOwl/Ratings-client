@@ -10,12 +10,14 @@ import { MatCardModule }                from '@angular/material';
 import { MatButtonModule }              from '@angular/material';
 import { MatCheckboxModule }            from '@angular/material';
 import { MatIconModule }                from '@angular/material';
+import { userProfileSettingsRouting }   from './user-profile-settings.routes';
 
 @NgModule({
     declarations: [
         UserProfileSettingsComponent
     ],
     imports: [
+        userProfileSettingsRouting,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

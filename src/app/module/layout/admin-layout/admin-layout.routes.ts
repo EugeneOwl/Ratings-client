@@ -2,12 +2,6 @@ import { Routes }               from '@angular/router';
 import { RouterModule }         from '@angular/router';
 import { AdminLayoutComponent } from './admin-layout.component';
 import { AdminLayoutGuard }     from './admin-layout.guard';
-import { UserListComponent }    from '../../sections/user/user-list/user-list.component';
-import { TaskListComponent }    from '../../sections/task/task-list/task-list.component';
-import { RoleListComponent }    from '../../sections/role/role-list/role-list.component';
-import { UserEditComponent }    from '../../sections/user/user-edit/user-edit.component';
-import { TaskEditComponent }    from '../../sections/task/task-edit/task-edit.component';
-import { RoleEditComponent }    from '../../sections/role/role-edit/role-edit.component';
 
 const routes: Routes = [
     {
@@ -21,47 +15,16 @@ const routes: Routes = [
             },
             {
                 path: 'roles',
-                component: RoleListComponent,
-                data: {
-                    displayedColumns: ['id', 'label', 'delete']
-                }
-            },
-            {
-                path: 'roles/:id',
-                component: RoleEditComponent
+                loadChildren: '../../sections/role/role-list/role-list.module#RoleListModule'
             },
             {
                 path: 'users',
-                component: UserListComponent,
-                data: {
-                    displayedColumns: ['id', 'username', 'roles']
-                }
-            },
-            {
-                path: 'users/:id',
-                component: UserEditComponent
+                loadChildren: '../../sections/user/user-list/user-list-admin.module#UserListAdminModule'
             },
             {
                 path: 'tasks',
-                component: TaskListComponent,
-                data: {
-                    displayedColumns: [
-                        'id',
-                        'label',
-                        'description',
-                        'evaluation',
-                        'user',
-                        'parent',
-                        'delete'
-                    ],
-                    customDatasource: false,
-                    adminMode: true
-                }
+                loadChildren: '../../sections/task/task-list/task-list-admin.module#TaskListAdminModule'
             },
-            {
-                path: 'tasks/:id',
-                component: TaskEditComponent
-            }
         ]
     }
 ];

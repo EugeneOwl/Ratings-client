@@ -22,10 +22,10 @@ const routes: Routes = [
         path: 'client/error',
         loadChildren: './module/layout/error-layout/error-layout.module#ErrorLayoutModule'
     },
-    // {
-    //     path: '**',
-    //     redirectTo: 'client/error/404'
-    // }
+    {
+        path: '**',
+        redirectTo: 'client/error/404'
+    }
 ];
 
 export const appRouting = RouterModule.forRoot(routes);
