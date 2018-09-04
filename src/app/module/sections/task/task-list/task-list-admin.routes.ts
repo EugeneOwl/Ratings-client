@@ -17,7 +17,7 @@ const routes: Routes = [
                 'parent',
                 'delete'
             ],
-            customDatasource: false,
+            ownerId: false,
             adminMode: true
         }
     },

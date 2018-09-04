@@ -10,13 +10,6 @@ const routes: Routes = [
         data: {
             displayedColumns: ['id', 'label', 'delete']
         },
-        // TODO: figure out whether it needed to be implemented via children
-        // children: [
-        //     {
-        //         path: ':id',
-        //         component: RoleEditComponent
-        //     }
-        // ]
     },
     {
         path: ':id',

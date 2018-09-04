@@ -22,10 +22,22 @@ export class TaskService {
         return this.authHttp.get(`${this.API}/${id}`).map(res => res.json());
     }
 
-    getPage(pageNumber: number, sortByColumn: string, filterPattern: string): Observable<Task[]> {
+    getPage(pageNumber: number,
+            sortByColumn: string,
+            filterPattern: string): Observable<Task[]> {
 
         return this.authHttp.get(
             `${this.API}/page?page=${pageNumber}&size=${this.PAGE_SIZE}&sort=${sortByColumn}&filterPattern=${filterPattern}`
+        ).map(res => res.json());
+    }
+
+    getPageByUserId(pageNumber: number,
+                    sortByColumn: string,
+                    filterPattern: string,
+                    userId: number): Observable<Task[]> {
+
+        return this.authHttp.get(
+            `${this.API}/page/by/user?page=${pageNumber}&size=${this.PAGE_SIZE}&sort=${sortByColumn}&filterPattern=${filterPattern}&userId=${userId}`
         ).map(res => res.json());
     }
 

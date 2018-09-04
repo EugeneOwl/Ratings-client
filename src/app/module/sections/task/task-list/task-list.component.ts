@@ -16,10 +16,10 @@ import { User }              from '../../../../model/User';
     styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
-    private tasksOnPage: Task[] = [];
-    private pageNumber: number = 0;
-    private pageNumbers: number[] = [];
-    private sortByColumn: string = 'id';
+    tasksOnPage: Task[] = [];
+    pageNumber: number = 0;
+    pageNumbers: number[] = [];
+    sortByColumn: string = 'id';
     filterPattern = new FormControl('');
     allottedTaskId: number;
 
@@ -27,7 +27,7 @@ export class TaskListComponent implements OnInit {
     displayedColumns: string[];
 
     @Input()
-    customDatasource;
+    ownerId;
 
     @Input()
     adminMode: boolean;
@@ -44,15 +44,10 @@ export class TaskListComponent implements OnInit {
         this.activatedRoute.data.subscribe(data => {
             if (data.displayedColumns) {
                 this.displayedColumns = data.displayedColumns;
-                this.customDatasource = data.customDatasource;
+                this.ownerId = data.ownerId;
                 this.adminMode = data.adminMode;
             }
         });
-        if (this.customDatasource !== false) {
-            this.tasksOnPage = this.customDatasource;
-
-            return;
-        }
         this.getTasksOnPage();
     }
 
@@ -85,6 +80,18 @@ export class TaskListComponent implements OnInit {
     }
 
     private getTasksOnPage() {
+        if (this.ownerId !== false) {
+            this.taskService.getPageByUserId(
+                this.pageNumber,
+                this.sortByColumn,
+                this.filterPattern.value,
+                this.ownerId
+            ).subscribe(success => {
+                this.tasksOnPage = success['content'];
+            });
+
+            return;
+        }
         forkJoin(
             this.taskService.getPage(
                 this.pageNumber,

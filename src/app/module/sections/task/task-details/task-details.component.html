@@ -5,7 +5,7 @@
 
       <app-task-list *ngIf="user.tasks.length != 0"
                      [displayedColumns]="['id', 'label', 'description', 'evaluation']"
-                     [customDatasource]="user.tasks"
+                     [ownerId]="user.id"
                      [adminMode]="false"></app-task-list>
 
       <div class="form-panel">
